@@ -33,5 +33,6 @@
 	<context:component-scan base-package="cosmos.signup.controller"/>
 	<context:component-scan base-package="cosmos.subjective.controller"/>
 	<context:component-scan base-package="cosmos.webcompile.controller"/>
+	<context:component-scan base-package="org.zerock.controller"/>
 	
 </beans:beans>

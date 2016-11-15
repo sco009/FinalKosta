@@ -1,5 +1,5 @@
 package cosmos.algoboard.domain;
 
-public class fasf {
+public class AlgoBoardVO {
 
 }

@@ -2,10 +2,43 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>	
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<tx:annotation-driven/>
+	
+	<!-- DB Connection -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+		<property name="username" value="cosmos"/>
+		<property name="password" value="1234"/>
+	</bean>
+	
+	<!-- sqlSessionTemplate만들기 위해 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath:mappers/*Mapper.xml"/>
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+	</bean>
+	
+	<!-- sqlSessionTemplate 생성 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
 	
 	<!-- DAO객체 생성 -->
 	<context:component-scan base-package="cosmos.algoboard.persistence"/>
@@ -13,9 +46,27 @@
 	<context:component-scan base-package="cosmos.education.persistence"/>
 	<context:component-scan base-package="cosmos.freeboard.persistence"/>
 	<context:component-scan base-package="cosmos.group.persistence"/>
-	<context:component-scan base-package="cosmos.algoboard.persistence"/>
-	<context:component-scan base-package="cosmos.algoboard.persistence"/>
-	<context:component-scan base-package="cosmos.algoboard.persistence"/>
-	<context:component-scan base-package="cosmos.algoboard.persistence"/>
+	<context:component-scan base-package="cosmos.groupboard.persistence"/>
+	<context:component-scan base-package="cosmos.login.persistence"/>
+	<context:component-scan base-package="cosmos.multiple.persistence"/>
+	<context:component-scan base-package="cosmos.ranking.persistence"/>
+	<context:component-scan base-package="cosmos.signup.persistence"/>
+	<context:component-scan base-package="cosmos.subjective.persistence"/>
+	<context:component-scan base-package="cosmos.webcompile.persistence"/>
+		
+	<!-- Service 객체 생성 -->
+	<context:component-scan base-package="cosmos.algoboard.service"/>
+	<context:component-scan base-package="cosmos.codefight.service"/>
+	<context:component-scan base-package="cosmos.education.service"/>
+	<context:component-scan base-package="cosmos.freeboard.service"/>
+	<context:component-scan base-package="cosmos.group.service"/>
+	<context:component-scan base-package="cosmos.groupboard.service"/>
+	<context:component-scan base-package="cosmos.login.service"/>
+	<context:component-scan base-package="cosmos.multiple.service"/>
+	<context:component-scan base-package="cosmos.ranking.service"/>
+	<context:component-scan base-package="cosmos.signup.service"/>
+	<context:component-scan base-package="cosmos.subjective.service"/>
+	<context:component-scan base-package="cosmos.webcompile.service"/>
+	
 		
 </beans>
