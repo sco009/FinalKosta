@@ -21,8 +21,17 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="org.zerock.controller" />
-	
-	
+	<context:component-scan base-package="cosmos.algoboard.controller"/>
+	<context:component-scan base-package="cosmos.codefight.controller"/>
+	<context:component-scan base-package="cosmos.education.controller"/>
+	<context:component-scan base-package="cosmos.freeboard.controller"/>
+	<context:component-scan base-package="cosmos.group.controller"/>
+	<context:component-scan base-package="cosmos.groupboard.controller"/>
+	<context:component-scan base-package="cosmos.login.controller"/>
+	<context:component-scan base-package="cosmos.multiple.controller"/>
+	<context:component-scan base-package="cosmos.ranking.contoller"/>
+	<context:component-scan base-package="cosmos.signup.controller"/>
+	<context:component-scan base-package="cosmos.subjective.controller"/>
+	<context:component-scan base-package="cosmos.webcompile.controller"/>
 	
 </beans:beans>
