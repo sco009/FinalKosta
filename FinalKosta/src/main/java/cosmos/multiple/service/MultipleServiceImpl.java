@@ -12,8 +12,5 @@ public class MultipleServiceImpl implements MultipleService {
 	@Inject
 	private MultipleDAO dao;
 	
-	@Override
-	public void re(){
-		
-	}
+	
 }

@@ -13,8 +13,5 @@ public class MultipleDAOImpl implements MultipleDAO {
 	
 	private static final String namespace="cosmos.mappers.multipleMapper";
 	
-	@Override
-	public void dd(){
-		
-	}
+
 }
