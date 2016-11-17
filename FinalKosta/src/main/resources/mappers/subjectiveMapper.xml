@@ -17,4 +17,10 @@
   	where SUBJ_QUESTID = #{subj_QuestId}
   </select>
   
+  <select id="countSubjective" parameterType="SubjectiveVO" resultType="int">
+  	select count(*)
+	from SUBJECTIVETYPEQUESTION
+	where SUBJ_CATEGORI = #{subj_Categori} AND SUBJ_LEVEL = #{subj_Level}
+  </select>
+  
 </mapper>  

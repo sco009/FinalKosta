@@ -17,12 +17,17 @@ function subjectiveCheck() {
 	
 	if(subjectiveAnswer===subjectiveReply){
 		$.ajax({
-			url:"deleteFile",
-			type:"post",
-			data: {fileName:$(this).attr("data-src")},
-		})
+			url:"/subjective/successCheck",
+			type:"get",
+			data: {subjectiveQuestId: subjectiveSelect},
+		});
 		check = "<img src='/resources/dist/img/quest/subjective/ok.gif'>";
 	}else{
+		$.ajax({
+			url:"/subjective/failCheck",
+			type:"get",
+			data: {subjectiveQuestId: subjectiveSelect},
+		});
 		check = "<img src='/resources/dist/img/quest/subjective/x.gif'>";
 	}
 	document.getElementById("checkAnswer").innerHTML = check;

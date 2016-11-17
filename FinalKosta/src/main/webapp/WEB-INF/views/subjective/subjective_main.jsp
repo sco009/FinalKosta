@@ -35,7 +35,7 @@
 			</div>
 <!-- dd -->
 			<div class="col-md-3 col-md-offset-1* side">
-				<form action="subjectiveSelect" method="POST">
+				<form action="subjectiveSelect" method="GET">
 					<div class="row-fluid">
 
 						<span class="dropdown-el " id="drop"> <input type="radio"
@@ -111,14 +111,17 @@
 					<p id="checkAnswer"></p> 
 			</div>
 			
-			<form action="subjectiveNext" method="POST">
-			<div class="col-md-1">
-               		<input type="hidden" name= "solveSelectId" value=${subjectiveSelect.subj_QuestId } ></input>
-               		<input type="hidden" name= "subjectiveAnswer" value=${result }></input>
-               		<input type="submit" name="nextButton" value="다음" class="multipleSelect_css"></input>
+			<c:if test="${signal==null }">
+			<form action="subjectiveNext" method="GET">
+			<div class="col-md-1" >
+               		<input type="submit" id="nextButton" name="nextButton" value="다음" class="multipleSelect_css"></input>
 			</div>
 			</form>
+			</c:if>
 			
+			<c:if test="${signal!=null }">
+               		<input type="submit" name="nextButton" value="결과보기" class="multipleSelect_css"></input>
+			</c:if>
 			
 			<!--2단 end  -->
 
