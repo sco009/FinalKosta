@@ -1,22 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cosmos</title>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="../js/MultipleJs/MultipleJavaScript.js"></script>
+<link href="../css/MultipleCss/MultipleMenu.css" rel="stylesheet"
+	type="text/css">
+<link href="../../../css/quest/multiple/MultipleRadioButton.css" rel="stylesheet"
+	type="text/css">
 </head>
 <body id="body">
 	
 	<div class="row-fluid">
 		<div class="col-md-12">
     		<div class="row-fluid side">
-     			<label id="toplabel"><b>카테고리:</b> ${multipleSelect.mulquestCategori }</label>
-     			<label id="toplabel"><b>난이도 :</b>${multipleSelect.mulquestLevel }</label>
+     			<label id="toplabel"><b>카테고리:</b> ${multipleSelect.mulquestCategori}</label> 
+     			 <label id="toplabel"><b>난이도 :</b>${multipleSelect.mulquestLevel}</label>
          	</div>
          	
   		 <div class="col-md-3 col-md-offset-1* side">
-  		 	<form action="MultipleMainSend.jsp" method="POST">
+  		 	<form action="multiple" method="POST">
    	 			<div class="row-fluid">
    
    					<span class="dropdown-el " id="drop">
@@ -66,7 +77,7 @@
 	
 	</div><!--2단 end  -->
 	
-	<div class="col-md-4 checkd side">
+	 <div class="col-md-4 checkd side">
       <div class="well well-large">
          <!-- 유형이 선택되야만 보기가 보여짐 -->
          <c:if test="${multipleSelect != null }">
@@ -109,7 +120,7 @@
                <input type="button" value="결과보기" class="multipleSelect_css" onclick=resultMultiple()></input>
             </c:if>
          </div><!-- solveButton end  -->
-      </div><!-- 3단 col end  -->
+      </div><!-- 3단 col end  --> 
 	</div><!-- col 12 end  -->
 </div><!-- main row -->
 </body>
