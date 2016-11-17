@@ -1,0 +1,161 @@
+body {
+   
+   min-height: 95vh;
+   margin: 0;
+   padding: 0;
+   font-family: "malgun gothic";
+   
+   letter-spacing: -1px
+}
+
+#body{
+   font-size: 14px;
+   background-image:url("../../MultipleImage/Multiple.jpg");
+   background-size: cover;
+}
+.side{
+   text-align: center;
+}
+
+#Examiner{
+   padding:3px;
+   border: 2px solid;
+   display: inline;
+   border-radius: 1em;
+}
+.well{
+   opacity: 0.65;
+}
+
+#drop {
+   margin-top: 2vh;
+   position: relative;
+   display: inline-block;
+   margin-right: 20 em;
+   min-height: 3em;
+   max-height: 3em;
+   overflow: hidden;
+   cursor: pointer;
+   text-align: left;
+   white-space: nowrap;
+   color: #444;
+   outline: none;
+   border: .06em solid transparent;
+   border-radius: 1em;
+   background-color: #F4A460 /* #cde4f5 */;
+   transition: 0.3s all ease-in-out;
+}
+
+#drop input {
+   display: none;
+}
+
+#drop label {
+   border-top: .06em solid #d9d9d9;
+   width: 15em;
+   height: 3em;
+   display: block;
+   height: 3em;
+   line-height: 3em;
+   padding-left: 2em;
+   padding-right: 3em;
+   cursor: pointer;
+   position: relative;
+   transition: 0.3s color ease-in-out;
+}
+
+#drop label:nth-child(2) {
+   margin-top: 3em;
+   border-top: .06em solid #d9d9d9;
+}
+
+#drop input:checked+label {
+   display: block;
+   border-top: none;
+   position: absolute;
+   top: 0;
+}
+
+#drop input:checked+label:nth-child(2) {
+   margin-top: 0;
+   position: relative;
+}
+
+#drop::after {
+   content: "";
+   position: absolute;
+   right: 0.8em;
+   top: 0.9em;
+   border: 0.3em solid #BB4513 /* #3694d7 */;
+   border-color: /* #3694d7 */ #CC723D transparent transparent transparent;
+   transition: .4s all ease-in-out;
+}
+
+#drop.expanded {
+   border: 0.06em solid #BB4513 /* #3694d7 */;
+   background: #fff;
+   border-radius: .25em;
+   padding: 0;
+   box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px 0px;
+   max-height: 20em;
+}
+
+#drop.expanded label {
+   border-top: .06em solid #d9d9d9;
+}
+
+#drop.expanded label:hover {
+   color: #BB4513 /* #3694d7 */;
+}
+
+#drop.expanded input:checked+label {
+   color: #BB4513 /* #3694d7 */;
+}
+
+.
+#drop.expanded::after {
+   transform: rotate(-180deg);
+   top: .55em;
+}
+
+#toplabel{
+   text-align:center;
+   background-color: #BB4513 ;
+   width: 10em;;
+   height: 2em;
+   margin: 0.5em;
+   -moz-border-radius: 6px;
+   -webkit-border-radius: 6px;
+   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.row-fluid {
+   margin-bottom: 2vh;
+}
+
+/* 버튼 css */
+.multipleSelect_css {
+   border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   border: 2px solid #BB4513 /* #B0DAFF */;
+   background: #F4A460 /* #D6EFFF */;   
+   height: 2em;
+   width: 10em;
+   display:inline;
+   
+}
+
+.returnButton {
+   text-align: center;
+} 
+
+/* 이미지 사이즈 */
+.imgs img {
+   width: 10%;
+   height: 10%;
+}
