@@ -19,6 +19,7 @@ import cosmos.subjective.domain.SubjectiveVO;
 import cosmos.subjective.service.SubjectiveService;
 import cosmos.webcompile.service.WebCompileService;
 
+
 @Controller
 @RequestMapping("/subjective")
 public class SubjectiveController {
@@ -31,6 +32,11 @@ public class SubjectiveController {
 	public String se(){
 		return "subjective/subjective_main";
 	}
+	
+	static List<SubjectiveVO>subjectiveList;
+	static List<SubjectiveVO>subjectiveSuccessList;
+	static List<SubjectiveVO>subjectiveFailList;
+	static int count;
 
 	@RequestMapping(value="/subjectiveSelect", method=RequestMethod.POST)
 	public String subjectiveSelect(Model model, SubjectiveVO vo)throws Exception{
@@ -41,10 +47,15 @@ public class SubjectiveController {
 			JOptionPane.showMessageDialog(null, "난이도를 선택해주세요");
 			return "subjective/subjective_main";
 		}else{
-			List<SubjectiveVO>list = service.selectSubjective(vo);
-			model.addAttribute("subjectiveSelect", list.get(0));
+			subjectiveList = service.selectSubjective(vo);
+			model.addAttribute("subjectiveSelect", subjectiveList.get(count));
 			return "subjective/subjective_main";
 		}
+	}
+	
+	@RequestMapping(value="/subjectiveCheck", method=RequestMethod.GET)
+	public void ajaxCheckSubjective(@RequestParam("subjectiveQuestId") String subjectiveQuestId)throws Exception{
+		
 	}
 	
 
@@ -57,7 +68,6 @@ public class SubjectiveController {
 			System.out.println(wc_code);
 			wc_result = compileService.compileResult(wc_code);
 			System.out.println(wc_result);
-			
 		}
 		return 	wc_result;
 	}

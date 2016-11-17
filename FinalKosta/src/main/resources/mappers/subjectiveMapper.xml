@@ -11,5 +11,10 @@
   		where SUBJ_CATEGORI = #{subj_Categori} AND SUBJ_LEVEL = #{subj_Level}
    </select>
   
+  <select id="choiceSubjective" parameterType="String" resultType="SubjectiveVO">
+  	select *
+  	from SUBJECTIVETYPEQUESTION
+  	where SUBJ_QUESTID = #{subj_QuestId}
+  </select>
   
 </mapper>  
