@@ -52,7 +52,7 @@
       <section class="drop_main">
       <div class="wrapper-demo">
          <div id="dd" class="wrapper-dropdown-5" tabindex="1">
-            <%-- <%=memberName%> --%>
+         <h1>${login.memberName }</h1>
             <ul class="dropdown">
                <li><a href="TestAr.jsp"><i class="icon-user"></i>접속기록 확인</a></li>
                <li><a href="updateInfo.jsp"><i class="icon-cog"></i>회원정보수정</a></li>

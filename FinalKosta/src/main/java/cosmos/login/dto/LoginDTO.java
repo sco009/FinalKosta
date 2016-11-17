@@ -1,26 +1,61 @@
 package cosmos.login.dto;
 
 public class LoginDTO {
-	private String urd;
-	private String upw;
-	private boolean useCookie; // 안써도될듯?
+	private String memberID;
+	private String memberPw;
+	private String memberName;
+	private boolean useCookie;
 	
-	public String getUrd() {
-		return urd;
+	public LoginDTO(){}
+	
+
+	
+	public LoginDTO(String memberID, String memberPw, String memberName, boolean useCookie) {
+		this.memberID = memberID;
+		this.memberPw = memberPw;
+		this.memberName = memberName;
+		this.useCookie = useCookie;
 	}
-	public void setUrd(String urd) {
-		this.urd = urd;
+
+
+
+	public String getMemberName() {
+		return memberName;
 	}
-	public String getUpw() {
-		return upw;
+
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
-	public void setUpw(String upw) {
-		this.upw = upw;
+
+
+	public String getMemberID() {
+		return memberID;
+	}
+	public void setMemberID(String memberID) {
+		this.memberID = memberID;
+	}
+	public String getMemberPw() {
+		return memberPw;
+	}
+	public void setMemberPw(String memberPw) {
+		this.memberPw = memberPw;
 	}
 	public boolean isUseCookie() {
 		return useCookie;
 	}
 	public void setUseCookie(boolean useCookie) {
 		this.useCookie = useCookie;
+		
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "LoginDTO [memberID=" + memberID + ", memberPw=" + memberPw + ", memberName=" + memberName
+				+ ", useCookie=" + useCookie + "]";
+	}
+	
+	
 }

@@ -52,7 +52,7 @@
          <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center"></div>
 
-            <form action="/user/check" method="post">
+            <form action="/login/loginCheck" method="post">
             <h2>
                <span class="entypo-login"></span> Login
             </h2>
@@ -72,7 +72,7 @@
       </div>
       <br><br><br><br><br><br><br><br>
    </section>
-
+   
    <!-- jQuery -->
    <script src="/resources/dist/js/login/jquery-1.3.2.min.js"></script>
 

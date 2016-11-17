@@ -1,6 +1,7 @@
 package cosmos.login.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import cosmos.login.dto.LoginDTO;
 import cosmos.login.service.LoginService;
 
 @Controller
-@RequestMapping("/user/*")
+@RequestMapping("/login/*")
 public class LoginController {
 	
 	@Inject
@@ -26,30 +27,29 @@ public class LoginController {
 		return "/login/login";
 	}
 	
-	/*@RequestMapping(value="/check", method=RequestMethod.POST)
-	public void loginCheck(@RequestParam("memberID") String memberID, @RequestParam("memberPw") String memberPw){
-		System.out.println(memberID);
-		System.out.println(memberPw);
-		
-		
-	}*/
-	
-	@RequestMapping(value="/check", method=RequestMethod.POST)
-	public void loginCheck(LoginVO vo) throws Exception{
-		System.out.println(vo.getMemberID());
-		System.out.println(vo.getMemberPw());
-		
-		service.check(vo);
-	}
-	
-	/*@RequestMapping(value="/loginPost", method=RequestMethod.POST)
-	public void loginPOST(LoginDTO dto, Model model) throws Exception {
-		
+	@RequestMapping(value="/loginCheck", method=RequestMethod.POST)
+	public void loginCheck(LoginDTO dto, HttpSession session, Model model) throws Exception{
 		LoginVO vo = service.login(dto);
+		String name = service.currentMemberCheck(dto);
+		System.out.println(name);
+		if(name != null){//이미 로그인되어있구나
+			System.out.println("이미 로그인중");
+			return;
+		}else{//로그인이 안되어있을때
+			dto.setMemberName(vo.getMemberName());
+			service.insertCurrentMember(dto);
+		}
+		
 		if(vo == null) {
 			return;
 		}
 		
-		model.addAttribute("userVO", vo);
-	}*/
+		model.addAttribute("loginVO", vo);
+	}
+	
+	@RequestMapping(value="/log_main", method=RequestMethod.GET)
+	public String logMain()throws Exception {
+		return "/login/log_main";
+	}
+
 }
