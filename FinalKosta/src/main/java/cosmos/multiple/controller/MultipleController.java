@@ -1,4 +1,4 @@
-package cosmos.multiple.controller;
+/*package cosmos.multiple.controller;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class MultipleController {
 	}
 
 	@RequestMapping(value = "/multiple", method = RequestMethod.POST)
-	/*public String mainPOST(MultipleVO vo, Model model) throws Exception {*/
+	public String mainPOST(MultipleVO vo, Model model) throws Exception {
 	public String mainPOST(MultipleVO vo, Model model) throws Exception {
 		String mulquestCategori = vo.getMulquestCategori();
 		String mulquestLevel = vo.getMulquestLevel();
@@ -60,10 +60,11 @@ public class MultipleController {
 			// response.sendRedirect("MultipleMain.jsp?reCheckCount=0");
 		}
 
-		/*
+		
 		 * model.addAttribute("multipleSelect",vo); return
 		 * "redirect:multiple/multiple_main";
-		 */
+		 
 	}
 
 }
+*/

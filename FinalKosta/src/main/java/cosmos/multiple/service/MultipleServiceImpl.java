@@ -1,4 +1,4 @@
-package cosmos.multiple.service;
+/*package cosmos.multiple.service;
 
 import java.util.List;
 
@@ -46,3 +46,4 @@ public class MultipleServiceImpl implements MultipleService {
 >>>>>>> refs/remotes/kab/kbj
 	
 }
+*/

@@ -1,4 +1,4 @@
-package cosmos.multiple.persistence;
+/*package cosmos.multiple.persistence;
 
 import java.util.List;
 
@@ -45,3 +45,4 @@ public class MultipleDAOImpl implements MultipleDAO {
 >>>>>>> refs/remotes/kab/kbj
 
 }
+*/
