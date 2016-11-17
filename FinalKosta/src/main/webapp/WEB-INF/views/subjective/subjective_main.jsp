@@ -29,7 +29,7 @@
 				<b>난이도 :</b>${subjectiveSelect.subj_Level }
 				</label>
 			</div>
-
+<!-- dd -->
 			<div class="col-md-3 col-md-offset-1* side">
 				<form action="subjectiveSelect" method="POST">
 					<div class="row-fluid">
