@@ -18,14 +18,15 @@ public class SignUpServiceImpl implements SignUpService {
 	}
 
 	@Override
-	public SignUpVO selectMember(String memberID) throws Exception {
+	public String selectMember(String memberID) throws Exception {
 		return signupDao.selectMember(memberID);
 	}
 
-	/*@Override
-	public int chkId(String memberID) throws Exception {
-		return signupDao.chkId(memberID);
-	}*/
+	@Override
+	public void updateMember(SignUpVO vo) throws Exception {
+		signupDao.updateMember(vo);
+		
+	}
 	
 	
 }
