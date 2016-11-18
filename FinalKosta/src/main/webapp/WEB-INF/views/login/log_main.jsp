@@ -40,23 +40,23 @@
    <link rel="stylesheet" type="text/css" href="/resources/dist/js/login/modernizr.custom.79639.js" />
 </noscript>
 </head>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function logout() {
-		location.href = "logout.jsp";
+		location.href = "/login/logout";
 	}
 </script>
-
+ -->
 <body>
 	<div class="drop_container">
 
       <section class="drop_main">
       <div class="wrapper-demo">
          <div id="dd" class="wrapper-dropdown-5" tabindex="1">
-         <h1>${login.memberName }</h1>
+         ${login.memberName }
             <ul class="dropdown">
                <li><a href="TestAr.jsp"><i class="icon-user"></i>접속기록 확인</a></li>
-               <li><a href="../signup/update_form"><i class="icon-cog"></i>회원정보수정</a></li>
-               <li><a href="logout.jsp"><i class="icon-remove"></i>로그아웃</a></li>
+               <li><a href="updateInfo.jsp"><i class="icon-cog"></i>회원정보수정</a></li>
+               <li><a href="/login/logout"><i class="icon-remove"></i>로그아웃</a></li>
             </ul>
          </div>
          ​
@@ -96,11 +96,6 @@
       });
    </script>
 	
-	<!-- <h4><a href="Test.jsp">Test</a></h4>
-	<h4><a href="TestAr.jsp">Test</a></h4>
-	<a href="../Ranking_jsp/Ranking.jsp">랭킹</a> -->
-
-
 	<div class="container">
 		<div class="row-fluid">
 			<div class="col-md-12">

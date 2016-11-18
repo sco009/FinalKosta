@@ -9,8 +9,8 @@
 </head>
 <body>
 	<script type="text/javascript">
-		alert("<%-- <%=memberName %>님은  --%>로그아웃되었습니다.");
-		location.href="login.jsp";
+		alert("${loginVO.memberName }님은 로그아웃되었습니다.");
+		location.href="/login/login";
 	</script>
 </body>
 </html>

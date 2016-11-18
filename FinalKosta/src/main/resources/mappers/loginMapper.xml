@@ -11,12 +11,25 @@
       where memberID = #{memberID} and memberPw = #{memberPw}
    </select>
    
-   <select id="currentLoginMember"  resultType="string">
+   <update id="keepLogin">
+   	update member set sessionKey = #{sessionId}, sessionLimit = #{next} where memberID = #{memberID}
+   </update>
+   
+   <select id="checkUserWithSessionKey" resultType="loginVO">
+   	select * from member where sessionKey = #{value} and sessionLimit > now()
+   </select>
+   
+   <select id="currentLoginMember" resultType="string">
       select membername
        from CurrentLoginMemberList
          where memberID = #{memberID}
     </select>
-   
+    
+   <delete id="currentLogoutMember">
+		delete from CurrentLoginMemberList 
+		where memberID = #{memberID,jdbcType=VARCHAR}
+	</delete>
+	
    	<insert id="insertCurrentMember">
 		insert into CurrentLoginMemberList(
 			memberID, memberName 

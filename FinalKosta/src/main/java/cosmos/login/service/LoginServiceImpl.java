@@ -1,5 +1,7 @@
 package cosmos.login.service;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -27,6 +29,20 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public void insertCurrentMember(LoginDTO dto) throws Exception {
 		dao.insertCurrentMember(dto);
-		
+	}
+
+	@Override
+	public void currentLogoutMember(LoginVO vo) throws Exception {
+		dao.currentLogoutMember(vo);
+	}
+
+	@Override
+	public LoginVO checkLoginBefore(String value) {
+		return dao.checkUserWithSessionKey(value);
+	}
+
+	@Override
+	public void keepLogin(String memberID, String sessionId, Date next) throws Exception {
+		dao.keepLogin(memberID, sessionId, next);
 	}
 }
