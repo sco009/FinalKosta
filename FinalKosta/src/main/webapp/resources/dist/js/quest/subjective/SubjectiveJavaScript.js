@@ -19,7 +19,7 @@ function subjectiveCheck() {
 		});
 		check = "<img src='/resources/dist/img/quest/subjective/x.gif'>";
 	}
-	document.getElementById("nextButton1").style.display = block;
+	document.getElementById("nextButton1").style.display = "block";
 	document.getElementById("checkAnswer").innerHTML = check;
 }
 
