@@ -20,4 +20,14 @@ public class SubjectiveDAOImpl implements SubjectiveDAO {
 	public List<SubjectiveVO> selectSubjective(SubjectiveVO VO)throws Exception{
 		return sqlSession.selectList(namespace+".selectSubjective", VO);
 	}
+	
+	@Override
+	public SubjectiveVO choiceSubjective(String subjectiveId)throws Exception{
+		return sqlSession.selectOne(namespace+".choiceSubjective", subjectiveId);
+	}
+	
+	@Override
+	public int countSubjective(SubjectiveVO VO)throws Exception{
+		return sqlSession.selectOne(namespace+".countSubjective", VO);
+	}
 }

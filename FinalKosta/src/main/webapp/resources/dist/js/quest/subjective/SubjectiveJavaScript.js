@@ -1,6 +1,6 @@
 function Next() {
 	
-	location.href= "subjective/"
+	location.href= "/subjective"
 	if (subjectiveReply !== subjectiveAnswer) {
 		location.href = "SubjectiveMain.jsp?solveFailId=" + solveSelectId + "&nextCheck=0";	//&nextCheck=0 <- 다음으로 넘겼을 때만 카운트가 증가
 	} else {																			    //할 수 있도록 확인값을 넘겨준다.
@@ -9,13 +9,25 @@ function Next() {
 }
 
 function subjectiveCheck() {
-	var subjectiveReply = $(":input:hidden[name=subjectiveReply]").val(); // 마지막 값은 바로 resultMultiple.jsp로 넘겨준다.
+	var subjectiveReply = $(":input:hidden[name=result]").val();
 	var subjectiveAnswer = $(":input:hidden[name=subjectiveAnswer]").val();
+	var subjectiveSelect = $(":input:hidden[name=subjectiveSelect]").val();
 	var check = "";
 	
+	
 	if(subjectiveAnswer===subjectiveReply){
+		$.ajax({
+			url:"/subjective/successCheck",
+			type:"get",
+			data: {subjectiveQuestId: subjectiveSelect},
+		});
 		check = "<img src='/resources/dist/img/quest/subjective/ok.gif'>";
 	}else{
+		$.ajax({
+			url:"/subjective/failCheck",
+			type:"get",
+			data: {subjectiveQuestId: subjectiveSelect},
+		});
 		check = "<img src='/resources/dist/img/quest/subjective/x.gif'>";
 	}
 	document.getElementById("checkAnswer").innerHTML = check;
@@ -64,17 +76,6 @@ $(function() {
 	});
 });
 
-document.onkeydown = trapRefresh;
-function trapRefresh()
-{
- if (event.keyCode == 116)
- {
-  event.keyCode = 0; 
-  event.cancelBubble = true; 
-  event.returnValue = false;
-  document.location.reload();
- }
-} 
 
 //웹컴파일러 js
 $(function(){
@@ -94,12 +95,12 @@ $(function(){
 	});
 	
 	function successHandler(data){
-		console.log(data);
 		var str = data.replace(/^\s+/, "");
 		$("#wc_result").empty();
 		$("#wc_result").text(str);
-		document.getElementById("confirm").style.display = "block";
-		//<- 컴파일버튼을 눌렀을 때 답확인 버튼 활성화
+		document.getElementById("confirm").style.display = "block";//<- 컴파일버튼을 눌렀을 때 답확인 버튼 활성화
+		document.getElementById("hiddenResult").value=str.trim();
+		
 	}
 	
 	$(document).ajaxStart(function(){
@@ -107,5 +108,4 @@ $(function(){
 	   }).ajaxStop(function(){
 		   $("#loading").fadeOut();
 	   });
-	
 });
