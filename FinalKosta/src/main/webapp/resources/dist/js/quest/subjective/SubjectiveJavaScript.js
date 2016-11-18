@@ -19,10 +19,16 @@ function subjectiveCheck() {
 		});
 		check = "<img src='/resources/dist/img/quest/subjective/x.gif'>";
 	}
-	document.getElementById("nextButton1").style.display = "block";
+	if(document.getElementById("nextButton1").style.display="none"){
+		document.getElementById("nextButton1").style.display = "block";
+	}
+	
 	document.getElementById("checkAnswer").innerHTML = check;
 }
 
+function resultPage(){
+	location.href = "/subjective/subjectiveResult";
+}
 
 $(document).ready(function() {
 	$('[data-toggle="popover"]').popover({

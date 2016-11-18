@@ -78,10 +78,27 @@ public class SubjectiveController {
 	
 	@RequestMapping(value="/nextQuest", method=RequestMethod.GET)
 	public String nextQeust(Model model) throws Exception{
+		int signal = subjectiveList.size();
+		if((count+1)==subjectiveList.size()){
+			model.addAttribute("signal", signal);
+		}
+		
 		model.addAttribute("subjectiveSelect", subjectiveList.get(count));
 		return "subjective/subjective_main";
 	}
-
+	
+	@RequestMapping("subjectiveResult")
+	public String subjectiveResult(Model model){
+		int successCount = subjectiveSuccessList.size();
+		int failCount = subjectiveFailList.size();
+		int totalCount = failCount+successCount;
+		int successProgress = (100*successCount)/totalCount;
+		
+		model.addAttribute("successProgress", successProgress);
+		model.addAttribute("failList", subjectiveFailList);
+		model.addAttribute("successList", subjectiveSuccessList);
+		return "subjective/subjective_result";
+	}
 	// 컴파일러
 	@ResponseBody
 	@RequestMapping(value = "/compile", method = RequestMethod.POST)

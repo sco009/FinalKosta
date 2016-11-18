@@ -114,14 +114,15 @@
 			<c:if test="${signal==null }">
 				<form action="subjectiveNext" method="GET">
 					<div class="col-md-1">
-						<input type="button" id="nextButton1" name="nextButton" value="다음"
+						<input type="submit" id="nextButton1" name="nextButton" value="다음"
 							class="multipleSelect_css" style="display:none;"></input>
 					</div>
 				</form>
 			</c:if>
 			
 			<c:if test="${signal!=null }">
-               		<input type="submit" name="nextButton" value="결과보기" class="multipleSelect_css"></input>
+               		<input type="button" id="nextButton1" name="nextButton" value="결과보기" 
+               			class="multipleSelect_css" style="display:none" onclick= resultPage()></input>
 			</c:if>
 			
 			<!--2단 end  -->
