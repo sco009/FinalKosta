@@ -27,13 +27,13 @@ public class SignUpDAOImpl implements SignUpDAO {
 	}
 
 	@Override
-	public SignUpVO selectMember(String memberID) throws Exception {
+	public String selectMember(String memberID) throws Exception {
 		return sqlSession.selectOne(namespace+".selectMember", memberID);
 	}
 
-	/*@Override
-	public int chkId(String memberID)throws Exception {
-		return sqlSession.selectOne(namespace+".chkId", memberID);
+	@Override
+	public void updateMember(SignUpVO vo) throws Exception {
+		sqlSession.update(namespace+".updateMember", vo);
 		
-	}*/
+	}
 }
