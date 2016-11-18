@@ -6,7 +6,6 @@ import cosmos.login.domain.LoginVO;
 import cosmos.login.dto.LoginDTO;
 
 public interface LoginDAO {
-
 	public LoginVO login(LoginDTO dto)throws Exception;
 	public void keepLogin(String memberID, String sessionId, Date next);
 	public LoginVO checkUserWithSessionKey(String value);
