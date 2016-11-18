@@ -13,10 +13,20 @@ public class LoginServiceImpl implements LoginService {
 
 	@Inject
 	private LoginDAO dao;
-	
+
 	@Override
-	public void check(LoginVO loginVO) throws Exception {
-		dao.check(loginVO);
+	public LoginVO login(LoginDTO dto) throws Exception {
+		return dao.login(dto);
+	}
+
+	@Override
+	public String currentMemberCheck(LoginDTO dto) throws Exception {
+		return dao.currentMemberCheck(dto);
+	}
+
+	@Override
+	public void insertCurrentMember(LoginDTO dto) throws Exception {
+		dao.insertCurrentMember(dto);
 		
 	}
 }

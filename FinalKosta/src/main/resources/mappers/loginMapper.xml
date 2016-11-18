@@ -5,9 +5,25 @@
   
 <mapper namespace="cosmos.mappers.LoginMapper">
    
-   <select id="check" resultType="string">
-      select memberid
+   <select id="login" resultType="loginVO">
+      select memberID,memberPw,memberName,memberPhoneNum,memberEmail,isLeader
       from member
-      where memberid = #{memberID} and memberpw = #{memberPw}
+      where memberID = #{memberID} and memberPw = #{memberPw}
    </select>
+   
+   <select id="currentLoginMember"  resultType="string">
+      select membername
+       from CurrentLoginMemberList
+         where memberID = #{memberID}
+    </select>
+   
+   	<insert id="insertCurrentMember">
+		insert into CurrentLoginMemberList(
+			memberID, memberName 
+		)values(
+			#{memberID}, #{memberName,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	
 </mapper>

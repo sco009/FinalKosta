@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import cosmos.login.domain.LoginVO;
+import cosmos.login.dto.LoginDTO;
 
 @Repository
 public class LoginDAOImpl implements LoginDAO {
@@ -15,9 +16,19 @@ public class LoginDAOImpl implements LoginDAO {
 	private static final String namespace="cosmos.mappers.LoginMapper";
 	
 	@Override
-	public void check(LoginVO loginVO) throws Exception {
-		
-		String name = sqlSession.selectOne(namespace+".check",loginVO);
-		System.out.println(name);
+	public LoginVO login(LoginDTO dto) throws Exception {
+		return sqlSession.selectOne(namespace+".login", dto);
 	}
+
+	@Override
+	public String currentMemberCheck(LoginDTO dto) throws Exception {
+		return sqlSession.selectOne(namespace+".currentLoginMember", dto);
+	}
+
+	@Override
+	public void insertCurrentMember(LoginDTO dto) throws Exception {
+		sqlSession.insert(namespace+".insertCurrentMember", dto);
+		
+	}
+	
 }

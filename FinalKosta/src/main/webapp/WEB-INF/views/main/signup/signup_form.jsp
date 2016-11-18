@@ -20,42 +20,12 @@
 <script type="text/javascript" src="/resources/bootstrap-3.3.2/js/bootstrap.min.js"></script>
 </head>
 
-<!-- <script type="text/javascript">
- function chkId(){
-  jQry.ajax({
-   url : "chkId",
-   type : "post",
-   data : {
-    memberID : $("#memberID").val()
-   },
-   dataType : "json",
-   success : function(data){
-    
-    $("<div style='text-align:center;'>"+data.resultMsg+"</div>").dialog({
-     modal : true,
-     resizable : false,
-     buttons : [{
-       text : "확인",
-       click : function() {
-        $(this).dialog("close");
-       }
-     }]
-    });
-    $(".ui-dialog-titlebar").hide();
-    
-    if ( data.result == "success") {
-     
-    } else {
-     
-    }
-   }
-        });
- }(jQuery);
- </script> -->
 
 <body>
 	<br>
 	<br>
+	
+	<h2>${result }</h2>
 
 	<div class="container">
 
@@ -73,14 +43,13 @@
 						<div class="col-xs-12 col-sm-3 col-md-9">
 							<div class="form-group">
 								<input type="text" name="memberID" id="memberID"
-									class="form-control input-lg" placeholder="ID" tabindex="1">
+									class="form-control input-lg" placeholder="id" tabindex="1"> 
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-9 col-md-3">
 							<div class="form-group">
 								<button type="button" class="btn" data-color="info" tabindex="7"
 									Onclick="openConfirmId(this.form)">중복확인</button>
-								<!-- <input type="button" name="confirm_id" value="중복확인" Onclick="openConfirmId(this.form)"> -->
 							</div>
 						</div>
 					</div>
@@ -144,14 +113,14 @@
 				return;
 			}
 
-			url = "confirmId.jsp?memberID=" + inputid.memberID.value;
+			url = "/main/signup/confirmId?memberID=" + inputid.memberID.value; 
 
 			open(
 					url,
 					"confirm",
 					"toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, width=350, height=150");
 		}
-	</script> 
+	</script>  
 
 	<script type="text/javascript"
 		src="http://code.jquery.com/jquery-latest.min.js"></script> 
