@@ -13,19 +13,18 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link rel="shortcut icon" href="../favicon.ico">
 <link rel="stylesheet" type="text/css"
-	href="/resource/plugins/education/css/default.css" />
+	href="/resources/plugins/education/css/default.css" />
 <link rel="stylesheet" type="text/css"
-	href="/resource/dist/css/education/education_style2.css" />
+	href="/resources/dist/css/education/education_style2.css" />
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="/resource/dist/img/education/education_background.jpg"></script>
+<script src="/resources/plugins/education/js/modernizr.custom.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 #body{
-	background-image: url("/resource/dist/img/education/education_background.jpg");
+	background-image: url("/resources/dist/img/education/education_background.jpg");
 	background-size:cover;
 }
 </style>
@@ -48,21 +47,21 @@
 		<div class="main clearfix">
 			<div class="col-md-4">
 				<a
-					href="javascript:Frameset('javaone.jsp?dataClassify=javaone&memberID=asd')"><div
+					href="javascript:Frameset('educations?dataClassify=education_Introduce&memberID=aaa&pages=1')"><div
 						class="circle">
 						<h1>자바의 소개</h1>
 					</div></a>
 			</div>
 			<div class="col-md-4">
 				<a
-					href="javascript:Frameset('javatwo.jsp?dataClassify=javatwo&memberID')"><div
+					href="javascript:Frameset('educations?dataClassify=education_Data&memberID=aaa&pages=1')"><div
 						class="circle">
 						<h1>데이터형과 연산자</h1>
 					</div></a>
 			</div>
 			<div class="col-md-4">
 				<a
-					href="javascript:Frameset('javathree.jsp?dataClassify=javathree&memberID')"><div
+					href="javascript:Frameset('educations?dataClassify=education_Array&memberID=aaa&pages=1')"><div
 						class="circle">
 						<h1>제어문과 배열</h1>
 					</div></a>
