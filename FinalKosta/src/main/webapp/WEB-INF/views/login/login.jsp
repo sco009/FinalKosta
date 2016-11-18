@@ -52,6 +52,7 @@
          <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center"></div>
 
+<<<<<<< HEAD
             <form action="/login/loginCheck" method="post">
             <h2>
                <span class="entypo-login"></span> Login
@@ -73,6 +74,29 @@
       <br><br><br><br><br><br><br><br>
    </section>
    
+=======
+            <form action="/user/check" method="post">
+            <h2>
+               <span class="entypo-login"></span> Login
+            </h2>
+            <button type="submit" class="submit">
+               <span class="entypo-lock"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+            </button>
+            <span class="entypo-user inputUserIcon"><i class="fa fa-user" aria-hidden="true"></i></span> <input type="text"
+               class="user" placeholder="id" name="memberID" /> <span
+               class="entypo-key inputPassIcon"><i class="fa fa-lock" aria-hidden="true"></i></span> <input type="password"
+               class="pass" placeholder="password" name="memberPw" />
+
+            <div class="join">
+               <a href="join.jsp">아직 회원이 아니세요?</a>
+            </div>
+         </form>
+         </div>
+      </div>
+      <br><br><br><br><br><br><br><br>
+   </section>
+
+>>>>>>> refs/remotes/master/kab
    <!-- jQuery -->
    <script src="/resources/dist/js/login/jquery-1.3.2.min.js"></script>
 

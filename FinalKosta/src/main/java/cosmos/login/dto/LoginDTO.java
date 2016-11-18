@@ -57,5 +57,4 @@ public class LoginDTO {
 				+ ", useCookie=" + useCookie + "]";
 	}
 	
-	
 }
