@@ -5,9 +5,37 @@
   
 <mapper namespace="cosmos.mappers.multipleMapper">
    
-   <insert id="create">
-      
-   </insert>
-  
+   <select id="selectMultiple" parameterType="MultipleVO" resultType="MultipleVO">
+
+  		select * 
+  		from MULTIPLETYPEQUESTION 
+  		where MULQUESTCATEGORI = #{mulquestCategori} AND MULQUESTLEVEL = #{mulquestLevel}
+  	</select>
+  	
+  	<select id ="selectMultipleChoice" parameterType="String"	resultType="MultipleChoice">
+  		
+  		select *
+  		from multipleChoice
+  		where multipleChoiceId = #{multipleChoiceId}
+  	</select>
+  	
+  	<select id = "selectMultipleCount" parameterType="MultipleVO" resultType="Integer">
+  		select count(*)
+		from MULTIPLETYPEQUESTION
+		where MULQUESTCATEGORI = #{mulquestCategori}
+		AND MULQUESTLEVEL = #{mulquestLevel}
+  	</select>
+  	
+  	<select id="reMultiple" parameterType="String" resultType="MultipleVO">
+  		select *
+  		from MULTIPLETYPEQUESTION
+  		where mulquestId = #{mulquestId}
+  	</select>
+
+  	
+  	<update id="pointInsert" parameterType="MultiplePoint"> 
+  		update member set algo_point = algo_point + #{successPoint}
+        WHERE memberId = #{memberId}  		
+  	</update>
   
 </mapper>  
