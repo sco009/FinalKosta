@@ -30,6 +30,18 @@
 <script type="text/javascript">
 
 	$(function(){
+		var editor = new Behave({
+
+			textarea : document.getElementById('demo'),
+			replaceTab : true,
+			softTabs : true,
+			tabSize : 4,
+			autoOpen : true,
+			overwrite : true,
+			autoStrip : true,
+			autoIndent : true
+		});
+
 		$("#complieFrom").submit(function(event){
 			event.preventDefault();
 			
