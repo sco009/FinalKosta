@@ -34,6 +34,12 @@ public class MultipleDAOImpl implements MultipleDAO {
 			return sqlSession.selectOne(namespace+".selectMultipleCount",vo);
 	}
 
+	@Override
+	public MultipleVO reMultiple(String mulquestId) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".reMultiple",mulquestId);
+	}
+
 //	@Override
 //	public int pointInsert(MultiplePoint multiplePoint) throws Exception {
 //		// TODO Auto-generated method stub

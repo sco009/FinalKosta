@@ -35,6 +35,14 @@ public class MultipleServiceImpl implements MultipleService {
 		return dao.selectMultipleCount(vo);
 	}
 
+	@Override
+	public MultipleVO reMultiple(String mulquestId)throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reMultiple(mulquestId);
+	}
+
+	
+
 //	@Override
 //	public int pointInsert(MultiplePoint multiplePoint) throws Exception {
 //		// TODO Auto-generated method stub

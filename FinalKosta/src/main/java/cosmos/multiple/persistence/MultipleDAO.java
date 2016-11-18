@@ -14,5 +14,6 @@ public interface MultipleDAO {
 
 	public int selectMultipleCount(MultipleVO vo) throws Exception;
 
+	public MultipleVO reMultiple(String mulquestId) throws Exception;
 	//public int pointInsert(MultiplePoint multiplePoint) throws Exception;
 }

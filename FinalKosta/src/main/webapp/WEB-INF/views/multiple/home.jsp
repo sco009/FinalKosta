@@ -10,6 +10,10 @@
 </h1>
 <h3>Hi</h3>
 
+<<<<<<< HEAD
 <P>  Thss </P>
+=======
+<P>  OOOTTTKKK </P>
+>>>>>>> refs/heads/master
 </body>
 </html>
