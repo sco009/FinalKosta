@@ -55,7 +55,7 @@
          <h1>${login.memberName }</h1>
             <ul class="dropdown">
                <li><a href="TestAr.jsp"><i class="icon-user"></i>접속기록 확인</a></li>
-               <li><a href="updateInfo.jsp"><i class="icon-cog"></i>회원정보수정</a></li>
+               <li><a href="../signup/update_form"><i class="icon-cog"></i>회원정보수정</a></li>
                <li><a href="logout.jsp"><i class="icon-remove"></i>로그아웃</a></li>
             </ul>
          </div>

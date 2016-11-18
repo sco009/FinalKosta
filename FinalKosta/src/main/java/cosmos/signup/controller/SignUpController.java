@@ -9,13 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cosmos.signup.domain.SignUpVO;
 import cosmos.signup.service.SignUpService;
 
 @Controller
-@RequestMapping("/main/*")
 public class SignUpController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SignUpController.class);
@@ -39,7 +37,7 @@ public class SignUpController {
 		System.out.println("signup POST");
 		model.addAttribute("result", "success");
 		
-		return "/main/signup/signup_form";
+		return "/signup/signup_form";
 	}
 	
 	
@@ -55,41 +53,7 @@ public class SignUpController {
 	@RequestMapping(value="signup/confirmId",method=RequestMethod.POST)
 	public String confirmIdPOST(@RequestParam("memberID") String ID, Model model)throws Exception{		
 		
-		return "main/signup/confirmId";
-	}
-	
-	/*@RequestMapping(value="signup/update_form", method=RequestMethod.GET)
-	public void update_formGET(@ModelAttribute("vo") SignUpVO vo, Model model)throws Exception{
-		logger.info("update get....");
-	}
-	
-	@RequestMapping(value="signup/update_form", method=RequestMethod.POST)
-	public String update_formPOST(SignUpVO vo, RedirectAttributes rttr)throws Exception{
-		logger.info("update post....");
-		logger.info(vo.toString());
-		
-		service.updateMember(vo);
-		//model.addAttribute("result", "success");
-		rttr.addAttribute("memberID", vo.getMemberID());
-		rttr.addAttribute("memberPw", vo.getMemberPw());
-		rttr.addAttribute("memberName", vo.getMemberName());
-		rttr.addAttribute("memberPhoneNum", vo.getMemberPhoneNum());
-		rttr.addAttribute("memberEmail", vo.getMemberEmail());
-		
-		return "/main/signup/update_form";
-	}*/
-	
-	@RequestMapping(value="signup/update_form", method = RequestMethod.GET)
-	public void update_formGET(SignUpVO vo, Model model)throws Exception{
-		logger.info("update get....");
-	}
-	
-	@RequestMapping(value="signup/update_form", method = RequestMethod.POST)
-	public String update_formPOST(SignUpVO vo, RedirectAttributes rttr)throws Exception{
-		service.updateMember(vo);
-		rttr.addFlashAttribute("msg", "SUCCESS");
-		
-		return "/main/signup/update_form";
+		return "/signup/confirmId";
 	}
 	
 	

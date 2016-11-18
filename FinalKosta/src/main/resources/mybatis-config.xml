@@ -18,6 +18,7 @@
     <package name="cosmos.signup.domain"/>
     <package name="cosmos.subjective.domain"/>
     <package name="cosmos.webcompile.domain"/>
+    <package name="cosmos.mypage.domain"/>
   </typeAliases>
 
 
