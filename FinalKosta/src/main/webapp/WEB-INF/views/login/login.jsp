@@ -67,6 +67,9 @@
             <div class="join">
                <a href="join.jsp">아직 회원이 아니세요?</a>
             </div>
+             <label>
+          		<input type="checkbox" name="useCookie"> Remember Me
+        	</label>
          </form>
          </div>
       </div>

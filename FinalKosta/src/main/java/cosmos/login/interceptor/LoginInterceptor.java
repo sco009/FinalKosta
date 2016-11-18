@@ -1,5 +1,6 @@
 package cosmos.login.interceptor;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,8 +23,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if(loginVO != null) {
 			session.setAttribute(LOGIN, loginVO);
 			
+			if(request.getParameter("useCookie")!=null){
+				Cookie loginCookie = new Cookie("loginCookie", session.getId());
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(60*60*24*7);
+				response.addCookie(loginCookie);
+			}
+			
 			Object dest = session.getAttribute("dest");
-			System.out.println("dest : "+(String)dest);
 			response.sendRedirect(dest!=null ? (String)dest : "/login/log_main");
 			session.removeAttribute("dest");
 		}
