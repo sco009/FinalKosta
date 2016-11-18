@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Insert title here</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/bootstrap-3.3.2/js/bootstrap.min.js"></script>
@@ -16,6 +16,7 @@
 <link href="/resources/dist/css/quest/subjective/subjectiveMenu.css" rel="stylesheet" type="text/css">
 <link href="/resources/dist/css/quest/subjective/subjectiveRadioButton.css" rel="stylesheet" type="text/css">
 <link href="/resources/dist/css/webcompile/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 
 </head>
@@ -34,7 +35,7 @@
 			</div>
 <!-- dd -->
 			<div class="col-md-3 col-md-offset-1* side">
-				<form action="subjectiveSelect" method="POST">
+				<form action="subjectiveSelect" method="GET">
 					<div class="row-fluid">
 
 						<span class="dropdown-el " id="drop"> <input type="radio"
@@ -93,8 +94,7 @@
 			</div>
 			<div class="col-md-3">
 				<form id="complieFrom">
-					<textarea rows="30" cols="50" name="wc_code" onkeydown="useTab(this)" id="demo">
-					</textarea>
+					<textarea rows="30" cols="50" name="wc_code" onkeydown="useTab(this)" id="demo"></textarea>
 						<div id="loading" style="width: 100%; text-align: center">
 						<img alt=""src="/resources/dist/img/webcompile/compileLoading.gif" style="width: 100%; max-width: 150px; vertical-align: middle">
 					</div>
@@ -102,20 +102,26 @@
 					<textarea rows="10" cols="50" type="disabled" id="wc_result"></textarea>
 				</form>
 			</div>
-			<div class="col-md-1">
-					<input type="hidden" name="subjectiveAnswer"value=${result }>
-					<input type="hidden" name = "subjectiveReply" value=${subjectiveSelect.subj_Answer }></input>
-					<input type="button" id="confirm"value="답체크" onclick= subjectiveCheck() style= "display:none"></input>
+			
+			<div class="col-md-1" id="confirmSubjective">
+					<input type="hidden" id = "hiddenResult" name ="result"></input>
+					<input type="hidden" name = "subjectiveAnswer" value=${subjectiveSelect.subj_Answer }></input>
+					<input type="hidden" name = "subjectiveSelect" value=${subjectiveSelect.subj_QuestId }></input>
+					<input type="button" id="confirm" value="답체크" onclick= subjectiveCheck() style="display:none;"></input>
 					<p id="checkAnswer"></p> 
 			</div>
 			
-			<input type="button" name="nextButton" value="다음" class="multipleSelect_css" onclick=Next()></input>
-			<div class="col-md-1">
-               		<input type="hidden" name= "solveSelectId" value=${subjectiveSelect.subj_QuestId } ></input>
-               		<input type="button" name="nextButton" value="다음" class="multipleSelect_css" onclick=Next()></input>
+			<c:if test="${signal==null }">
+			<form action="subjectiveNext" method="GET">
+			<div class="col-md-1" >
+               		<input type="submit" id="nextButton" name="nextButton" value="다음" class="multipleSelect_css"></input>
 			</div>
+			</form>
+			</c:if>
 			
-			
+			<c:if test="${signal!=null }">
+               		<input type="submit" name="nextButton" value="결과보기" class="multipleSelect_css"></input>
+			</c:if>
 			
 			<!--2단 end  -->
 

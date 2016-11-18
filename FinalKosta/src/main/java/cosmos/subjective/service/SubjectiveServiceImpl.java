@@ -18,4 +18,14 @@ public class SubjectiveServiceImpl implements SubjectiveService {
 	public List<SubjectiveVO> selectSubjective(SubjectiveVO VO)throws Exception{
 		return dao.selectSubjective(VO);
 	}
+
+	@Override
+	public SubjectiveVO choiceSubjective(String subjectiveId) throws Exception {
+		return dao.choiceSubjective(subjectiveId);
+	}
+
+	@Override
+	public int countSubjective(SubjectiveVO VO) throws Exception {
+		return dao.countSubjective(VO);
+	}
 }
