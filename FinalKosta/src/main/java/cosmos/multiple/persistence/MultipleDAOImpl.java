@@ -8,3 +8,4 @@ import org.springframework.stereotype.Repository;
 public class MultipleDAOImpl implements MultipleDAO {
 
 }
+}
