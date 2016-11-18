@@ -24,6 +24,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+	<context:component-scan base-package="cosmos.mypage.controller" />
 	<context:component-scan base-package="cosmos.algoboard.controller" />
 	<context:component-scan base-package="cosmos.codefight.controller" />
 	<context:component-scan base-package="cosmos.education.controller" />
