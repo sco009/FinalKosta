@@ -28,12 +28,6 @@
          <artifactId>spring-tx</artifactId>
          <version>${org.springframework-version}</version>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/aspectj/aspectjrt -->
-      <dependency>
-         <groupId>aspectj</groupId>
-         <artifactId>aspectjrt</artifactId>
-         <version>1.5.4</version>
-      </dependency>
       <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
       <dependency>
          <groupId>org.aspectj</groupId>
@@ -196,7 +190,7 @@
          <artifactId>imgscalr-lib</artifactId>
          <version>4.2</version>
       </dependency>
-
+      
    </dependencies>
    
    
@@ -236,6 +230,15 @@
                <mainClass>org.test.int1.Main</mainClass>
             </configuration>
          </plugin>
+         <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>2.6</version>
+			<configuration>
+				<failOnMissingWebXml>false</failOnMissingWebXml>
+			</configuration>
+		</plugin>
       </plugins>
    </build>
+   
 </project>
