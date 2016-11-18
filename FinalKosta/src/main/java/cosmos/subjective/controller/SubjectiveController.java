@@ -42,20 +42,17 @@ public class SubjectiveController {
 
 	@RequestMapping(value = "/subjectiveSelect", method = RequestMethod.GET)
 	public String subjectiveSelect(Model model, SubjectiveVO vo) throws Exception {
-		if (subjectiveMax == 0) {
-			if (vo.getSubj_Categori().equals("sort-list")) {
+			if (vo.getSubj_Categori().equals("sort-list")) {				//카테고리,난이도 선택안할시 경고창
 				JOptionPane.showMessageDialog(null, "카테고리를 선택해주세요");
 				return "subjective/subjective_main";
 			} else if (vo.getSubj_Level().equals("sort-list")) {
 				JOptionPane.showMessageDialog(null, "난이도를 선택해주세요");
 				return "subjective/subjective_main";
+			}else{
+				subjectiveList = service.selectSubjective(vo);		//카테고리,난이도 선택할시 첫 문제 보내주기.
+				model.addAttribute("subjectiveSelect", subjectiveList.get(count));
+				return "subjective/subjective_main";
 			}
-		} 
-		
-			subjectiveMax=service.countSubjective(vo);
-			subjectiveList = service.selectSubjective(vo);
-			model.addAttribute("subjectiveSelect", subjectiveList.get(count));
-			return "subjective/subjective_main";
 
 	}
 
@@ -73,10 +70,16 @@ public class SubjectiveController {
 		subjectiveSuccessList.add(choiceVO);
 	}
 
-	@RequestMapping(value = "/subjectiveNext", method = RequestMethod.GET)
+	@RequestMapping(value = "/subjectiveNext", method = RequestMethod.GET)	//다음 문제를 받기위한 count 증가
 	public String nextSubjective() throws Exception {
 			count++;
-		return "redirect:/subjective/subjectiveSelect";
+		return "redirect:/subjective/nextQuest";
+	}
+	
+	@RequestMapping(value="/nextQuest", method=RequestMethod.GET)
+	public String nextQeust(Model model) throws Exception{
+		model.addAttribute("subjectiveSelect", subjectiveList.get(count));
+		return "subjective/subjective_main";
 	}
 
 	// 컴파일러

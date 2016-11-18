@@ -3,6 +3,7 @@ package cosmos.subjective.service;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.swing.JOptionPane;
 
 import org.springframework.stereotype.Service;
 
@@ -28,4 +29,5 @@ public class SubjectiveServiceImpl implements SubjectiveService {
 	public int countSubjective(SubjectiveVO VO)throws Exception{
 		return dao.countSubjective(VO);
 	}
+	
 }
