@@ -23,7 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if(loginVO != null) {
 			session.setAttribute(LOGIN, loginVO);
 			
-			if(request.getParameter("useCookie")!=null){
+			if(request.getParameter("useCookie")!=null) {
 				System.out.println("useCookie 출력!!!");
 				Cookie loginCookie = new Cookie("loginCookie", session.getId());
 				loginCookie.setPath("/");

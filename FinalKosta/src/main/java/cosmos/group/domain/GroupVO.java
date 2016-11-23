@@ -26,8 +26,4 @@ public class GroupVO {
 	public String toString() {
 		return "GroupVO [memberID=" + memberID + ", memberName=" + memberName + "]";
 	}
-	
-	
-	
-	
 }

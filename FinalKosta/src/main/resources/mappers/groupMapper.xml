@@ -9,5 +9,13 @@
 		select memberID,memberName from CURRENTLOGINMEMBERLIST
   </select>
 	
-	
+	<select id="inviteList" resultType="InviteVO" parameterType="LoginVO">
+		select * from INVITE where 
+		receive1 = #{memberID,jdbcType=VARCHAR} OR
+		receive2 = #{memberID,jdbcType=VARCHAR} OR
+		receive3 = #{memberID,jdbcType=VARCHAR} OR
+		receive4 = #{memberID,jdbcType=VARCHAR} OR
+		receive5 = #{memberID,jdbcType=VARCHAR} OR
+		receive6 = #{memberID,jdbcType=VARCHAR}
+	</select>
 </mapper>

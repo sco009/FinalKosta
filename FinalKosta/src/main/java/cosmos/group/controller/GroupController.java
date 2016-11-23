@@ -19,7 +19,6 @@ public class GroupController {
 	@Inject
 	private GroupService GroupService;
 	
-	
 	@RequestMapping(value="/creategroup")
 	public String goCreateGroupPage(){
 		return "/group/createGroup";

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import cosmos.group.domain.GroupVO;
+import cosmos.group.domain.InviteVO;
 import cosmos.group.persistence.GroupDAO;
 import cosmos.login.domain.LoginVO;
 import cosmos.login.persistence.LoginDAO;
@@ -22,4 +23,8 @@ public class GroupServiceImpl implements GroupService {
 		return dao.currentLoginMemberPrintService();
 	}
 
+	@Override
+	public InviteVO inviteListPrintService(LoginVO vo) throws Exception {
+		return dao.inviteListPrintService(vo);
+	}
 }

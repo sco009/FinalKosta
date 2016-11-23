@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.WebUtils;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+
+import cosmos.group.domain.GroupVO;
+import cosmos.group.domain.InviteVO;
+import cosmos.group.service.GroupService;
 import cosmos.login.domain.LoginVO;
 import cosmos.login.dto.LoginDTO;
 import cosmos.login.service.LoginService;
@@ -26,6 +31,8 @@ public class LoginController {
 	
 	@Inject
 	private LoginService service;
+	@Inject
+	private GroupService gr_service;
 
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginGET(@ModelAttribute("dto") LoginDTO dto) {
@@ -60,7 +67,19 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/log_main", method=RequestMethod.GET)
-	public String logMain()throws Exception {
+	public String logMain(HttpSession session)throws Exception {
+		
+		LoginVO vo = (LoginVO) session.getAttribute("login");
+		System.out.println("접속한 사람 : " + vo.getMemberName());
+		
+		InviteVO ivo = gr_service.inviteListPrintService(vo);
+		if(ivo.getContents() == null) {
+			System.out.println("들어온값없음");
+		}
+		
+		System.out.println("초대한 사람 : " + ivo.getSendPerson());
+		System.out.println("초대 메세지 : " + ivo.getContents());
+
 		return "/login/log_main";
 	}
 	
