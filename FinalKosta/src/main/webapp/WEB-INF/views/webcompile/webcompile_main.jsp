@@ -88,7 +88,7 @@
 			<textarea rows="30" cols="50" name="wc_code" onkeydown="useTab(this)" id="demo"></textarea>
 			
 			<div id="loading" style="width: 100%; text-align: center" >
-				<img alt="" src="/resources/dist/img/webcompile/compileLoading.gif"style="width: 100%; max-width: 150px; vertical-align: middle">
+				<img alt="" src="/resources/dist/img/webcompile/compileLoading.gif" style="width: 100%; max-width: 150px; vertical-align: middle">
 			</div><br>
 			
 			<input type="submit" value="Compile"><br>

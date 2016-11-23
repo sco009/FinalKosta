@@ -23,7 +23,6 @@ import cosmos.login.service.LoginService;
 @Controller
 @RequestMapping("/login/*")
 public class LoginController {
-	
 	@Inject
 	private LoginService service;
 

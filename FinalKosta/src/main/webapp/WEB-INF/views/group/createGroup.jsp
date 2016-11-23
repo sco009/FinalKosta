@@ -12,61 +12,146 @@
 <link href="/resources/bootstrap-3.3.2/css/custom1.css" rel="stylesheet">
 <link href="/resources/bootstrap-3.3.2/css/custom2.css" rel="stylesheet">
 <link href="/resources/dist/css/group/creategroup.css" rel="stylesheet">
+<link href="/resources/dist/css/group/room.css" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 <script src="/resources/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+<script src="/resources/dist/js/group/creategroup.js"></script>
 <script type="text/javascript">
+/* function HighlightRow(obj) 
+{ 
+    var rows = obj.parentNode.childNodes; 
 
-$(document).ready(function(){
-	  $.ajax({ 
-	    	url: "currentMember",
-	    	success: successHandler,
-	    	dataType: "json"
-	    });
+    for (var i = 0; i < rows.length; i++) 
+    { 
+        rows[i].style.backgroundColor = ""; 
+    } 
+
+    obj.style.backgroundColor = "#f2f2f2"; 
+}  */
+
+var text;
+
+
+	$(document).ready(function(){
+		$('#contact-list-search').keyup(function() {
+			$.ajax({
+				url : "currentMember",
+				success : successHandler,
+				dataType : "json",
+				data : "value=" + $(this).val(),
+				processData : false,
+				contentType : false
+			});
+
+		});
+		
+		
+		$(document).on('click', '.img-check', function() {
+			$(this).toggleClass("check");
+			text = $(this).attr('alt');
+		});
+
+		function successHandler(data) {
+			var $searchList = $('.searchList');
+			var html;
+			$searchList.empty();
+			$.each(data,function(index, entry){
+				html = '<div class="col-md-3"><label class="btn btn-primary">'
+						+ '<img src="/resources/dist/img/group/z.jpg" alt="'+entry.memberName+'" class="img-thumbnail img-check">'
+						+ '<input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off">'
+						+ '<h1 id="h1name">'+ entry.memberName+ '</h1></label></div>';
+
+				$searchList.append(html);
+			});
+
+		}
+		
+		$("#searchedListForm").submit(function(event){
+			event.preventDefault();
+			$.ajax({
+				url : "currentMember",
+				success : addMemberList,
+				dataType : "json",
+				data : "value=" + text,
+				processData : false,
+				contentType : false
+			});
+		});
+		function addMemberList(data){
+			var $addMember = $('.addMember');
+			var html;
+			
+			//$addMember.empty();
+			$.each(data,function(index, entry){
+				html =  '<div class="my-box">'+
+						'<div class="checkbox pull-left" border: 1px solid green>'+
+							'<label> <input type="checkbox" value="'+entry.memberID+'" name="check"></label></div>'+
+							'<div class="pull-left form-control-inline">'+
+							'<h4 class="list-group-item-heading">'+entry.memberName+'</h4></div>'+
+							'<img src="/resources/dist/img/group/delete.png" alt ="" style="width: 30px; height: 30px;" onclick="remove()">'+
+							'<div class="clearfix"></div>'+
+						'</div>';
+				$addMember.append(html);
+			});
+		}
+		
+	});
 	
-	/* setInterval(function(){
-	    $.ajax({ 
-	    	url: "currentMember",
-	    	success: successHandler,
-	    	dataType: "json"
-	    });
-	}, 5000);
-	 */
-	 function successHandler(data){
-
-		  	var $listGroup = $('#contact-list');
-				$listGroup.empty();
-				$.each(data,function(index,entry){
-					
-					var html = '<li class="list-group-item">'+
-								'<div class="col-xs-12 col-sm-3">'+
-								'<img src="/resources/dist/img/group/z.jpg" alt="umhu uddug hae" class="img-responsive img-circle" /></div>'+
-								'<div class="col-xs-12 col-sm-9"><span class="name">'+entry.memberName+'</span><br/>'+
-								'</div><div class="clearfix"></div></li>';
-								
-					$listGroup.append(html);
-				});
-	 }
-});
-
-$(function(){
-
-	  $('#contact-list').searchable({
-	        searchField: '#contact-list-search',
-	        selector: 'li',
-	        childSelector: '.col-xs-12',
-	        show: function( elem ) {
-	            elem.slideDown(100);
-	        },
-	        hide: function( elem ) {
-	            elem.slideUp( 100 );
-	        }
-	    })
+	function invite(){
+		var $length = $(":checkbox[name='check']:checked").length;
+		var checkArr = [];
+		var $groupName= $('#groupName').val();
+		var $contents = $('#TA1').val();
+		var userId = 'asdf';
+		
+		
+		
+		if($length != 0){
+			$(":checkbox[name='check']:checked").each(function(index){	
+				checkArr.push($(this).val()); 
+	 		});
+		}
+		var allData = {
+				"userId": userId,
+				"checkArray": checkArr,
+				"contents": $contents,
+				"groupName": $groupName
+		}
+		
+		$.ajax({
+			url : "inviteMember",
+			type: "POST",
+			data :allData,
+			success : function(){
+				console.log('insert success');
+			}
+		});
+		
+		createRoom(allData);
+		
+	}
 	
-});
-
-
+	function remove(){
+		$(this).parents().remove();
+	}
+	
+	function createRoom(allData){
+		var $container = $('.container');
+		var html;
+		
+		html = 
+				'<div class="card">'+
+				'<div class="tr"></div>'+
+		 		'<div class="tl"></div>'+
+		  		'<div class="br"></div>'+
+		 		'<div class="bl"></div>'+'sdf'+
+				'</div>';
+				
+		$container.append(html);
+		
+	}
 </script>
 </head>
 <body>
@@ -74,6 +159,7 @@ $(function(){
 
 		<button class="btn btn-primary btn-lg" data-toggle="modal"
 			data-target="#myModal">그룹 생성</button>
+
 
 		<div class="modal" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
@@ -90,7 +176,7 @@ $(function(){
 						<form role="form" class="form-inline">
 							<div class="form-group">
 								<span class="lead">그룹명 입력 :&nbsp;&nbsp;</span><label for="Name"
-									class="sr-only">그룹명 입력</label> <input type="text"
+									class="sr-only">그룹명 입력</label> <input type="text" id="groupName"
 									class="form-control" placeholder="그룹명 입력">
 							</div>
 						</form>
@@ -101,44 +187,26 @@ $(function(){
 						</form>
 						<br> <br> <br> <br>
 
-						<ul class="list-group" id="contact-list">
-							<!-- <li class="list-group-item">
-								<div class="col-xs-12 col-sm-3">
-									<img src="group_img/kab.jpg" alt="GodAnbin"
-										class="img-responsive img-circle" />
-								</div>
-								<div class="col-xs-12 col-sm-9">
-									<span class="name">GodAnbin</span><br />
-
-								</div>
-								<div class="clearfix"></div>
-							</li>
-
-							<li class="list-group-item">
-								<div class="col-xs-12 col-sm-3">
-									<img src="/resources/dist/img/group/z.jpg"
-										alt="umhu uddug hae" class="img-responsive img-circle" />
-								</div>
-								<div class="col-xs-12 col-sm-9">
-									<span class="name">어머 어떡해</span><br />
-								</div>
-								<div class="clearfix"></div>
-							</li> -->
-
-						</ul>
 
 						<div class="row">
-							<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="panel price panel-green">
-									<div class="panel-heading arrow_box text-center">
-										<h3>초대 목록</h3>
-									</div>
-									<ul class="list-group list-group-flush text-center">
-									</ul>
-									<h4 id="test"></h4>
+							<form id= 'searchedListForm' method="get">
+								<div class="form-group searchList">
+									
+									
 								</div>
-							</div>
+								<div align="center">
+									<input type="submit" value="Add member" class="btn btn-success">
+								</div>
+
+							</form>
 						</div>
+						<br><br>
+					
+					
+						<div class="list-group addMember">
+
+						</div>
+				
 						
 						<br><br>
 
@@ -158,7 +226,7 @@ $(function(){
 
 
 						<div class="modal-footer">
-						<button type="button" class="btn btn-primary">완료</button>
+						<button type="button" class="btn btn-primary" onClick="invite()">완료</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
@@ -167,10 +235,13 @@ $(function(){
 			<!-- 모달 다이얼로그 -->
 		</div>
 		<!-- 모달 전체 윈도우 -->
+		
 
 
 
-	</div>
+
+		</div>
+			
 
 </body>
 </html>

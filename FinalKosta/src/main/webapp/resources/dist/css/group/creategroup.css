@@ -232,4 +232,12 @@ ul.c-controls li a:hover {
 			max-width: 70%;
 		}
 
+.check{
+    opacity:0.5;
+	color:#996;
+	
+}
+     
+.my-box 
+{ border:1px solid; padding:10px; }
 
