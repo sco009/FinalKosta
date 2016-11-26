@@ -1,4 +1,4 @@
-/*package cosmos.multiple.service;
+package cosmos.multiple.service;
 
 import java.util.List;
 
@@ -16,9 +16,7 @@ public class MultipleServiceImpl implements MultipleService {
 
 	@Inject
 	private MultipleDAO dao;
-<<<<<<< HEAD
 	
-=======
 
 	@Override
 	public List<MultipleVO> selectMultiple(MultipleVO vo) throws Exception {
@@ -38,12 +36,16 @@ public class MultipleServiceImpl implements MultipleService {
 		return dao.selectMultipleCount(vo);
 	}
 
-//	@Override
-//	public int pointInsert(MultiplePoint multiplePoint) throws Exception {
-//		// TODO Auto-generated method stub
-//		return dao.pointInsert(multiplePoint);
-//	}
->>>>>>> refs/remotes/kab/kbj
-	
+	@Override
+	public MultipleVO reMultiple(String mulquestId) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reMultiple(mulquestId);
+	}
+
+	@Override
+	public void pointInsert(MultiplePoint multiplePoint) throws Exception {
+		// TODO Auto-generated method stub
+		dao.pointInsert(multiplePoint);
+	}
+
 }
-*/

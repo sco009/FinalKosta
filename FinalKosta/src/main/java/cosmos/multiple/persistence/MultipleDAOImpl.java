@@ -1,4 +1,4 @@
-/*package cosmos.multiple.persistence;
+package cosmos.multiple.persistence;
 
 import java.util.List;
 
@@ -18,9 +18,7 @@ public class MultipleDAOImpl implements MultipleDAO {
 	private SqlSession sqlSession;
 	
 	private static final String namespace="cosmos.mappers.multipleMapper";
-<<<<<<< HEAD
 	
-=======
 
 	@Override
 	public List<MultipleVO> selectMultiple(MultipleVO vo) throws Exception {
@@ -37,12 +35,16 @@ public class MultipleDAOImpl implements MultipleDAO {
 			return sqlSession.selectOne(namespace+".selectMultipleCount",vo);
 	}
 
-//	@Override
-//	public int pointInsert(MultiplePoint multiplePoint) throws Exception {
-//		// TODO Auto-generated method stub
-//		return sqlSession.selectOne(namespace+".pointInsert",multiplePoint);
-//	}
->>>>>>> refs/remotes/kab/kbj
+	@Override
+	public MultipleVO reMultiple(String mulquestId) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".reMultiple",mulquestId);
+	}
+
+	@Override
+	public void pointInsert(MultiplePoint multiplePoint) throws Exception {
+		// TODO Auto-generated method stub
+		 sqlSession.insert(namespace+".pointInsert",multiplePoint);
+	}
 
 }
-*/

@@ -28,6 +28,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1"/>	
 	</beans:bean>
 
 	<context:component-scan base-package="cosmos.algoboard.controller" />
@@ -61,5 +62,6 @@
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>
 	</interceptors>
+
 
 </beans:beans>
