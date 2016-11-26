@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import cosmos.subjective.domain.SubjectivePointVO;
 import cosmos.subjective.domain.SubjectiveVO;
 
 @Repository
@@ -30,4 +31,10 @@ public class SubjectiveDAOImpl implements SubjectiveDAO {
 	public int countSubjective(SubjectiveVO VO)throws Exception{
 		return sqlSession.selectOne(namespace+".countSubjective", VO);
 	}
+
+	@Override
+	public void pointInsert(SubjectivePointVO subjectivePoint) throws Exception {
+		sqlSession.update(namespace+".pointInsert", subjectivePoint);
+	}
+	
 }

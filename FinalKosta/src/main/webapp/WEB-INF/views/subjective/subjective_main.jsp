@@ -8,16 +8,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Insert title here</title>
-
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/bootstrap-3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/dist/js/quest/subjective/SubjectiveJavaScript.js"></script>
 <link href="/resources/dist/css/quest/subjective/subjectiveMenu.css" rel="stylesheet" type="text/css">
 <link href="/resources/dist/css/quest/subjective/subjectiveRadioButton.css" rel="stylesheet" type="text/css">
-<link href="/resources/dist/css/webcompile/style.css" rel="stylesheet" type="text/css">
+<link href="/resources/dist/css/quest/subjective/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
+<script type="text/javascript">
+	function resultPage() {
+		location.href = "/subjective/subjectiveResult";
+	}
+	
+</script>
 
 </head>
 <body id="body">
@@ -47,7 +51,7 @@
 							for="sort-2">if문</label> <input type="radio" name="subj_Categori"
 							value="while문" id="sort-3"><label for="sort-3">while문</label>
 							<input type="radio" name="subj_Categori" value="정렬" id="sort-4"><label
-							for="sort-4">정렬</label> <input type="radio" name="subj_Categori"
+							for="sort-4">배열</label> <input type="radio" name="subj_Categori"
 							value="객체지향" id="sort-5"><label for="sort-5">객체지향</label>
 						</span>
 					</div>
@@ -66,7 +70,7 @@
 					</div>
 
 					<div clsass="row-fluid">
-						<br> <input class="multipleSelect_css" type="submit"
+						<br> <input class="subjectiveSelect-css" type="submit"
 							value="선택">
 					</div>
 				</form>
@@ -92,37 +96,41 @@
 				</div>
 
 			</div>
+			<c:if test="${subjectiveSelect!=null }">
 			<div class="col-md-3">
 				<form id="complieFrom">
-					<textarea rows="30" cols="50" name="wc_code" onkeydown="useTab(this)" id="demo"></textarea>
+					<input type="hidden" name = "compileCategori" value=${subjectiveSelect.subj_Categori }></input>
+					<textarea rows="20" cols="50" name="wc_code" onkeydown="useTab(this)" id="demo" class="well"></textarea>
 						<div id="loading" style="width: 100%; text-align: center">
 						<img alt=""src="/resources/dist/img/webcompile/compileLoading.gif" style="width: 100%; max-width: 150px; vertical-align: middle">
 					</div>
 					<br> <input type="submit" value="Compile"><br>
-					<textarea rows="10" cols="50" type="disabled" id="wc_result"></textarea>
+					<textarea rows="10" cols="50" type="disabled" id="wc_result" class="well"></textarea>
 				</form>
 			</div>
-			
+			</c:if>
+			<pre id="answerReal" style="display:none;">${subjectiveSelect.subj_Answer }</pre>
 			<div class="col-md-1" id="confirmSubjective">
 					<input type="hidden" id = "hiddenResult" name ="result"></input>
 					<input type="hidden" name = "subjectiveAnswer" value=${subjectiveSelect.subj_Answer }></input>
 					<input type="hidden" name = "subjectiveSelect" value=${subjectiveSelect.subj_QuestId }></input>
-					<input type="button" id="confirm" value="답체크" onclick= subjectiveCheck() style="display:none;"></input>
-					<p id="checkAnswer"></p> 
+					<input type="button" id="confirm" class="subjectiveSelect-css" value="답체크" onclick= subjectiveCheck() style="display:none;"></input>
+					<div id="checkAnswer"></div> 
 			</div>
 			
 			<c:if test="${signal==null }">
 				<form action="subjectiveNext" method="GET">
 					<div class="col-md-1">
 						<input type="submit" id="nextButton1" name="nextButton" value="다음"
-							class="multipleSelect_css" style="display:none;"></input>
+							class="subjectiveSelect-css" style="display:none;"></input>
 					</div>
 				</form>
 			</c:if>
 			
 			<c:if test="${signal!=null }">
-               		<input type="button" id="nextButton1" name="nextButton" value="결과보기" 
-               			class="multipleSelect_css" style="display:none" onclick= resultPage()></input>
+					<div class="col-md-1">
+               			<input type="button" id="nextButton1" name="nextButton" class="subjectiveSelect-css" value="결과보기" onclick= resultPage() style="display:none;"></input>
+					</div>
 			</c:if>
 			
 			<!--2단 end  -->

@@ -6,9 +6,12 @@
 <mapper namespace="cosmos.mappers.subjectiveMapper">
    
    <select id="selectSubjective" parameterType="SubjectiveVO" resultType="SubjectiveVO">
-   		select * 
-  		from SUBJECTIVETYPEQUESTION 
-  		where SUBJ_CATEGORI = #{subj_Categori} AND SUBJ_LEVEL = #{subj_Level}
+	select * from(
+		select * from SUBJECTIVETYPEQUESTION
+		where SUBJ_CATEGORI = #{subj_Categori}
+		and SUBJ_LEVEL = #{subj_Level}
+		order by DBMS_RANDOM.RANDOM
+		) <![CDATA[where rownum <= 2 ]]>
    </select>
   
   <select id="choiceSubjective" parameterType="String" resultType="SubjectiveVO">
@@ -22,5 +25,10 @@
 	from SUBJECTIVETYPEQUESTION
 	where SUBJ_CATEGORI = #{subj_Categori} AND SUBJ_LEVEL = #{subj_Level}
   </select>
+  
+  <update id="pointInsert" parameterType="SubjectivePointVO"> 
+  		update member set algo_point = algo_point + #{successPoint}
+        WHERE memberId = #{memberId}  		
+  	</update>
   
 </mapper>  

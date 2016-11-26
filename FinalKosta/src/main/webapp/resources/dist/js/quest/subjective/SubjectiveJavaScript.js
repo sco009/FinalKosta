@@ -1,10 +1,11 @@
+
 function subjectiveCheck() {
 	var subjectiveReply = $(":input:hidden[name=result]").val();
 	var subjectiveAnswer = $(":input:hidden[name=subjectiveAnswer]").val();
 	var subjectiveSelect = $(":input:hidden[name=subjectiveSelect]").val();
 	var check = "";
-	
-	if(subjectiveAnswer===subjectiveReply){
+	var realAnswer = $('#answerReal').text();
+	if(subjectiveReply===realAnswer){
 		$.ajax({
 			url:"/subjective/successCheck",
 			type:"get",
@@ -23,11 +24,8 @@ function subjectiveCheck() {
 		document.getElementById("nextButton1").style.display = "block";
 	}
 	
+	document.getElementById("confirm").style.display = "none";
 	document.getElementById("checkAnswer").innerHTML = check;
-}
-
-function resultPage(){
-	location.href = "/subjective/subjectiveResult";
 }
 
 $(document).ready(function() {
@@ -62,11 +60,14 @@ $(function() {
 	});
 });
 
-
+function returnSucjective() {
+	location.href= "initialization";
+}
 //웹컴파일러 js
 $(function(){
 	$("#complieFrom").submit(function(event){
 		event.preventDefault();
+		var categori = $(":input:hidden[name=compileCategori]").val();
 		
 		$.ajax({
 			url : "compile",
@@ -74,8 +75,8 @@ $(function(){
 			dataType:"text",
 			data : $(this).serialize(),
 			success : successHandler,
-			error : function(){
-				alert("실패");
+			error : function(request){
+				 alert(unescape(request.responseText));
 			}
 		});
 	});
