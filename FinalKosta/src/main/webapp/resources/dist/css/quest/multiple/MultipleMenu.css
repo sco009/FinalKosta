@@ -10,21 +10,6 @@ body {
 
 #body{
    font-size: 14px;
-<<<<<<< HEAD
-   background-image:url("../../MultipleImage/Multiple.jpg");
-   background-size: cover;
-}
-.side{
-   text-align: center;
-}
-
-#Examiner{
-   padding:3px;
-   border: 2px solid;
-   display: inline;
-   border-radius: 1em;
-}
-=======
    background-image:url("../../../img/quest/multiple/Multiple.jpg");
    background-size: cover;
 }
@@ -39,7 +24,6 @@ body {
    border-radius: 1em;
 }
 
->>>>>>> refs/heads/master
 .well{
    opacity: 0.65;
 }

@@ -4,10 +4,8 @@ function Next() {
 	var Answer = $(":input:hidden[name=multipleChoiceSelectAnswer]").val();
 	var solveSelectId = $(":input:hidden[name=solveSelectId]").val();
 	if (selectAnswer !== Answer) {
-	//	location.href = "test?solveFailId=" + solveSelectId+"&solveSuccessId="+null;
 		location.href = "test?solveFailId=" + solveSelectId;
 	} else {
-	//	location.href = "test?solveSuccessId=" + solveSelectId+"&solveFailId="+null;
 		location.href = "test?solveSuccessId=" + solveSelectId;
 	}
 }
@@ -17,7 +15,7 @@ function choiceButton() {
 }
 
 function returnMultipleMain() {
-	location.href="/multiple";
+	location.href="multiple";
 }
 
 function selectMutlpleCheck() {
@@ -36,7 +34,7 @@ function selectMutlpleCheck() {
 	} else if (selectAnswer !== Answer) {
 		check = "<img src='../../../resources/dist/img/quest/multiple/x.gif'>";
 	}
-
+	//답을 선택하면 라디오 버튼 비활성화
 	$("#radio-option-1").attr("disabled", true);
 	$("#radio-option-2").attr("disabled", true);
 	$("#radio-option-3").attr("disabled", true);
