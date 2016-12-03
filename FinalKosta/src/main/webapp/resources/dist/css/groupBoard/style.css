@@ -1,0 +1,36 @@
+       
+/* ================================================= */
+
+.well {
+   height: 100%;
+   opacity: 0.8;
+}
+
+.ui-widget-content {
+   margin-top: 10%;
+   border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+}
+
+body {
+   background-image: url("/resources/dist/img/groupBoard/main.jpg");
+   background-size: 100%;
+}
+
+#deletes {
+   background-color: #fff;
+   border: 3px dotted #000;
+   margin: 10px;
+   height: 75px;
+   line-height: 75px;
+   text-align: center;
+}
+
+#titleText , #contentText{
+   width: 95%;
+   margin: 1px 5px;
+   border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+}
