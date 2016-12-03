@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import cosmos.group.domain.CurrentMemberVO;
 import cosmos.group.domain.GroupVO;
 import cosmos.group.domain.Invite;
@@ -42,10 +41,7 @@ public class GroupController {
 	@ResponseBody
 	@RequestMapping(value="/currentMember")
 	public ResponseEntity<List<CurrentMemberVO>> currentMember(@RequestParam("value") String searchVal) throws Exception{
-		
-		return new ResponseEntity<List<CurrentMemberVO>>(GroupService.currentLoginMemberPrintService(searchVal),HttpStatus.OK);
-		
-		
+		return new ResponseEntity<List<CurrentMemberVO>>(GroupService.currentLoginMemberPrintService(searchVal),HttpStatus.OK);	
 	}
 	
 	@Transactional

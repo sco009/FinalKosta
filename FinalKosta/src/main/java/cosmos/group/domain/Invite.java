@@ -6,7 +6,6 @@ public class Invite {
 	private String groupName;
 	private String[] receive;
 	
-	
 	public Invite(){}
 	public Invite(String sendPerson, String contents,String groupName ,String... receive) {
 		this.sendPerson = sendPerson;
@@ -41,9 +40,4 @@ public class Invite {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	
-	
-	
-	
-	
 }

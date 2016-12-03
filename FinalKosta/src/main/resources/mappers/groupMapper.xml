@@ -20,7 +20,6 @@
 				#{place}
 			</foreach>)
   </insert>
-  
 	
 	<select id="inviteList" resultType="InviteVO" parameterType="LoginVO">
 		select * from INVITE where 
@@ -38,14 +37,16 @@
 	</update>
 	
 	<select id="groupList" parameterType="string" resultType="GroupVO">
-		select leaderID,groupName  from groups where team1 = #{userID} or
+		select leaderID,groupName,groupID  from groups where team1 = #{userID} or
 								  					 team2 = #{userID} or
 								  					 team3 = #{userID} or
 								  					 team4 = #{userID} or
 								  					 team5 = #{userID} or 
-								  					 team6 = #{userID}
+								  					 team6 = #{userID} or
+								  					 leaderID = #{userID}
 									
 	</select>
+	
 	<insert id ="insertCreateGroups" parameterType="GroupVO">
 	<selectKey resultType="string" keyProperty="groupID" order="BEFORE">
 		SELECT MAX(SUBSTR(groupID,3,4)) FROM invite
@@ -54,7 +55,45 @@
 					values(concat('g_',#{groupID}),#{leaderID},sysdate,#{groupName})
 	</insert>
 
-
+	<select id="inviteCount" resultType="Integer" parameterType="LoginVO">
+		select count(*) from INVITE where
+		receive1 = #{memberID,jdbcType=VARCHAR} OR
+		receive2 = #{memberID,jdbcType=VARCHAR} OR
+		receive3 = #{memberID,jdbcType=VARCHAR} OR
+		receive4 = #{memberID,jdbcType=VARCHAR} OR
+		receive5 = #{memberID,jdbcType=VARCHAR} OR
+		receive6 = #{memberID,jdbcType=VARCHAR}
+	</select>
+   
+   <update id ="rejectInvite">
+  	 update invite set 
+  	 	receive1 = (select replace(receive1,#{memberID},#{result}) receive1 FROM invite where inviteid = #{inviteID}),
+                     receive2 = (select replace(receive2,#{memberID},#{result}) receive2 FROM invite where inviteid = #{inviteID}),
+                     receive3 = (select replace(receive3,#{memberID},#{result}) receive3 FROM invite where inviteid = #{inviteID}),
+                     receive4 = (select replace(receive4,#{memberID},#{result}) receive4 FROM invite where inviteid = #{inviteID}),
+                     receive5 = (select replace(receive5,#{memberID},#{result}) receive5 FROM invite where inviteid = #{inviteID}),
+                     receive6 = (select replace(receive6,#{memberID},#{result}) receive6 FROM invite where inviteid = #{inviteID})
+     where inviteid= #{inviteID}
+   </update>
+   
+   <update id ="acceptInvite">
+  	 update invite set 
+  	 	receive1 = (select replace(receive1,#{memberID},#{result}) receive1 FROM invite where inviteid = #{inviteID}),
+                     receive2 = (select replace(receive2,#{memberID},#{result}) receive2 FROM invite where inviteid = #{inviteID}),
+                     receive3 = (select replace(receive3,#{memberID},#{result}) receive3 FROM invite where inviteid = #{inviteID}),
+                     receive4 = (select replace(receive4,#{memberID},#{result}) receive4 FROM invite where inviteid = #{inviteID}),
+                     receive5 = (select replace(receive5,#{memberID},#{result}) receive5 FROM invite where inviteid = #{inviteID}),
+                     receive6 = (select replace(receive6,#{memberID},#{result}) receive6 FROM invite where inviteid = #{inviteID})
+     where inviteid= #{inviteID}
+   </update>
   
-
+  <select id="checkNull" resultType="string">
+  	select ${team} from groups where groupID = #{groupID}
+  </select>
+  
+	<update id="joinGroup">
+		update groups set ${team} = #{memberID}
+					  WHERE groupID = #{groupID}
+	</update>
 </mapper>
+

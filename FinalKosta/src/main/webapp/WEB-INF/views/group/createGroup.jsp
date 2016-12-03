@@ -23,23 +23,15 @@
 <script type="text/javascript">
 
 
-var text;
+var ivitedMember;
 var userName = '${userName}';
 var userID = '${userID}';
 
 	$(document).ready(function(){
-		console.log(userName);
-		console.log(userID);
 		
-		$.ajax({
-			url : "groupList",
-			type: "GET",
-			data : "userID="+userID,
-			dataType : "json",
-			success : list
-		});
-		
-		$('#contact-list-search').keyup(function() {
+		callGroupList();
+	
+		$('#contact-list-search').keyup(function() {//검색
 			$.ajax({
 				url : "currentMember",
 				success : successHandler,
@@ -52,12 +44,12 @@ var userID = '${userID}';
 		});
 		
 		
-		$(document).on('click', '.img-check', function() {
+		$(document).on('click', '.img-check', function() {//검색된 애들 체크
 			$(this).toggleClass("check");
-			text = $(this).attr('alt');
+			ivitedMember = $(this).attr('alt');
 		});
 
-		function successHandler(data) {
+		function successHandler(data) {//검색하고나서 검색된애들 체크박스로 리스트 뿌려주기
 			var $searchList = $('.searchList');
 			var html;
 			$searchList.empty();
@@ -72,13 +64,13 @@ var userID = '${userID}';
 
 		}
 		
-		$("#searchedListForm").submit(function(event){
+		$("#searchedListForm").submit(function(event){//검색된애 체크하고 add memeber 버튼을 누르면  리스트에 추가
 			event.preventDefault();
 			$.ajax({
 				url : "currentMember",
 				success : addMemberList,
 				dataType : "json",
-				data : "value=" + text,
+				data : "value=" + ivitedMember,
 				processData : false,
 				contentType : false
 			});
@@ -94,7 +86,7 @@ var userID = '${userID}';
 							'<label> <input type="checkbox" value="'+entry.memberID+'" name="check"></label></div>'+
 							'<div class="pull-left form-control-inline">'+
 							'<h4 class="list-group-item-heading">'+entry.memberName+'</h4></div>'+
-							'<img src="/resources/dist/img/group/delete.png" alt ="" style="width: 30px; height: 30px;" onclick="remove()">'+
+							'<img src="/resources/dist/img/group/delete.png" alt ="" style="width: 30px; height: 30px;">'+
 							'<div class="clearfix"></div>'+
 						'</div>';
 				$addMember.append(html);
@@ -132,34 +124,16 @@ var userID = '${userID}';
 			}
 		});
 		
-	
+		callGroupList();
 		
 	}
 	
-/* 	function remove(){
-		$(this).parents().remove();
-	} */
 	
-	function createRoom(){//일단은 접속자 이름을 썼음, 나중에 팀장으로 바꿔야함
-		var html;
-		
-		html =  	'<a href="#">'+
-						'<div class="tr"></div>'+
-		 				'<div class="tl"></div>'+
-		  				'<div class="br"></div>'+
-		 				'<div class="bl"></div>'+
-		 			'</a>';
-		
-		return html;
-		
-	}
 	
 	function list(data){
-		console.log(data.length);
-		var html = createRoom();
-
+		console.log(data);
 		var $div = $('#inner_div');
-		
+	
 		$div.empty();//inner를 비운다.
 		
 		var amount = [];//배열
@@ -168,25 +142,35 @@ var userID = '${userID}';
 		
 		var $outterDiv = [];
 		
-		//<div class='col-md-4'>생성 후 div태그에 붙히는 코드
-		
 		for(var i = 0 ; i < 3 ; i++){
 			$outterDiv[i] = $('<div />', { class:'col-md-4' } );	
 			$div.append($outterDiv[i]);
 		}
 		
 		var $outterDiv = $div.find('div');
+		var jsonArr = new Array(new Array(3),new Array(3),new Array(3));
+		var count=0;
+		var html; 
+		
+			for(var j=0; j<3; j++){
+				for(var k=0; k<3; k++){
+					if( data.length != count )
+						html = '<a href="#?groupID="'+data[count].groupID+'">'+
+						'<div class="tr"></div>'+
+						'<div class="tl"></div>'+
+						'<div class="br"></div>'+
+						'<div class="bl"></div>'+data[count++].groupName+'</a>';
+						jsonArr[j][k] = html;
+				}
+			}
 		
 		$outterDiv.each(function(index){
-			
 			var count = index;
-			
 			for(var i = 0 ; i < amount[index] ; i++){
 				var $dataDiv = $('<div/>',{class:'card'}).appendTo($(this));
-				$dataDiv.append(html);
+				$dataDiv.append(jsonArr[i][index]);
 				count+=3;
 			}
-			
 		});
 	};
 
@@ -194,8 +178,7 @@ var userID = '${userID}';
 		
 		var last = data.length%3;
 		
-		for(var i = 0 ; i < 3 ; i++)
-		{
+		for(var i = 0 ; i < 3 ; i++){
 			amount[i] = data.length/3;
 			amount[i] = Math.floor(amount[i]);
 			if(last > i){
@@ -203,6 +186,16 @@ var userID = '${userID}';
 			}
 		}
 		
+	}
+	
+	function callGroupList(){
+		$.ajax({//속해있는 그룹들 화면에 뿌려주기
+			url : "groupList",
+			type: "GET",
+			data : "userID="+userID,
+			dataType : "json",
+			success : list
+		});
 	}
 	
 
@@ -220,10 +213,6 @@ var userID = '${userID}';
 		</div>
 	 </section>
 	
-
-		
-			
-		
 
 		<div class="modal" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
@@ -279,14 +268,6 @@ var userID = '${userID}';
 
 
 						<br><br><br>
-
-
-
-
-
-
-
-
 
 						<div class="modal-footer">
 						<button type="button" class="btn btn-primary" onClick="invite()">완료</button>

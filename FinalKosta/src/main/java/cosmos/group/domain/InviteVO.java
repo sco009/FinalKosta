@@ -1,7 +1,8 @@
 package cosmos.group.domain;
 
 public class InviteVO {
-	private String inviteID, sendPerson, contents,groupID;
+
+	private String inviteID, sendPerson, contents, groupID;
 	private String receive1, receive2, receive3, receive4, receive5, receive6;
 	
 	public InviteVO() {}
@@ -10,7 +11,6 @@ public class InviteVO {
 	
 	public InviteVO(String inviteID, String sendPerson, String contents, String groupID, String receive1,
 			String receive2, String receive3, String receive4, String receive5, String receive6) {
-		
 		this.inviteID = inviteID;
 		this.sendPerson = sendPerson;
 		this.contents = contents;
@@ -22,21 +22,15 @@ public class InviteVO {
 		this.receive5 = receive5;
 		this.receive6 = receive6;
 	}
-	
-	
-
 
 
 	public String getGroupID() {
 		return groupID;
 	}
 
-
-
 	public void setGroupID(String groupID) {
 		this.groupID = groupID;
 	}
-
 
 
 	public String getInviteID() {
@@ -96,8 +90,8 @@ public class InviteVO {
 
 	@Override
 	public String toString() {
-		return "InviteVO [inviteID=" + inviteID + ", sendPerson=" + sendPerson + ", contents=" + contents
-				+ ", receive1=" + receive1 + ", receive2=" + receive2 + ", receive3=" + receive3 + ", receive4="
-				+ receive4 + ", receive5=" + receive5 + ", receive6=" + receive6 + "]";
+		return "InviteVO [inviteID=" + inviteID + ", sendPerson=" + sendPerson + ", contents=" + contents + ", groupID="
+				+ groupID + ", receive1=" + receive1 + ", receive2=" + receive2 + ", receive3=" + receive3
+				+ ", receive4=" + receive4 + ", receive5=" + receive5 + ", receive6=" + receive6 + "]";
 	}
 }
