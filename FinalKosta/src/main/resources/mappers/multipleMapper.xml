@@ -21,7 +21,6 @@
   	  
   	
   	<select id ="selectMultipleChoice" parameterType="String"	resultType="MultipleChoice">
-  		
   		select *
   		from multipleChoice
   		where multipleChoiceId = #{multipleChoiceId}

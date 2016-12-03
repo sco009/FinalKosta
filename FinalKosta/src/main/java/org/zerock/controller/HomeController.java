@@ -36,4 +36,16 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/test")
+	public String test()throws Exception{
+		
+		return "codefight/test";
+	}
+	
+	@RequestMapping("/fight")
+	public String fight()throws Exception{
+		
+		return "codefight/codefight_fight";
+	}
+	
 }
