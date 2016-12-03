@@ -11,30 +11,34 @@
 <link href="/resources/bootstrap-3.3.2/css/kfonts2.css" rel="stylesheet">
 <link href="/resources/bootstrap-3.3.2/css/custom1.css" rel="stylesheet">
 <link href="/resources/bootstrap-3.3.2/css/custom2.css" rel="stylesheet">
+
 <link href="/resources/dist/css/group/creategroup.css" rel="stylesheet">
 <link href="/resources/dist/css/group/room.css" rel="stylesheet">
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 <script src="/resources/bootstrap-3.3.2/js/bootstrap.min.js"></script>
 <script src="/resources/dist/js/group/creategroup.js"></script>
 <script type="text/javascript">
-/* function HighlightRow(obj) 
-{ 
-    var rows = obj.parentNode.childNodes; 
 
-    for (var i = 0; i < rows.length; i++) 
-    { 
-        rows[i].style.backgroundColor = ""; 
-    } 
-
-    obj.style.backgroundColor = "#f2f2f2"; 
-}  */
 
 var text;
-
+var userName = '${userName}';
+var userID = '${userID}';
 
 	$(document).ready(function(){
+		console.log(userName);
+		console.log(userID);
+		
+		$.ajax({
+			url : "groupList",
+			type: "GET",
+			data : "userID="+userID,
+			dataType : "json",
+			success : list
+		});
+		
 		$('#contact-list-search').keyup(function() {
 			$.ajax({
 				url : "currentMember",
@@ -104,17 +108,16 @@ var text;
 		var checkArr = [];
 		var $groupName= $('#groupName').val();
 		var $contents = $('#TA1').val();
-		var userId = 'asdf';
 		
 		
 		
-		if($length != 0){
+		if($length != 0){//check가 되어있을때
 			$(":checkbox[name='check']:checked").each(function(index){	
 				checkArr.push($(this).val()); 
 	 		});
 		}
 		var allData = {
-				"userId": userId,
+				"userID": userID,
 				"checkArray": checkArr,
 				"contents": $contents,
 				"groupName": $groupName
@@ -129,37 +132,98 @@ var text;
 			}
 		});
 		
-		createRoom(allData);
+	
 		
 	}
 	
-	function remove(){
+/* 	function remove(){
 		$(this).parents().remove();
-	}
+	} */
 	
-	function createRoom(allData){
-		var $container = $('.container');
+	function createRoom(){//일단은 접속자 이름을 썼음, 나중에 팀장으로 바꿔야함
 		var html;
 		
-		html = 
-				'<div class="card">'+
-				'<div class="tr"></div>'+
-		 		'<div class="tl"></div>'+
-		  		'<div class="br"></div>'+
-		 		'<div class="bl"></div>'+'sdf'+
-				'</div>';
-				
-		$container.append(html);
+		html =  	'<a href="#">'+
+						'<div class="tr"></div>'+
+		 				'<div class="tl"></div>'+
+		  				'<div class="br"></div>'+
+		 				'<div class="bl"></div>'+
+		 			'</a>';
+		
+		return html;
 		
 	}
+	
+	function list(data){
+		console.log(data.length);
+		var html = createRoom();
+
+		var $div = $('#inner_div');
+		
+		$div.empty();//inner를 비운다.
+		
+		var amount = [];//배열
+		
+		divideList(data,amount);//배열과 넘겨받은 리스트를 넘긴다.
+		
+		var $outterDiv = [];
+		
+		//<div class='col-md-4'>생성 후 div태그에 붙히는 코드
+		
+		for(var i = 0 ; i < 3 ; i++){
+			$outterDiv[i] = $('<div />', { class:'col-md-4' } );	
+			$div.append($outterDiv[i]);
+		}
+		
+		var $outterDiv = $div.find('div');
+		
+		$outterDiv.each(function(index){
+			
+			var count = index;
+			
+			for(var i = 0 ; i < amount[index] ; i++){
+				var $dataDiv = $('<div/>',{class:'card'}).appendTo($(this));
+				$dataDiv.append(html);
+				count+=3;
+			}
+			
+		});
+	};
+
+	function divideList(data,amount){
+		
+		var last = data.length%3;
+		
+		for(var i = 0 ; i < 3 ; i++)
+		{
+			amount[i] = data.length/3;
+			amount[i] = Math.floor(amount[i]);
+			if(last > i){
+				amount[i]++;
+			}
+		}
+		
+	}
+	
+
+	
 </script>
 </head>
 <body>
 	<div class="container">
+	<header>
+			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">그룹 생성</button>
+	 </header>
+	 <section>
+	 	<div class ="row" id ="inner_div">
+		
+		</div>
+	 </section>
+	
 
-		<button class="btn btn-primary btn-lg" data-toggle="modal"
-			data-target="#myModal">그룹 생성</button>
-
+		
+			
+		
 
 		<div class="modal" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
@@ -210,8 +274,7 @@ var text;
 						
 						<br><br>
 
-						<TEXTAREA ROWS="7" COLS="30" NAME="TextArea1" ID="TA1">
-							Default text area
+						<TEXTAREA ROWS="7" COLS="30" NAME="TextArea1" id ="TA1">
 						</TEXTAREA>
 
 

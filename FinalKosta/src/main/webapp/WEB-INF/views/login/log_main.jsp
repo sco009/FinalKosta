@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/dist/css/login/mainMenu1.css">
 <link rel="stylesheet" type="text/css" href="/resources/dist/css/login/mainMenu2.css">
 <link rel="stylesheet" type="text/css" href="/resources/dist/css/login/mainMenu3.css">
+<link href="/resources/dist/css/login/notify.css" rel="stylesheet">
 
 <!-- 부트스트랩 시작  -->
 
@@ -39,36 +40,9 @@
 <noscript>
    <link rel="stylesheet" type="text/css" href="/resources/dist/js/login/modernizr.custom.79639.js" />
 </noscript>
-</head>
-<!-- <script type="text/javascript">
-	function logout() {
-		location.href = "/login/logout";
-	}
-</script>
- -->
-<body>
-	<div class="drop_container">
-
-      <section class="drop_main">
-      <div class="wrapper-demo">
-         <div id="dd" class="wrapper-dropdown-5" tabindex="1">
-         ${login.memberName }
-            <ul class="dropdown">
-               <li><a href="TestAr.jsp"><i class="icon-user"></i>접속기록 확인</a></li>
-               <li><a href="updateInfo.jsp"><i class="icon-cog"></i>회원정보수정</a></li>
-               <li><a href="/login/logout"><i class="icon-remove"></i>로그아웃</a></li>
-            </ul>
-         </div>
-         ​
-      </div>
-      </section>
-
-   </div>
-
-   <!-- jQuery if needed -->
-   <script type="text/javascript"
-      src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-   <script type="text/javascript">
+  <!-- jQuery if needed -->
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+ <script type="text/javascript">
       function DropDown(el) {
          this.dd = el;
          this.initEvents();
@@ -92,9 +66,84 @@
             // all dropdowns
             $('.wrapper-dropdown-5').removeClass('active');
          });
+         $.ajax({ 
+             url: "/login/invite",
+             success: successHandler,
+             dataType: "json"
+          });
+         setInterval(function(){
+             $.ajax({ 
+                url: "/login/invite",
+                success: successHandler,
+                dataType: "json"
+             });
+         }, 10000);
+         
+         function successHandler(data){
+             $.each(data,function(index,entry){
+             });
+          };
+
+     
+
 
       });
+      
+      function accept(){
+          alert("k");
+       }
+       function toggle(){
+          if($('#bottom').css("display") == "none"){
+             $('#bottom').show();
+          }else{//show
+             $('#bottom').hide();
+          }
+       }
+
    </script>
+</head>
+
+<body>
+	<div class="drop_container">
+	
+	   <div id='center'>
+         <div id='top'>
+            <div id='orange' onclick="toggle()">
+               <img src='https://az31353.vo.msecnd.net/c04/qmcr.png'>
+            </div>
+            <div id='notification'>8</div>
+         </div>
+         <div id='bottom'>
+            <div id='triangle-line'>
+               <div id='tri'></div>
+            </div>
+            <div id='nots'>NOTIFICATIONS</div>
+            <div id='info'>Don't forget to flush</div>
+            <div id='feet'>
+               <button type="button" id="accept" onclick="accept()">수락</button>
+               <button type="button" id="reject">거절</button>
+            </div>
+         </div>
+      </div>
+	
+
+      <section class="drop_main">
+      
+      
+      <div class="wrapper-demo">
+         <div id="dd" class="wrapper-dropdown-5" tabindex="1">
+         ${login.memberName }
+            <ul class="dropdown">
+               <li><a href="TestAr.jsp"><i class="icon-user"></i>접속기록 확인</a></li>
+               <li><a href="updateInfo.jsp"><i class="icon-cog"></i>회원정보수정</a></li>
+               <li><a href="/login/logout"><i class="icon-remove"></i>로그아웃</a></li>
+            </ul>
+         </div>
+         ​
+      </div>
+      </section>
+
+   </div>
 	
 	<div class="container">
 		<div class="row-fluid">

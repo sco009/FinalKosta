@@ -1,6 +1,6 @@
 package cosmos.login.domain;
 
-public class LoginVO{ 
+public class LoginVO{
 	private String memberID ; //회원 아이디
 	   private String memberPw ; //회원 비밀번호
 	   private String memberName ; //회원 이름
