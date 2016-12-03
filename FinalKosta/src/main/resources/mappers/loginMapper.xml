@@ -37,6 +37,4 @@
 			#{memberID}, #{memberName,jdbcType=VARCHAR}
 		)
 	</insert>
-	
-	
 </mapper>

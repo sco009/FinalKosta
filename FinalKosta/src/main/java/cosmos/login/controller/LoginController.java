@@ -2,6 +2,7 @@ package cosmos.login.controller;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -12,8 +13,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
@@ -36,7 +40,7 @@ public class LoginController {
 
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginGET(@ModelAttribute("dto") LoginDTO dto) {
-		System.out.println("접속");
+		System.out.println("접속성공");
 		return "/login/login";
 	}
 	
@@ -55,6 +59,8 @@ public class LoginController {
 		}else{//로그인이 안되어있을때
 			dto.setMemberName(vo.getMemberName());
 			service.insertCurrentMember(dto);
+			
+			
 		}
 		
 		model.addAttribute("loginVO", vo);
@@ -67,27 +73,47 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/log_main", method=RequestMethod.GET)
-	public String logMain(HttpSession session)throws Exception {
+	public String logMain(HttpSession session, Model model)throws Exception {
 		
 		LoginVO vo = (LoginVO) session.getAttribute("login");
 		System.out.println("접속한 사람 : " + vo.getMemberName());
 		
-		InviteVO ivo = gr_service.inviteListPrintService(vo);
-		if(ivo.getContents() == null) {
-			System.out.println("들어온값없음");
-		}
+		List<InviteVO> ivo = gr_service.inviteListPrintService(vo);
+		model.addAttribute("InviteVO", ivo);
 		
-		System.out.println("초대한 사람 : " + ivo.getSendPerson());
-		System.out.println("초대 메세지 : " + ivo.getContents());
-
 		return "/login/log_main";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/invite", method=RequestMethod.GET)
+	public int logMain2(HttpSession session, Model model)throws Exception {
+		
+		LoginVO vo = (LoginVO) session.getAttribute("login");
+		
+		int icount = gr_service.inviteCountService(vo);
+		model.addAttribute("icount", icount);
+		
+		List<InviteVO> ivo = gr_service.inviteListPrintService(vo);
+		model.addAttribute("InviteVO", ivo);
+
+		return icount;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/invitelist", method=RequestMethod.GET)
+	public List<InviteVO> logMain3(HttpSession session, Model model)throws Exception {
+		
+		LoginVO vo = (LoginVO) session.getAttribute("login");
+		
+		List<InviteVO> ivo = gr_service.inviteListPrintService(vo);
+		model.addAttribute("InviteVO", ivo);
+
+		return ivo;
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model)throws Exception {
 		LoginVO vo = (LoginVO) session.getAttribute("login");
-		
-		System.out.println("넘어오는 vo 값" + vo);
 		
 		if(vo != null) {
 			session.removeAttribute("login");
@@ -109,4 +135,35 @@ public class LoginController {
 		
 		return "/login/logout";
 	}
+	
+	@RequestMapping(value="/acceptInvite", method=RequestMethod.GET)
+	public void acceptInvite(HttpSession session, @RequestParam("inviteID") String inviteID)throws Exception {
+		LoginVO vo = (LoginVO) session.getAttribute("login");
+		String memberID = vo.getMemberID();
+		gr_service.acceptInvite(inviteID, memberID);
+		
+	}
+	
+	@RequestMapping(value="/rejectInvite", method=RequestMethod.GET)
+	public void rejectInvite(HttpSession session, @RequestParam("inviteID") String inviteID)throws Exception {
+		LoginVO vo = (LoginVO) session.getAttribute("login");
+		String memberID = vo.getMemberID();
+		gr_service.rejectInvite(inviteID, memberID);
+	}
+	
+	@RequestMapping(value="/joinGroup", method=RequestMethod.GET)
+	public void joinGroup(HttpSession session, @RequestParam("inviteID") String inviteID,
+												@RequestParam("groupID") String groupID)throws Exception {
+		LoginVO vo = (LoginVO) session.getAttribute("login");
+		String memberID = vo.getMemberID();
+
+
+		System.out.println("joinGroup memberID : "+memberID);
+		System.out.println("inviteID : " + inviteID);
+		System.out.println("groupID : " + groupID);
+		
+		gr_service.acceptInvite(inviteID, memberID);
+		gr_service.joinGroup(groupID, memberID);
+	}
+	
 }
