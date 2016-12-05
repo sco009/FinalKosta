@@ -18,6 +18,7 @@ var point = "";
 		var parentId = $("#" + data).parents('div').parents('div').attr('id'); /* 최상위 div의 id값 가져오기 */
 		var trash = $("#" + data).parents('div').attr('id'); /* 휴지통 div의 id값 가져오기 */
 		var selectNum = data.replace(/[a-z]/gi, ''); /* update될 타겟의 groupboardid를 추출하기 위한 변수 */
+		
 		if (parentId != "ToDo" && parentId != "ING" && parentId != "END"
 				&& parentId != "Issue" && trash != "deletes") {
 			var firstparent = $("#" + data).parents('div').attr('id');
@@ -54,7 +55,87 @@ var point = "";
 						alert("제거성공");
 					}
 				});
-			} else {
+			}else if (point == "ING") {
+		         if (parentId == "Issue"||parentId=="END") {
+		             $.ajax({
+		                type : "post",
+		                url : "updateData",
+		                data : {
+		                   groupBoardId : selectNum,
+		                   gBoardCategori : parentId
+		                },
+		                dataType : 'json',
+		                success : function(data) {
+		                   var html = ""; /* 수정되는 scrumCount를 변경시켜주기 위해 */
+
+		                   $.each(data, function(index, entry) { /*테이블 화면에 html태그를 붙여준다. */
+		                      html += '<td>';
+		                      html += entry;
+		                      html += '</td>';
+		                   });
+
+		                   var scrumTable = document.getElementById('scrumTable');
+		                   scrumTable.innerHTML = html;
+
+		                   var scrumTable = document.getElementById('scrumTable');
+		                   scrumTable.innerHTML = html;
+		                   alert("업데이트성공");
+		                }
+		             });
+		          }else {
+		             
+		             var firstparent = $("#" + data).parents('div').attr('id');
+		             var getDiv = document.getElementById(data); /* 드래그한 태그의 값을 전부 가져온다. */
+		             var parentsDiv = document.getElementById(firstparent); /* 상위 부모에 대한 값을 가져온다. */
+		             parentsDiv.removeChild(getDiv); /* ToDo,ING,END이외에 곳에 드래그되면 먼저 */
+
+		             var firstChild = $("#" + point).children().attr('id'); /* ToDo,ING,END의 판에 대한 첫번째 자식div의 id값을 가져온다. */
+		             var beforeparentsdiv = document.getElementById(firstChild); /* 첫번째자식div의값을 가져온다. */
+		             beforeparentsdiv.append(getDiv);
+		          }
+
+		       } else if (point == "END") {
+		          if (parentId == "Issue") {
+		             $.ajax({
+		                type : "post",
+		                url : "updateData",
+		                data : {
+		                   groupBoardId : selectNum,
+		                   gBoardCategori : parentId
+		                },
+		                dataType : 'json',
+		                success : function(data) {
+		                   var html = ""; /* 수정되는 scrumCount를 변경시켜주기 위해 */
+
+		                   $.each(data, function(index, entry) { /*테이블 화면에 html태그를 붙여준다. */
+		                      html += '<td>';
+		                      html += entry;
+		                      html += '</td>';
+		                   });
+
+		                   var scrumTable = document.getElementById('scrumTable');
+		                   scrumTable.innerHTML = html;
+
+		                   var scrumTable = document.getElementById('scrumTable');
+		                   scrumTable.innerHTML = html;
+		                   alert("업데이트성공");
+		                }
+		             });
+		          }else {
+		             
+		             var firstparent = $("#" + data).parents('div').attr('id');
+		             var getDiv = document.getElementById(data); /* 드래그한 태그의 값을 전부 가져온다. */
+		             var parentsDiv = document.getElementById(firstparent); /* 상위 부모에 대한 값을 가져온다. */
+		             parentsDiv.removeChild(getDiv); /* ToDo,ING,END이외에 곳에 드래그되면 먼저 */
+
+		             var firstChild = $("#" + point).children().attr('id'); /* ToDo,ING,END의 판에 대한 첫번째 자식div의 id값을 가져온다. */
+		             var beforeparentsdiv = document.getElementById(firstChild); /* 첫번째자식div의값을 가져온다. */
+		             beforeparentsdiv.append(getDiv);
+		          }
+
+		       } 
+			
+			else {
 				/* 해당하는 todo, ing, end 위치에 드랍했을 때 DB에 gBoardCategori값을 ajax를 통해 해당하는 위치에 대한 값으로 변경해준다. */
 				$.ajax({
 					type : "post",
@@ -76,12 +157,25 @@ var point = "";
 						var scrumTable = document.getElementById('scrumTable');
 						scrumTable.innerHTML = html;
 
-						var scrumTable = document.getElementById('scrumTable');
-						scrumTable.innerHTML = html;
-
 						alert("업데이트성공");
 					}
 				});
+				
+				if(parentId == "ING"){		//ING 판으로 들어왔을 때 시작일을 출력해 준다.
+					$.ajax({
+						url : "dateView",
+						data : {groupBoardId : selectNum},
+						dataType : 'text',
+						success : function(data){
+							var html = '';
+							html += '■시작일■\n';
+							html += data;
+							
+							var parent = document.getElementById('draggable'+selectNum);  //해당하는 판에 html을 붙인다.
+							parent.append(html);
+						}
+					});
+				}
 			}
 		}
 	}

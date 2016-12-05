@@ -80,6 +80,8 @@
 										${boardList.gBoardWriter }</div>
 									<div id="INGelementD${boardList.groupBoardId }">■기간■
 										${boardList.gBoardPeriod }</div>
+									<div id="INGelementE${boardList.groupBoardId }" class="startDay">■시작일■
+										${boardList.gBoardRegdate }</div>
 								</div>
 							</c:if>
 						</c:forEach>
@@ -132,7 +134,7 @@
 										${boardList.gBoardContent }</div>
 									<div id="IssueElementC${boardList.groupBoardId }">■담당자■
 										${boardList.gBoardWriter }</div>
-									<div id="IssueElementC${boardList.groupBoardId }">■기간■
+									<div id="IssueElementD${boardList.groupBoardId }">■기간■
 										${boardList.gBoardPeriod }</div>
 
 								</div>

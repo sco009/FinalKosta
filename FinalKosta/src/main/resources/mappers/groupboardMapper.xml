@@ -18,9 +18,15 @@
    </insert>
 	
 	<update id="boardUpdate" parameterType="GroupBoardVO">
-		UPDATE groupboard SET gBoardCategori = #{gBoardCategori}
-          WHERE groupBoardId = #{groupBoardId}
+		UPDATE groupboard SET gBoardCategori = #{gBoardCategori}, gBoardRegdate = sysdate
+        WHERE groupBoardId = #{groupBoardId}
 	</update>
+	
+	<select id="dateView" parameterType="String" resultType="String">
+		select gBoardRegdate
+		from groupboard
+		where groupBoardId = #{groupBoardId}
+	</select>
 	
 	<delete id="boardDelete" parameterType="String">
 		DELETE FROM groupboard where groupboardid = #{groupBoardId} 

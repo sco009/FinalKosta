@@ -44,6 +44,11 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 	public List<GroupBoardVO> scrumCount(String groupId) throws Exception {
 		return dao.scrumCount(groupId);
 	}
+
+	@Override
+	public String dateView(String groupBoardId) throws Exception {
+		return dao.dateView(groupBoardId);
+	}
 	
 	
 	
