@@ -1,5 +1,9 @@
 package cosmos.codefight.persistence;
 
-public interface CodeFightDAO {
+import java.util.List;
 
+import cosmos.codefight.domain.CodeFightVO;
+
+public interface CodeFightDAO {
+	List<CodeFightVO>codefightList(String memberId)throws Exception;
 }

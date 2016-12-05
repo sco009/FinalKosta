@@ -13,7 +13,6 @@ public class WebCompileServiceImpl implements WebCompileService {
 
 	@Override
 	public String compileResult(String wc_code) throws Exception {
-		System.out.println(wc_code);
 		Runtime wc_runtime = Runtime.getRuntime();
 		String wc_javaName = wc_code.substring(13, wc_code.indexOf("{"));
 		String wc_result = "";
@@ -21,11 +20,9 @@ public class WebCompileServiceImpl implements WebCompileService {
 
 		// class파일 삭제
 		String wc_className = wc_javaName + ".class";
-		System.out.println(wc_className);
 		wc_fileDelete(wc_className);
 		// java파일 생성
 		File wc_java = new File(wc_javaName + ".java");
-		System.out.println(wc_java);
 		wc_java.createNewFile();
 
 		FileWriter wc_writer = new FileWriter(wc_java);

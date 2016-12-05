@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="cosmos.mappers.LoginMapper">
+<mapper namespace="cosmos.mappers.loginMapper">
    
    <select id="login" resultType="loginVO">
       select memberID,memberPw,memberName,memberPhoneNum,memberEmail,isLeader

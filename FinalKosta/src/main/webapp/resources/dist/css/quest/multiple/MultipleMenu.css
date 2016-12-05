@@ -10,7 +10,7 @@ body {
 
 #body{
    font-size: 14px;
-   background-image:url("../../MultipleImage/Multiple.jpg");
+   background-image:url("../../../img/quest/multiple/Multiple.jpg");
    background-size: cover;
 }
 .side{
@@ -23,6 +23,7 @@ body {
    display: inline;
    border-radius: 1em;
 }
+
 .well{
    opacity: 0.65;
 }

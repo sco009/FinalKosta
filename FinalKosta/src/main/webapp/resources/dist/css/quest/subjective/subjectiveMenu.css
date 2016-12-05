@@ -10,7 +10,7 @@ body {
 
 #body{
    font-size: 14px;
-   background-image:url("../../MultipleImage/Multiple.jpg");
+   background-image:url("../../../img/quest/subjective/Subjective.jpg");
    background-size: cover;
 }
 .side{
@@ -138,14 +138,14 @@ body {
 }
 
 /* 버튼 css */
-.multipleSelect_css {
+.subjectiveSelect-css {
    border-radius: 5px;
    -moz-border-radius: 5px;
    -webkit-border-radius: 5px;
    border: 2px solid #BB4513 /* #B0DAFF */;
    background: #F4A460 /* #D6EFFF */;   
    height: 2em;
-   width: 10em;
+   width: 8em;
    display:inline;
    
 }

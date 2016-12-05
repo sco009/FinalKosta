@@ -1,4 +1,4 @@
-/*package cosmos.multiple.service;
+package cosmos.multiple.service;
 
 import java.util.List;
 
@@ -14,13 +14,9 @@ import cosmos.multiple.persistence.MultipleDAO;
 @Service
 public class MultipleServiceImpl implements MultipleService {
 
-<<<<<<< HEAD
-<<<<<<< Upstream, based on branch 'master' of https://github.com/sco009/FinalKosta.git
 	@Inject
 	private MultipleDAO dao;
-<<<<<<< HEAD
 	
-=======
 
 	@Override
 	public List<MultipleVO> selectMultiple(MultipleVO vo) throws Exception {
@@ -40,16 +36,16 @@ public class MultipleServiceImpl implements MultipleService {
 		return dao.selectMultipleCount(vo);
 	}
 
-//	@Override
-//	public int pointInsert(MultiplePoint multiplePoint) throws Exception {
-//		// TODO Auto-generated method stub
-//		return dao.pointInsert(multiplePoint);
-//	}
->>>>>>> refs/remotes/kab/kbj
-	
-=======
->>>>>>> 03114e0 2016.11.18-1kcy
-=======
->>>>>>> refs/remotes/kcy/kcy
+	@Override
+	public MultipleVO reMultiple(String mulquestId) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reMultiple(mulquestId);
+	}
+
+	@Override
+	public void pointInsert(MultiplePoint multiplePoint) throws Exception {
+		// TODO Auto-generated method stub
+		dao.pointInsert(multiplePoint);
+	}
+
 }
-*/

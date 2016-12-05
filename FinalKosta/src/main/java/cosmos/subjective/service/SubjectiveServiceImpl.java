@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import org.springframework.stereotype.Service;
 
+import cosmos.subjective.domain.SubjectivePointVO;
 import cosmos.subjective.domain.SubjectiveVO;
 import cosmos.subjective.persistence.SubjectiveDAO;
 
@@ -28,6 +29,11 @@ public class SubjectiveServiceImpl implements SubjectiveService {
 	@Override
 	public int countSubjective(SubjectiveVO VO) throws Exception {
 		return dao.countSubjective(VO);
+	}
+	
+	@Override
+	public void pointInsert(SubjectivePointVO subjectivePoint)throws Exception{
+		dao.pointInsert(subjectivePoint);
 	}
 	
 }
