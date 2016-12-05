@@ -11,6 +11,10 @@
       where memberID = #{memberID} and memberPw = #{memberPw}
    </select>
    
+   <select id="password" resultType="string">
+   	select memberPw from member where memberID = #{memberID}
+   </select>
+   
    <update id="keepLogin">
    	update member set sessionKey = #{sessionId}, sessionLimit = #{next} where memberID = #{memberID}
    </update>

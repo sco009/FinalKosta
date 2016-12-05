@@ -1,10 +1,10 @@
 package cosmos.noticeboard.domain;
 
-public class Criteria {
+public class NoticeCriteria {
 	 private int page=1;
 	  private int perPageNum=2;
 
-	  public Criteria() { // 기본 셋팅값
+	  public NoticeCriteria() { // 기본 셋팅값
 	    this.page = 1;
 	    this.perPageNum = 2; // 페이지당 글 갯수 2개
 	  }

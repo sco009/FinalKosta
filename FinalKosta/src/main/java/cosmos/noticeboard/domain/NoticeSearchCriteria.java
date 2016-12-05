@@ -1,6 +1,6 @@
 package cosmos.noticeboard.domain;
 
-public class SearchCriteria extends Criteria{
+public class NoticeSearchCriteria extends NoticeCriteria{
 	private String searchType;
 	private String keyword;
 	

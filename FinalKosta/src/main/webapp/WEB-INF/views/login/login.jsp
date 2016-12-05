@@ -65,7 +65,7 @@
                class="pass" placeholder="password" name="memberPw" />
 
             <div class="join">
-               <a href="join.jsp">아직 회원이 아니세요?</a>
+               <a href="/signup/signup_form">아직 회원이 아니세요?</a>
             </div>
          <div class="checkbox icheck" >
               <label>

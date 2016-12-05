@@ -113,7 +113,7 @@
 				return;
 			}
 
-			url = "/main/signup/confirmId?memberID=" + inputid.memberID.value; 
+			url = "/signup/confirmId?memberID=" + inputid.memberID.value; 
 
 			open(
 					url,

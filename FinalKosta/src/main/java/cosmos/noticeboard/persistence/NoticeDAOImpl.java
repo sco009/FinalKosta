@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import cosmos.noticeboard.domain.FileVO;
 import cosmos.noticeboard.domain.NoticeVO;
-import cosmos.noticeboard.domain.SearchCriteria;
+import cosmos.noticeboard.domain.NoticeSearchCriteria;
 
 @Repository
 public class NoticeDAOImpl implements NoticeDAO {
@@ -45,12 +45,12 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 
 	@Override
-	public List<NoticeVO> listCriteria(SearchCriteria criteria) throws Exception {
+	public List<NoticeVO> listCriteria(NoticeSearchCriteria criteria) throws Exception {
 		return sqlSession.selectList(namespace+".getList", criteria,new RowBounds(criteria.getPageStart(),criteria.getPerPageNum()));
 	}
 
 	@Override
-	public int countPaging(SearchCriteria criteria) throws Exception {
+	public int countPaging(NoticeSearchCriteria criteria) throws Exception {
 		
 		return sqlSession.selectOne(namespace+".countPaging",criteria);
 	}

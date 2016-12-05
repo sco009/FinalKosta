@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cosmos.noticeboard.domain.FileVO;
 import cosmos.noticeboard.domain.NoticeVO;
-import cosmos.noticeboard.domain.SearchCriteria;
+import cosmos.noticeboard.domain.NoticeSearchCriteria;
 import cosmos.noticeboard.persistence.NoticeDAO;
 
 @Service
@@ -66,12 +66,12 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> listCri(SearchCriteria criteria) throws Exception {
+	public List<NoticeVO> listCri(NoticeSearchCriteria criteria) throws Exception {
 		return dao.listCriteria(criteria);
 	}
 
 	@Override
-	public int listCountCriteria(SearchCriteria criteria) throws Exception {
+	public int listCountCriteria(NoticeSearchCriteria criteria) throws Exception {
 		return dao.countPaging(criteria);
 	}
 

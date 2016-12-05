@@ -45,4 +45,9 @@ public class LoginServiceImpl implements LoginService {
 	public LoginVO checkLoginBefore(String value) {
 		return dao.checkUserWithSessionKey(value);
 	}
+
+	@Override
+	public String password(LoginDTO dto) throws Exception {
+		return dao.password(dto);
+	}
 }

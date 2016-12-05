@@ -3,7 +3,7 @@ package cosmos.noticeboard.domain;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-public class PageMaker {
+public class NoticePageMaker {
 	 private int totalCount; // 글갯수
 	  private int startPage;
 	  private int endPage;
@@ -12,9 +12,9 @@ public class PageMaker {
 
 	  private int displayPageNum = 5; // 화면에 보여질 글 갯수 : 5개
 
-	  private Criteria cri;
+	  private NoticeCriteria cri;
 
-	  public void setCri(Criteria cri) {
+	  public void setCri(NoticeCriteria cri) {
 	    this.cri = cri;
 	  }
 
@@ -66,7 +66,7 @@ public class PageMaker {
 	    return displayPageNum;
 	  }
 
-	  public Criteria getCri() {
+	  public NoticeCriteria getCri() {
 	    return cri;
 	  }
 
@@ -85,8 +85,8 @@ public class PageMaker {
 	              UriComponentsBuilder.newInstance()
 	              .queryParam("page", page)
 	              .queryParam("perPageNum", cri.getPerPageNum())
-	              .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
-	              .queryParam("keyword", ((SearchCriteria)cri).getKeyword())
+	              .queryParam("searchType", ((NoticeSearchCriteria)cri).getSearchType())
+	              .queryParam("keyword", ((NoticeSearchCriteria)cri).getKeyword())
 	              .build();             
 	    
 	    return uriComponents.toUriString();

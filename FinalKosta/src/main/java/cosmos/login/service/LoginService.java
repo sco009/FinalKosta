@@ -12,4 +12,5 @@ public interface LoginService {
 	public String currentMemberCheck(LoginDTO dto)throws Exception;
 	public void insertCurrentMember(LoginDTO dto)throws Exception;
 	public void currentLogoutMember(LoginVO dto)throws Exception;
+	public String password(LoginDTO dto) throws Exception;
 }

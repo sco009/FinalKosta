@@ -9,6 +9,7 @@
   	<package name="cosmos.noticeboard.domain"/> 
     <package name="cosmos.algoboard.domain"/> 
     <package name="cosmos.codefight.domain"/>
+    <package name="cosmos.codetrace.domain"/>
     <package name="cosmos.education.domain"/>
     <package name="cosmos.freeboard.domain"/>
     <package name="cosmos.group.domain"/>
