@@ -35,7 +35,6 @@ public class SubjectiveController {
 
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String subjective(HttpSession session) {
-		session.removeAttribute("memberId");
 		return "subjective/subjective_main";
 	}
 
@@ -94,7 +93,6 @@ public class SubjectiveController {
 	
 	@RequestMapping("/subjectiveResult")
 	public String subjectiveResult(Model model, HttpSession session){
-		session.setAttribute("memberId", "kokoko");
 		int successCount = subjectiveSuccessList.size();
 		int failCount = subjectiveFailList.size();
 		int totalCount = failCount+successCount;

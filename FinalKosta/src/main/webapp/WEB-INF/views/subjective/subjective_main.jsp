@@ -14,7 +14,7 @@
 <script type="text/javascript" src="/resources/dist/js/quest/subjective/SubjectiveJavaScript.js"></script>
 <link href="/resources/dist/css/quest/subjective/subjectiveMenu.css" rel="stylesheet" type="text/css">
 <link href="/resources/dist/css/quest/subjective/subjectiveRadioButton.css" rel="stylesheet" type="text/css">
-<link href="/resources/dist/css/quest/subjective/style.css" rel="stylesheet" type="text/css">
+<link href="/resources/dist/css/quest/subjective/subjectivestyle.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script type="text/javascript">
 	function resultPage() {
