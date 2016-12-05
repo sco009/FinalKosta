@@ -154,4 +154,10 @@ public class GroupBoardController {
 		return scrumMap;
 	}
 	
+	@RequestMapping("/dateView")
+	@ResponseBody
+	public String dateView(@RequestParam("groupBoardId")String groupBoardId)throws Exception{
+		return service.dateView(groupBoardId);
+	}
+	
 }

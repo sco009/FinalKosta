@@ -13,4 +13,5 @@ public interface GroupBoardDAO {
 	void boardDelete(String groupBoardId)throws Exception;
 	List<TeamVO> groupMember(String groupId)throws Exception;
 	List<GroupBoardVO> scrumCount(String groupId)throws Exception;
+	String dateView(String groupBoardId)throws Exception;
 }

@@ -12,4 +12,5 @@ public interface GroupBoardService {
 	public void boardDelete(String groupBoardId)throws Exception;
 	public List<TeamVO> groupMember(String groupId)throws Exception;
 	public List<GroupBoardVO> scrumCount(String groupId)throws Exception;
+	public String dateView(String groupBoardId)throws Exception;
 }

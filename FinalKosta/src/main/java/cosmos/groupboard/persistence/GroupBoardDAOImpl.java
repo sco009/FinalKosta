@@ -47,6 +47,11 @@ public class GroupBoardDAOImpl implements GroupBoardDAO {
 	public List<GroupBoardVO> scrumCount(String groupId) throws Exception {
 		return sqlSession.selectList(namespace+".scrumCount", groupId);
 	}
+
+	@Override
+	public String dateView(String groupBoardId) throws Exception {
+		return sqlSession.selectOne(namespace+".dateView", groupBoardId);
+	}
 	
 	
 
