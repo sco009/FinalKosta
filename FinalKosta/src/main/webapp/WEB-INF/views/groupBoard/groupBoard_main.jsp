@@ -148,7 +148,7 @@
 				<div class="well">
 					<h3>ADD</h3>
 					<form id="addForm" action="saveData">
-						<input type="hidden" name="groupId" value="병지니꺼"></input> 
+						<input type="hidden" name="groupId" value=${groupId }></input> 
 						<input type="hidden" name="gBoardCategori" value="ToDo"></input>
 
 						<input type="text" id="titleText" name="gBoardTitle"

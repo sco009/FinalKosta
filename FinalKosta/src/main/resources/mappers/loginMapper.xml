@@ -16,7 +16,7 @@
    </update>
    
    <select id="checkUserWithSessionKey" resultType="loginVO">
-   	select * from member where sessionKey = #{value} and sessionLimit > now()
+   	select * from member where sessionKey = #{value} and sessionLimit > SYSDATE
    </select>
    
    <select id="currentLoginMember" resultType="string">
@@ -37,6 +37,4 @@
 			#{memberID}, #{memberName,jdbcType=VARCHAR}
 		)
 	</insert>
-	
-	
 </mapper>

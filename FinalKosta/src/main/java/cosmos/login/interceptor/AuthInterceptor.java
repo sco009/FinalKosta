@@ -12,6 +12,7 @@ import cosmos.login.domain.LoginVO;
 import cosmos.login.service.LoginService;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
+	
 	@Inject
 	private LoginService service;
 

@@ -17,7 +17,7 @@ public class LoginDAOImpl implements LoginDAO {
 
 	@Inject
 	private SqlSession sqlSession;
-	private static final String namespace="cosmos.mappers.LoginMapper";
+	private static final String namespace="cosmos.mappers.loginMapper";
 	
 	@Override
 	public LoginVO login(LoginDTO dto) throws Exception {

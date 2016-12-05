@@ -5,9 +5,95 @@
   
 <mapper namespace="cosmos.mappers.GroupMapper">
    
-  <select id="currentList" resultType="LoginVO">
-		select memberID,memberName from CURRENTLOGINMEMBERLIST
+  <select id="currentList" resultType="CurrentMemberVO">
+		select memberID,memberName from CURRENTLOGINMEMBERLIST where memberName like #{searchVal}
   </select>
+  
+  <insert id="invite" parameterType="Invite">
+  	
+  		insert into invite(inviteid,sendPerson,contents,groupid,
+	  		<foreach collection="receive" item="place" index="i" separator=",">
+				receive${i+1}
+			</foreach>)
+  		values(seq_inviteid.nextval,#{sendPerson},#{contents},concat('g_',seq_groups.nextval),
+	  		<foreach collection="receive" item="place" index="i" separator=",">
+				#{place}
+			</foreach>)
+  </insert>
 	
+	<select id="inviteList" resultType="InviteVO" parameterType="LoginVO">
+		select * from INVITE where 
+		receive1 = #{memberID,jdbcType=VARCHAR} OR
+		receive2 = #{memberID,jdbcType=VARCHAR} OR
+		receive3 = #{memberID,jdbcType=VARCHAR} OR
+		receive4 = #{memberID,jdbcType=VARCHAR} OR
+		receive5 = #{memberID,jdbcType=VARCHAR} OR
+		receive6 = #{memberID,jdbcType=VARCHAR}
+	</select>
 	
+	<update id="updateInvitecnt" parameterType="string">
+		update member set invitecnt = invitecnt+1
+		where memberid = #{str}			
+	</update>
+	
+	<select id="groupList" parameterType="string" resultType="GroupVO">
+		select leaderID,groupName,groupID  from groups where team1 = #{userID} or
+								  					 team2 = #{userID} or
+								  					 team3 = #{userID} or
+								  					 team4 = #{userID} or
+								  					 team5 = #{userID} or 
+								  					 team6 = #{userID} or
+								  					 leaderID = #{userID}
+									
+	</select>
+	
+	<insert id ="insertCreateGroups" parameterType="GroupVO">
+	<selectKey resultType="string" keyProperty="groupID" order="BEFORE">
+		SELECT MAX(SUBSTR(groupID,3,4)) FROM invite
+	</selectKey>
+		insert into groups(groupID,LEADERID,CREATEDATE,GROUPNAME) 
+					values(concat('g_',#{groupID}),#{leaderID},sysdate,#{groupName})
+	</insert>
+
+	<select id="inviteCount" resultType="Integer" parameterType="LoginVO">
+		select count(*) from INVITE where
+		receive1 = #{memberID,jdbcType=VARCHAR} OR
+		receive2 = #{memberID,jdbcType=VARCHAR} OR
+		receive3 = #{memberID,jdbcType=VARCHAR} OR
+		receive4 = #{memberID,jdbcType=VARCHAR} OR
+		receive5 = #{memberID,jdbcType=VARCHAR} OR
+		receive6 = #{memberID,jdbcType=VARCHAR}
+	</select>
+   
+   <update id ="rejectInvite">
+  	 update invite set 
+  	 	receive1 = (select replace(receive1,#{memberID},#{result}) receive1 FROM invite where inviteid = #{inviteID}),
+                     receive2 = (select replace(receive2,#{memberID},#{result}) receive2 FROM invite where inviteid = #{inviteID}),
+                     receive3 = (select replace(receive3,#{memberID},#{result}) receive3 FROM invite where inviteid = #{inviteID}),
+                     receive4 = (select replace(receive4,#{memberID},#{result}) receive4 FROM invite where inviteid = #{inviteID}),
+                     receive5 = (select replace(receive5,#{memberID},#{result}) receive5 FROM invite where inviteid = #{inviteID}),
+                     receive6 = (select replace(receive6,#{memberID},#{result}) receive6 FROM invite where inviteid = #{inviteID})
+     where inviteid= #{inviteID}
+   </update>
+   
+   <update id ="acceptInvite">
+  	 update invite set 
+  	 	receive1 = (select replace(receive1,#{memberID},#{result}) receive1 FROM invite where inviteid = #{inviteID}),
+                     receive2 = (select replace(receive2,#{memberID},#{result}) receive2 FROM invite where inviteid = #{inviteID}),
+                     receive3 = (select replace(receive3,#{memberID},#{result}) receive3 FROM invite where inviteid = #{inviteID}),
+                     receive4 = (select replace(receive4,#{memberID},#{result}) receive4 FROM invite where inviteid = #{inviteID}),
+                     receive5 = (select replace(receive5,#{memberID},#{result}) receive5 FROM invite where inviteid = #{inviteID}),
+                     receive6 = (select replace(receive6,#{memberID},#{result}) receive6 FROM invite where inviteid = #{inviteID})
+     where inviteid= #{inviteID}
+   </update>
+  
+  <select id="checkNull" resultType="string">
+  	select ${team} from groups where groupID = #{groupID}
+  </select>
+  
+	<update id="joinGroup">
+		update groups set ${team} = #{memberID}
+					  WHERE groupID = #{groupID}
+	</update>
 </mapper>
+

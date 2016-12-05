@@ -30,7 +30,7 @@ public class GroupBoardController {
 	
 	@RequestMapping("/start")
 	public String start(Model model, HttpSession session) throws Exception{
-		String groupId = "병지니꺼";
+		String groupId = (String)session.getAttribute("groupID");
 		List<GroupBoardVO>grouplist =  service.groupBoardList(groupId);
 		List<TeamVO> groupMember = service.groupMember(groupId);
 		
@@ -63,8 +63,8 @@ public class GroupBoardController {
 	}
 	
 	@RequestMapping("/saveData")
-	public String saveData(GroupBoardVO VO, Model model) throws Exception{
-		String groupId = "병지니꺼";
+	public String saveData(GroupBoardVO VO, Model model, HttpSession session) throws Exception{
+		String groupId = (String)session.getAttribute("groupID");
 		service.boardInsert(VO);
 		List<TeamVO> groupMember = service.groupMember(groupId);
 		TeamVO member = groupMember.get(0);
@@ -87,6 +87,7 @@ public class GroupBoardController {
 		}
 //============================================================================================================	
 		
+		model.addAttribute("groupId", groupId);
 		model.addAttribute("scrumMap", scrumMap);
 		model.addAttribute("member", member);
 		model.addAttribute("list", service.groupBoardList(groupId));
@@ -96,8 +97,8 @@ public class GroupBoardController {
 	@RequestMapping(value="/updateData", method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, Integer> updateData(@RequestParam("groupBoardId") String groupBoardId, 
-							  @RequestParam("gBoardCategori") String gBoardCategori) throws Exception{
-		String groupId = "병지니꺼";
+							  @RequestParam("gBoardCategori") String gBoardCategori, HttpSession session) throws Exception{
+		String groupId = (String)session.getAttribute("groupID");
 		GroupBoardVO vo = new GroupBoardVO();
 		vo.setgBoardCategori(gBoardCategori);
 		vo.setGroupBoardId(groupBoardId);
@@ -129,8 +130,8 @@ public class GroupBoardController {
 	
 	@RequestMapping("/deleteData")
 	@ResponseBody
-	public HashMap<String, Integer> deleteData(@RequestParam("groupBoardId") String groupBoardId)throws Exception{
-		String groupId = "병지니꺼";
+	public HashMap<String, Integer> deleteData(@RequestParam("groupBoardId") String groupBoardId, HttpSession session)throws Exception{
+		String groupId = (String)session.getAttribute("groupID");
 		service.boardDelete(groupBoardId);
 		
 //============================================================================================================		

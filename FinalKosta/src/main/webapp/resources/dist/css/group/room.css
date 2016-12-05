@@ -1,0 +1,52 @@
+.card {
+
+  position: relative;
+  top: 10px;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #22252C;
+  font-size: 20px;
+  text-transform: uppercase;
+  background-color: #fff;
+  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.card .tl, .card .tr, .card .bl, .card .br {
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-color: #22252C;
+}
+.card .tl {
+  top: 0;
+  left: 0;
+  border-top: 15px solid #22252C;
+  border-right: 15px solid transparent;
+}
+.card .tr {
+  top: 0;
+  right: 0;
+  border-top: 15px solid #22252C;
+  border-left: 15px solid transparent;
+}
+.card .bl {
+  bottom: 0;
+  left: 0;
+  border-bottom: 15px solid #22252C;
+  border-right: 15px solid transparent;
+}
+.card .br {
+  bottom: 0;
+  right: 0;
+  border-bottom: 15px solid #22252C;
+  border-left: 15px solid transparent;
+}
