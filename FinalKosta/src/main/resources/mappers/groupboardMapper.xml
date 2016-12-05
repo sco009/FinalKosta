@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cosmos.mappers.groupboardMapper">
+   
+   <select id="groupBoardList" parameterType="String" resultType="GroupBoardVO">
+   		select *
+   		from GROUPBOARD
+   		where groupid = #{groupId}
+   </select>
+   
+	<insert id="boardInsert" parameterType="GroupBoardVO">
+   		insert into groupboard values(seq_groupboard.nextval, #{gBoardTitle}, 
+   		#{gBoardContent}, #{gBoardWriter}, sysdate, 
+   		#{gBoardCategori} , #{groupId}, #{gBoardPeriod})
+   </insert>
+	
+	<update id="boardUpdate" parameterType="GroupBoardVO">
+		UPDATE groupboard SET gBoardCategori = #{gBoardCategori}
+          WHERE groupBoardId = #{groupBoardId}
+	</update>
+	
+	<delete id="boardDelete" parameterType="String">
+		DELETE FROM groupboard where groupboardid = #{groupBoardId} 
+	</delete>
+	
+	<select id="groupMember" parameterType="String" resultType="TeamVO">
+		select team1, team2, team3, team4, team5, team6
+		from GROUPS
+		where groupId = #{groupId}
+	</select>
+	
+	<select id="scrumCount" parameterType="String" resultType="GroupBoardVO">
+
+	select gboardcategori, count(gboardcategori) gBoardCount
+	from groupboard
+	where groupId = #{groupId}
+	group by gboardcategori
+	having gboardcategori ='ToDo' or gboardcategori='ING' or gboardcategori='END'
+	ORDER BY gboardcategori desc
+		
+	
+	</select>
+</mapper>

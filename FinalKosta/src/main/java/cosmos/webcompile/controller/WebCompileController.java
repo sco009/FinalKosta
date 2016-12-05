@@ -31,7 +31,6 @@ public class WebCompileController {
 			System.out.println(wc_code);
 			wc_result = compileService.compileResult(wc_code);
 			System.out.println(wc_result);
-			//dd
 		}
 		return 	wc_result;
 	}
