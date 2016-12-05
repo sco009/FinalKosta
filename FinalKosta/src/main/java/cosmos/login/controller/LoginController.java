@@ -52,15 +52,12 @@ public class LoginController {
 		}
 		
 		String name = service.currentMemberCheck(dto);
-		System.out.println(name);
 		if(name != null){//이미 로그인되어있구나
 			System.out.println("이미 로그인중");
 			return;
 		}else{//로그인이 안되어있을때
 			dto.setMemberName(vo.getMemberName());
 			service.insertCurrentMember(dto);
-			
-			
 		}
 		
 		model.addAttribute("loginVO", vo);
@@ -156,14 +153,8 @@ public class LoginController {
 												@RequestParam("groupID") String groupID)throws Exception {
 		LoginVO vo = (LoginVO) session.getAttribute("login");
 		String memberID = vo.getMemberID();
-
-
-		System.out.println("joinGroup memberID : "+memberID);
-		System.out.println("inviteID : " + inviteID);
-		System.out.println("groupID : " + groupID);
 		
 		gr_service.acceptInvite(inviteID, memberID);
 		gr_service.joinGroup(groupID, memberID);
 	}
-	
 }

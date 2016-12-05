@@ -25,14 +25,13 @@ public class SignUpController {
 	public void signup_formGET(SignUpVO vo, Model model)throws Exception{
 		logger.info("register get....");
 		System.out.println("signup GET");
-		
 	}
 	
 	@RequestMapping(value="signup/signup_form", method=RequestMethod.POST)
 	public String signup_formPOST(SignUpVO vo, Model model)throws Exception{
 		logger.info("regist post....");
 		logger.info(vo.toString());
-		
+	
 		service.insertMember(vo);
 		System.out.println("signup POST");
 		model.addAttribute("result", "success");
@@ -55,7 +54,4 @@ public class SignUpController {
 		
 		return "/signup/confirmId";
 	}
-	
-	
-	
 }

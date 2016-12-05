@@ -67,11 +67,11 @@
             <div class="join">
                <a href="join.jsp">아직 회원이 아니세요?</a>
             </div>
-			<div class="checkbox icheck">
-		        <label>
-		          <input type="checkbox" name="useCookie"> Remember Me
-		        </label>
-			</div> 
+         <div class="checkbox icheck" >
+              <label>
+                <input id="icheck"type="checkbox" name="useCookie"> Remember Me
+              </label>
+         </div> 
          </form>
          </div>
       </div>
@@ -92,7 +92,7 @@
    <!-- Theme JavaScript -->
    <script src="/resources/dist/js/login/creative.min.js"></script>
 
-    <script>
+	<script>
       $(function () {
         $('input').iCheck({
           checkboxClass: 'icheckbox_square-blue',

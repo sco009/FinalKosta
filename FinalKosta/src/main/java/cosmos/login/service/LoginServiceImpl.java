@@ -37,12 +37,12 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public LoginVO checkLoginBefore(String value) {
-		return dao.checkUserWithSessionKey(value);
-	}
-
-	@Override
 	public void keepLogin(String memberID, String sessionId, Date next) throws Exception {
 		dao.keepLogin(memberID, sessionId, next);
+	}
+	
+	@Override
+	public LoginVO checkLoginBefore(String value) {
+		return dao.checkUserWithSessionKey(value);
 	}
 }

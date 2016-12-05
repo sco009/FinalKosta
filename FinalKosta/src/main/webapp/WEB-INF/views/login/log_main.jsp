@@ -302,7 +302,7 @@
                      </div>
                   </label>
                   <div class="ma">
-                     <a class="plate" href="../EducationJSP/education_main.jsp"> <i
+                     <a class="plate" href="/education?memberid= ${login.memberID }"> <i
                         class="fa fa-book" aria-hidden="true"></i>
                      </a> <a class="plate" href="../Multiple/MultipleMain.jsp?mainCheck=0">
                         <i class="fa fa-pencil" aria-hidden="true"></i>

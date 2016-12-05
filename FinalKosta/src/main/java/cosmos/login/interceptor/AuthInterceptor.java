@@ -39,7 +39,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			
 			response.sendRedirect("/login/login");
 			return false;
-		}
+		}  
 		return true;
 	}
 	

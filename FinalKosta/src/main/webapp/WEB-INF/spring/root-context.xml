@@ -41,6 +41,7 @@
 	</bean>
 	
 	<!-- DAO객체 생성 -->
+	<context:component-scan base-package="cosmos.noticeboard.persistence"/>
 	<context:component-scan base-package="cosmos.mypage.persistence"/>
 	<context:component-scan base-package="cosmos.algoboard.persistence"/>
 	<context:component-scan base-package="cosmos.codefight.persistence"/>
@@ -56,6 +57,7 @@
 	<context:component-scan base-package="cosmos.webcompile.persistence"/>
 		
 	<!-- Service 객체 생성 -->
+	<context:component-scan base-package="cosmos.noticeboard.service"/>
 	<context:component-scan base-package="cosmos.mypage.service"/>
 	<context:component-scan base-package="cosmos.algoboard.service"/>
 	<context:component-scan base-package="cosmos.codefight.service"/>

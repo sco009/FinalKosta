@@ -33,12 +33,10 @@ public class GroupController {
 	public ResponseEntity<List<GroupVO>> currentMember(@RequestParam("value") String searchVal) throws Exception{
 		
 		return new ResponseEntity<List<GroupVO>>(GroupService.currentLoginMemberPrintService(searchVal),HttpStatus.OK);
-		
-		
 	}
 	
 	@RequestMapping(value="/inviteMember",method=RequestMethod.POST)
-	public  ResponseEntity<String> inviteMember(@RequestParam("userId") String sendPerson,
+	public ResponseEntity<String> inviteMember(@RequestParam("userId") String sendPerson,
 												  @RequestParam("checkArray[]") String[] receives,
 												  @RequestParam("contents") String contents,
 												  @RequestParam("groupName") String groupName) throws Exception{
