@@ -88,10 +88,10 @@
 		
 		<div class="col-md-offset-3 col-md-6">
 			<div class="box-footer">
-			   <%-- <c:if test="${login.urd == CTBoardVO.writer } "> --%>
-			   	<button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
-			   	<button type="submit" class="btn btn-danger" id="removeBtn">REMOVE</button>
-			   <%-- </c:if> --%>
+			    	<c:if test="${login.urd == CTBoardVO.writer } ">
+			   			<button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
+			   			<button type="submit" class="btn btn-danger" id="removeBtn">REMOVE</button>
+			    	</c:if>
 			   	<button type="submit" class="btn btn-primary" id="goListBtn">GO LIST </button>
 			</div>
 	 	</div>

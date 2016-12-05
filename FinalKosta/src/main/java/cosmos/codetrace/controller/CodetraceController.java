@@ -3,6 +3,7 @@ package cosmos.codetrace.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public class CodetraceController {
 	private CodetraceService service;
 	
 	@RequestMapping(value = "codetrace/register_form", method=RequestMethod.GET)
-	public void registerGET(CTBoardVO vo, Model model)throws Exception{
+	public void registerGET(CTBoardVO vo, Model model, HttpSession session)throws Exception{
 		logger.info("register get...");
 	}
 	
@@ -70,7 +71,7 @@ public class CodetraceController {
 		model.addAttribute(service.read(bno));
 	}*/
 	@RequestMapping(value="/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception{
+	public void read(@RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri, Model model, HttpSession session)throws Exception{
 		model.addAttribute(service.read(bno));
 	}
 	
