@@ -19,6 +19,7 @@ table {
 <body>
 	<form action="/groupcalender/calenderUpdate">
 	<input type="hidden" name="calenderNo" value="${calenderNo }"> 
+	<input type="hidden" name="groupid" value="${groupid }"> 
 	<input type="hidden" name="yy" value="${yy }"> <input
 			type="hidden" name="mm" value="${mm }"> <input type="hidden"
 			name="dd" value="${dd }">

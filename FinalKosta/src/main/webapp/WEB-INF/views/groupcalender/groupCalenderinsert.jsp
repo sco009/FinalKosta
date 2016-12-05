@@ -18,7 +18,8 @@ table {
 </head>
 <body>
 	<form action="/groupcalender/newinsert">
-		<input type="hidden" name="yy" value="${yy }"> <input
+		<input type="hidden" name="yy" value="${yy }">
+		<input type="hidden" name="groupid" value="${groupid }"> <input
 			type="hidden" name="mm" value="${mm }"> <input type="hidden"
 			name="dd" value="${dd }">
 		<table border="1px" width="100%" bordercolor="#F29661">

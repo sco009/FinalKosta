@@ -15,13 +15,13 @@ public class GroupCalenderServiceImpl implements GroupCalenderService {
 	public GroupCalenderDAO dao;
 	
 	@Override
-	public List<CalenderVO> maincalenderlist() throws Exception {
-		return dao.maincalenderlist();
+	public List<CalenderVO> maincalenderlist(String groupid) throws Exception {
+		return dao.maincalenderlist(groupid);
 	}
 
 	@Override
-	public List<CalenderVO> selectcalenderlist(int yy, int mm, int dd) throws Exception {
-		return dao.selectcalenderlist(yy, mm, dd);
+	public List<CalenderVO> selectcalenderlist(int yy, int mm, int dd,String groupid) throws Exception {
+		return dao.selectcalenderlist(yy, mm, dd,groupid);
 	}
 
 	@Override

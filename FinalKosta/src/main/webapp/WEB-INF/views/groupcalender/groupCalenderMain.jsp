@@ -11,7 +11,8 @@
 	int month = request.getParameter("mm") == null
 			? cal.get(Calendar.MONTH)
 			: (Integer.parseInt(request.getParameter("mm")) - 1);
-
+			
+	String groupid = (String)session.getAttribute("groupID");
 	// 시작요일 확인
 	// - Calendar MONTH는 0-11까지임
 	cal.set(year, month, 1);
@@ -43,18 +44,19 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 	<script type="text/javascript">
-		function detail(yy,mm,dd){
-			popupOpen(yy,mm,dd);
-			/* loaction.href="/sboard/test/detail?yy="+yy+"&mm="+mm+"&dd="+dd; */
+	
+		function detail(yy,mm,dd,groupid){
+			popupOpen(yy,mm,dd,groupid);
 		};
 		
 		
-		function popupOpen(yy,mm,dd){
-			var popUrl = "/groupcalender/groupCalenderDetail?yy="+yy+"&mm="+mm+"&dd="+dd;	//팝업창에 출력될 페이지 URL
+		function popupOpen(yy,mm,dd,groupid){
+			var popUrl = "/groupcalender/groupCalenderDetail?yy="+yy+"&mm="+mm+"&dd="+dd+"&groupid="+groupid;//팝업창에 출력될 페이지 URL
 			var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 				window.open(popUrl,"",popOption);
 			};
 		</script>
+		
 <title>Insert title here</title>
 <style type="text/css">
 .week {
@@ -104,7 +106,7 @@ a.no-uline {
 							while (cal.get(Calendar.MONTH) == month) {
 
 								out.println("<td id='"
-										+cal.get(Calendar.DATE)+"'><a onclick='detail("+year+","+(month+1)+","+cal.get(Calendar.DATE)+")' style='text-decoration:none' >" + cal.get(Calendar.DATE) + "</a></td>");
+										+cal.get(Calendar.DATE)+"'><span onclick='detail("+year+","+(month+1)+","+cal.get(Calendar.DATE)+","+'"'+groupid+'"'+")' style='text-decoration:none' >" + cal.get(Calendar.DATE) + "</span></td>");
 
 								// 토요일인 경우 다음줄로 생성
 								if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)

@@ -6,16 +6,16 @@
 <mapper namespace="cosmos.mappers.groupcalenderMapper">
 
 	<select id="maincalenderlist" resultType="CalenderVO">
-		select * from calender
+		select * from calender where groupid=#{groupid}
 	</select>
 
 	<select id="selectcalenderlist" resultType="CalenderVO">
 		select *from calender
-		where yy=#{yy} and mm=#{mm} and dd=#{dd}
+		where yy=#{yy} and mm=#{mm} and dd=#{dd} and groupid=#{groupid}
 	</select>
 	<insert id="newcalenderinsert">
-		insert into calender(calenderNo,title,contexts,yy,mm,dd)
-		values(calender_seq.nextval,#{title},#{contexts},#{yy},#{mm},#{dd})
+		insert into calender(calenderNo,title,contexts,yy,mm,dd,groupid)
+		values(calender_seq.nextval,#{title},#{contexts},#{yy},#{mm},#{dd},#{groupid})
 	</insert>
 	<delete id="calenderdeletes">
 		delete from
@@ -25,7 +25,7 @@
 	</delete>
 	<update id="calenderupdate">
 		update calender set title=#{title} , contexts=#{contexts}
-		where calenderNo = #{calenderNo}
+		where calenderNo = #{calenderNo} and groupid=#{groupid}
 
 	</update>
 </mapper>

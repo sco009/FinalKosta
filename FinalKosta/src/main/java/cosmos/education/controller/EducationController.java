@@ -21,7 +21,10 @@ public class EducationController {
 	
 	
 	@RequestMapping("/education")
-	public String education(Model model) {
+	public String education(Model model,@RequestParam("memberID")String memberID) {
+		
+		model.addAttribute("memberID", memberID);
+		
 		return "/education/education_Main";
 	}
 

@@ -19,17 +19,18 @@ public class GroupCalenderDAOImpl implements GroupCalenderDAO {
 	private static final String namespace="cosmos.mappers.groupcalenderMapper";
 	
 	@Override
-	public List<CalenderVO> maincalenderlist() throws Exception {
-		return sqlSession.selectList(namespace+".maincalenderlist");
+	public List<CalenderVO> maincalenderlist(String groupid) throws Exception {
+		return sqlSession.selectList(namespace+".maincalenderlist",groupid);
 	}
 
 	@Override
-	public List<CalenderVO> selectcalenderlist(int yy, int mm, int dd) throws Exception {
+	public List<CalenderVO> selectcalenderlist(int yy, int mm, int dd,String groupid) throws Exception {
 		Map<String, Object> paramMap = new HashMap<String,Object>();
 		
 		paramMap.put("yy", yy);
 		paramMap.put("dd", dd);
 		paramMap.put("mm", mm);
+		paramMap.put("groupid", groupid);
 		return sqlSession.selectList(namespace+".selectcalenderlist", paramMap);
 	}
 
