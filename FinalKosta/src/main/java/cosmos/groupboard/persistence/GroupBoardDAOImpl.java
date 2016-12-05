@@ -52,7 +52,5 @@ public class GroupBoardDAOImpl implements GroupBoardDAO {
 	public String dateView(String groupBoardId) throws Exception {
 		return sqlSession.selectOne(namespace+".dateView", groupBoardId);
 	}
-	
-	
 
 }

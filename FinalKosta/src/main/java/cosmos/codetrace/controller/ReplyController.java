@@ -48,7 +48,7 @@ public class ReplyController {
 			entity = new ResponseEntity<List<ReplyVO>>(service.listReply(bno), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<List<ReplyVO>>(HttpStatus.BAD_REQUEST);
 		}
 		
 		return entity;

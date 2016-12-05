@@ -47,26 +47,30 @@
 		<div class="main clearfix">
 			<div class="col-md-4">
 				<a
-					href="javascript:Frameset('educations?dataClassify=education_Introduce&memberID=aaa&pages=1')"><div
+					href="javascript:Frameset('educations?dataClassify=education_Introduce&memberID=${memberID }&pages=1')"><div
 						class="circle">
 						<h1>자바의 소개</h1>
 					</div></a>
 			</div>
 			<div class="col-md-4">
 				<a
-					href="javascript:Frameset('educations?dataClassify=education_Data&memberID=aaa&pages=1')"><div
+					href="javascript:Frameset('educations?dataClassify=education_Data&memberID=${memberID }&pages=1')"><div
 						class="circle">
 						<h1>데이터형과 연산자</h1>
 					</div></a>
 			</div>
 			<div class="col-md-4">
 				<a
-					href="javascript:Frameset('educations?dataClassify=education_Array&memberID=aaa&pages=1')"><div
+					href="javascript:Frameset('educations?dataClassify=education_Array&memberID=${memberID }&pages=1')"><div
 						class="circle">
 						<h1>제어문과 배열</h1>
 					</div></a>
 			</div>
 		</div>
 	</div>
+	
+	
+	
+
 </body>
 </html>

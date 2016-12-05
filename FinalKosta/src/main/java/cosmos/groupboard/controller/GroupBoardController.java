@@ -160,5 +160,4 @@ public class GroupBoardController {
 	public String dateView(@RequestParam("groupBoardId")String groupBoardId)throws Exception{
 		return service.dateView(groupBoardId);
 	}
-	
-}
+};

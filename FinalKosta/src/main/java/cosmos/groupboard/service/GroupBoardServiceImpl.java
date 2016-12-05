@@ -49,7 +49,4 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 	public String dateView(String groupBoardId) throws Exception {
 		return dao.dateView(groupBoardId);
 	}
-	
-	
-	
 }
