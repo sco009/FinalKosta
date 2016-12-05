@@ -155,7 +155,7 @@ var userID = '${userID}';
 			for(var j=0; j<3; j++){
 				for(var k=0; k<3; k++){
 					if( data.length != count )
-						html = '<a href="#?groupID="'+data[count].groupID+'">'+
+						html = '<a href="goGroupMain?groupID='+data[count].groupID+'">'+
 						'<div class="tr"></div>'+
 						'<div class="tl"></div>'+
 						'<div class="br"></div>'+

@@ -3,6 +3,7 @@ package cosmos.group.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
@@ -72,8 +73,24 @@ public class GroupController {
 	@ResponseBody
 	@RequestMapping(value="/groupList")
 	public ResponseEntity<List<GroupVO>> groupList(@RequestParam("userID") String userID) throws Exception{
-		System.out.println(userID);
+		
 		return new ResponseEntity<List<GroupVO>>(GroupService.groupList(userID),HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/goGroupMain")
+	public String goGroupMain(@RequestParam("groupID") String groupID, HttpServletRequest request) throws Exception{
+		
+		try {
+			HttpSession session = request.getSession();
+			if(groupID != null) {
+		         session.setAttribute("groupID", groupID);
+		         System.out.println("gid : "+session.getAttribute("groupID"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "a";//여기 메인좀 해줏메
 		
 	}
 	
