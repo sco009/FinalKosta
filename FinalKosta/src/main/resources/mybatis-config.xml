@@ -11,6 +11,7 @@
     <package name="cosmos.education.domain"/>
     <package name="cosmos.freeboard.domain"/>
     <package name="cosmos.group.domain"/>
+    <package name="cosmos.groupcalender.domain"/>
     <package name="cosmos.groupboard.domain"/>
     <package name="cosmos.login.domain"/>
     <package name="cosmos.multiple.domain"/>

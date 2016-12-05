@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import cosmos.education.domain.EducationManagerVO;
 import cosmos.education.domain.EducationVO;
@@ -20,9 +19,9 @@ public class EducationController {
 	@Inject
 	private EducationService service;
 	
-
-	@RequestMapping("education")
-	public String education() {
+	
+	@RequestMapping("/education")
+	public String education(Model model) {
 		return "/education/education_Main";
 	}
 
