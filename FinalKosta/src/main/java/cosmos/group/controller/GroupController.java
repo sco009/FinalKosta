@@ -47,7 +47,7 @@ public class GroupController {
 	
 	@Transactional
 	@RequestMapping(value="/inviteMember",method=RequestMethod.POST)
-	public  ResponseEntity<String> inviteMember(@RequestParam("userID") String sendPerson,
+	public  ResponseEntity<String> inviteMember( @RequestParam("userID") String sendPerson,
 												  @RequestParam("checkArray[]") String[] receives,
 												  @RequestParam("contents") String contents,
 												  @RequestParam("groupName") String groupName) throws Exception{
@@ -93,15 +93,4 @@ public class GroupController {
 		return "redirect:/test/main";//여기 메인좀 해줏메
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

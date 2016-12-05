@@ -1,6 +1,5 @@
 package cosmos.login.controller;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -46,27 +45,60 @@ public class LoginController {
 	
 	@RequestMapping(value="/loginCheck", method=RequestMethod.POST)
 	public void loginCheck(LoginDTO dto, HttpSession session, Model model) throws Exception{
-		LoginVO vo = service.login(dto);
-		if(vo == null) {
-			return;
+		System.out.println("입력한 비밀번호 : " + dto.getMemberPw());
+		// 화면에서 입력한 dto값을 가져와서 복호화시킨뒤에 service.login에 넣어주기
+
+		String spass = service.password(dto); // DB에 암호화되어있는 PW
+		
+		String rm_Random = ""; // 짝수자리의 랜덤숫자를 제거한 비밀번호
+		String originPass = ""; // 복호화된 원래의 비밀번호
+		cosmos.login.controller.XOR test = new cosmos.login.controller.XOR();
+		
+		String decode = test.XOR(spass);
+		
+		for(int i=0; i<=decode.length()-1; i++) {
+			if(i%2==0) {
+				rm_Random += decode.substring(i, i+1);
+			}
 		}
 		
-		String name = service.currentMemberCheck(dto);
-		if(name != null){//이미 로그인되어있구나
-			System.out.println("이미 로그인중");
-			return;
-		}else{//로그인이 안되어있을때
-			dto.setMemberName(vo.getMemberName());
-			service.insertCurrentMember(dto);
+		char ch2[] = rm_Random.toCharArray();
+		
+		// 아스키코드로 변환해서 -7
+		for (int i = 0; i < ch2.length; i++) {
+			originPass += (char)(ch2[i]-7);
 		}
 		
-		model.addAttribute("loginVO", vo);
+		dto.setMemberPw(originPass);
 		
-		if(dto.isUseCookie()) {
-			int amount = 60*60*24*7;
-			Date sessionLimit = new Date(System.currentTimeMillis()+(1000*amount));
-			service.keepLogin(vo.getMemberID(), session.getId(), sessionLimit);
+		if(dto.getMemberPw()==originPass) {
+			dto.setMemberPw(spass);
+			
+			LoginVO vo = service.login(dto);
+			System.out.println();
+			if(vo == null) {
+				
+				return;
+			}
+		
+			String name = service.currentMemberCheck(dto);
+			if(name != null){//이미 로그인되어있구나
+				System.out.println("이미 로그인중");
+				return;
+			}else{//로그인이 안되어있을때
+				dto.setMemberName(vo.getMemberName());
+				service.insertCurrentMember(dto);
+			}
+			
+			model.addAttribute("loginVO", vo);
+			
+			if(dto.isUseCookie()) {
+				int amount = 60*60*24*7;
+				Date sessionLimit = new Date(System.currentTimeMillis()+(1000*amount));
+				service.keepLogin(vo.getMemberID(), session.getId(), sessionLimit);
+			}
 		}
+		
 	}
 	
 	@RequestMapping(value="/log_main", method=RequestMethod.GET)
@@ -153,7 +185,6 @@ public class LoginController {
 												@RequestParam("groupID") String groupID)throws Exception {
 		LoginVO vo = (LoginVO) session.getAttribute("login");
 		String memberID = vo.getMemberID();
-
 		gr_service.acceptInvite(inviteID, memberID);
 		gr_service.joinGroup(groupID, memberID);
 	}

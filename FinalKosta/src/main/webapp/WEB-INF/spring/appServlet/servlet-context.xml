@@ -30,9 +30,11 @@
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="order" value="1"/>	
 	</beans:bean>
-
+	<context:component-scan base-package="cosmos.noticeboard.controller" />
+	<context:component-scan base-package="cosmos.mypage.controller" />
 	<context:component-scan base-package="cosmos.algoboard.controller" />
 	<context:component-scan base-package="cosmos.codefight.controller" />
+	<context:component-scan base-package="cosmos.codetrace.controller" />
 	<context:component-scan base-package="cosmos.education.controller" />
 	<context:component-scan base-package="cosmos.freeboard.controller" />
 	<context:component-scan base-package="cosmos.group.controller" />

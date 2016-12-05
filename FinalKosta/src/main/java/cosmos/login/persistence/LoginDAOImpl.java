@@ -54,5 +54,9 @@ public class LoginDAOImpl implements LoginDAO {
 	public LoginVO checkUserWithSessionKey(String value) {
 		return sqlSession.selectOne(namespace+".checkUserWithSessionKey", value);
 	}
-	
+
+	@Override
+	public String password(LoginDTO dto) throws Exception {
+		return sqlSession.selectOne(namespace+".password", dto);
+	}
 }

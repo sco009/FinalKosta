@@ -65,13 +65,13 @@
                class="pass" placeholder="password" name="memberPw" />
 
             <div class="join">
-               <a href="join.jsp">아직 회원이 아니세요?</a>
+               <a href="/signup/signup_form">아직 회원이 아니세요?</a>
             </div>
-			<div class="checkbox icheck">
-		        <label>
-		          <input type="checkbox" name="useCookie"> Remember Me
-		        </label>
-			</div> 
+         <div class="checkbox icheck" >
+              <label>
+                <input id="icheck"type="checkbox" name="useCookie"> Remember Me
+              </label>
+         </div> 
          </form>
          </div>
       </div>
@@ -92,7 +92,11 @@
    <!-- Theme JavaScript -->
    <script src="/resources/dist/js/login/creative.min.js"></script>
 
+<<<<<<< HEAD
 <!--     <script>
+=======
+	<script>
+>>>>>>> branch 'KAB' of https://github.com/sco009/FinalKosta.git
       $(function () {
         $('input').iCheck({
           checkboxClass: 'icheckbox_square-blue',
