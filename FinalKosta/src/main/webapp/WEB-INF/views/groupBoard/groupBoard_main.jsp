@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/dist/js/groupBoard/groupBoardJavaScript.js"></script>
-
+<%request.setAttribute("memberId", "sco09"); %>
 <script>
 	$(function() {
 		$("#draggable").draggable({
@@ -27,7 +27,16 @@
 		});
 	});
 
-	
+	   
+	   function test(){
+	        var con = document.getElementById("#chat");
+	          if(con.style.display=='none'){
+	              con.style.display = 'block';
+	          }else{
+	              con.style.display = 'none';
+	          }
+	   }
+	   
 </script>
 </head>
 <body>
@@ -116,7 +125,7 @@
 
 				</div>
 			</div>
-			<div class="col-md-2" id="Issue" ondrop="drop(event)"
+			<div class="col-md-1" id="Issue" ondrop="drop(event)"
 				ondragover="allowDrop(event)">
 				<div class="well" id="IssueDiv">
 					<h3>Issue and RISK</h3>
@@ -179,6 +188,12 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-1">
+				<a onclick="test()"><img src="/resources/dist/img/chat/chatimg.png"></a>   
+	   <div  id="#chat"> 
+	   <iframe  src="http://localhost:3000/?id=aaa&roomid=${groupId }"  width="300px" height="600px"></iframe>
+	   </div>
+			</div>
 
 		</div>
 		<div class="row">
@@ -216,6 +231,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- col-md-12 end -->
 </body>
 </html>
