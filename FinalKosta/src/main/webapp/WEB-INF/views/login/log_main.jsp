@@ -91,7 +91,7 @@
             success : successHandler,
             dataType : "text"
          });
-      }, 5000);
+      }, 3000);
 
    });
 
