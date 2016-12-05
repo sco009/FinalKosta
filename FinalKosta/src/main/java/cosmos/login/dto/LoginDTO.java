@@ -8,16 +8,12 @@ public class LoginDTO {
 	
 	public LoginDTO(){}
 	
-
-	
 	public LoginDTO(String memberID, String memberPw, String memberName, boolean useCookie) {
 		this.memberID = memberID;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
 		this.useCookie = useCookie;
 	}
-
-
 
 	public String getMemberName() {
 		return memberName;
@@ -49,13 +45,10 @@ public class LoginDTO {
 		
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "LoginDTO [memberID=" + memberID + ", memberPw=" + memberPw + ", memberName=" + memberName
 				+ ", useCookie=" + useCookie + "]";
 	}
-	
 	
 }

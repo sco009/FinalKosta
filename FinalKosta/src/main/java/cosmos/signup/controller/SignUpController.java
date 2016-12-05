@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cosmos.signup.domain.SignUpVO;
 import cosmos.signup.service.SignUpService;
@@ -56,6 +57,26 @@ public class SignUpController {
 		return "/signup/confirmId";
 	}
 	
+	/*@RequestMapping(value="signup/update_form", method=RequestMethod.GET)
+	public void update_formGET(@ModelAttribute("vo") SignUpVO vo, Model model)throws Exception{
+		logger.info("update get....");
+	}
 	
+	@RequestMapping(value="signup/update_form", method=RequestMethod.POST)
+	public String update_formPOST(SignUpVO vo, RedirectAttributes rttr)throws Exception{
+		logger.info("update post....");
+		logger.info(vo.toString());
+		
+		service.updateMember(vo);
+		//model.addAttribute("result", "success");
+		rttr.addAttribute("memberID", vo.getMemberID());
+		rttr.addAttribute("memberPw", vo.getMemberPw());
+		rttr.addAttribute("memberName", vo.getMemberName());
+		rttr.addAttribute("memberPhoneNum", vo.getMemberPhoneNum());
+		rttr.addAttribute("memberEmail", vo.getMemberEmail());
+		
+		return "/main/signup/update_form";
+	}*/
+		
 	
 }

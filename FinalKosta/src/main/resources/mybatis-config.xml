@@ -8,6 +8,7 @@
   	<!-- 이렇게 하면 도메인에있는 모든게 타입언라이언스로 잡힘 -->
     <package name="cosmos.algoboard.domain"/> 
     <package name="cosmos.codefight.domain"/>
+    <package name="cosmos.codetrace.domain"/>
     <package name="cosmos.education.domain"/>
     <package name="cosmos.freeboard.domain"/>
     <package name="cosmos.group.domain"/>

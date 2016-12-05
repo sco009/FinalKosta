@@ -17,6 +17,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/0.3.0/i18nextBrowserLanguageDetector.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
+<!-- 컴파일러 자동완성 라이브러리 -->
+<script type='text/javascript' src="/resources/dist/js/webcompile/behave.js"></script>
+
 <!-- Bootstrap -->
 <link href="/resources/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -27,6 +30,18 @@
 <script type="text/javascript">
 
 	$(function(){
+		var editor = new Behave({
+
+			textarea : document.getElementById('demo'),
+			replaceTab : true,
+			softTabs : true,
+			tabSize : 4,
+			autoOpen : true,
+			overwrite : true,
+			autoStrip : true,
+			autoIndent : true
+		});
+
 		$("#complieFrom").submit(function(event){
 			event.preventDefault();
 			

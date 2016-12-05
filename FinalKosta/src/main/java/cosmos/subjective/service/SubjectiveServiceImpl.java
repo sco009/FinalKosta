@@ -3,6 +3,7 @@ package cosmos.subjective.service;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.swing.JOptionPane;
 
 import org.springframework.stereotype.Service;
 
@@ -18,14 +19,15 @@ public class SubjectiveServiceImpl implements SubjectiveService {
 	public List<SubjectiveVO> selectSubjective(SubjectiveVO VO)throws Exception{
 		return dao.selectSubjective(VO);
 	}
-	
+
 	@Override
-	public SubjectiveVO choiceSubjective(String subjectiveId)throws Exception{
+	public SubjectiveVO choiceSubjective(String subjectiveId) throws Exception {
 		return dao.choiceSubjective(subjectiveId);
 	}
-	
+
 	@Override
-	public int countSubjective(SubjectiveVO VO)throws Exception{
+	public int countSubjective(SubjectiveVO VO) throws Exception {
 		return dao.countSubjective(VO);
 	}
+	
 }

@@ -40,10 +40,35 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
+	<!-- 이메일 관련 -->
+	<!-- gmail -->
+    <!-- <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="username" value="your id@gmail.com" />
+        <property name="password" value="your password" />
+       
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.auth">true</prop>
+               
+               
+            </props>
+        </property>
+       
+    </bean>
+    <bean id="email" class="cosmos.signup.domain.EmailVO">
+    </bean>
+    <bean id="emailSender" class="cosmos.signup.domain.">
+    </bean> -->
+	
 	<!-- DAO객체 생성 -->
 	<context:component-scan base-package="cosmos.mypage.persistence"/>
 	<context:component-scan base-package="cosmos.algoboard.persistence"/>
 	<context:component-scan base-package="cosmos.codefight.persistence"/>
+	<context:component-scan base-package="cosmos.codetrace.persistence"/>
 	<context:component-scan base-package="cosmos.education.persistence"/>
 	<context:component-scan base-package="cosmos.freeboard.persistence"/>
 	<context:component-scan base-package="cosmos.group.persistence"/>
@@ -59,6 +84,7 @@
 	<context:component-scan base-package="cosmos.mypage.service"/>
 	<context:component-scan base-package="cosmos.algoboard.service"/>
 	<context:component-scan base-package="cosmos.codefight.service"/>
+	<context:component-scan base-package="cosmos.codetrace.service"/>
 	<context:component-scan base-package="cosmos.education.service"/>
 	<context:component-scan base-package="cosmos.freeboard.service"/>
 	<context:component-scan base-package="cosmos.group.service"/>

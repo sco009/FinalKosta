@@ -1,19 +1,8 @@
-function Next() {
-	
-	location.href= "/subjective"
-	if (subjectiveReply !== subjectiveAnswer) {
-		location.href = "SubjectiveMain.jsp?solveFailId=" + solveSelectId + "&nextCheck=0";	//&nextCheck=0 <- 다음으로 넘겼을 때만 카운트가 증가
-	} else {																			    //할 수 있도록 확인값을 넘겨준다.
-		location.href = "SubjectiveMain.jsp?solveSuccessId=" + solveSelectId + "&nextCheck=0";
-	}
-}
-
 function subjectiveCheck() {
 	var subjectiveReply = $(":input:hidden[name=result]").val();
 	var subjectiveAnswer = $(":input:hidden[name=subjectiveAnswer]").val();
 	var subjectiveSelect = $(":input:hidden[name=subjectiveSelect]").val();
 	var check = "";
-	
 	
 	if(subjectiveAnswer===subjectiveReply){
 		$.ajax({
@@ -30,19 +19,10 @@ function subjectiveCheck() {
 		});
 		check = "<img src='/resources/dist/img/quest/subjective/x.gif'>";
 	}
+	document.getElementById("nextButton1").style.display = "block";
 	document.getElementById("checkAnswer").innerHTML = check;
 }
 
-function resultMultiple() {
-	var subjectiveReply = $(":input:radio[name=subjectiveReply]").val(); // 마지막 값은 바로 resultMultiple.jsp로 넘겨준다.
-	var subjectiveAnswer = $(":input:hidden[name=subjectiveAnswer]").val();
-	var solveSelectId = $(":input:hidden[name=solveSelectId]").val();
-	if (subjectiveReply !== subjectiveAnswer) {
-		location.href = "resultSubjective.jsp?solveFailId=" + solveSelectId;
-	} else {
-		location.href = "resultSubjective.jsp?solveSuccessId=" + solveSelectId;
-	}
-}
 
 $(document).ready(function() {
 	$('[data-toggle="popover"]').popover({

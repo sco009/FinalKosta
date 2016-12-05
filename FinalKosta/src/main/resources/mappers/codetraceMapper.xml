@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cosmos.mappers.codetraceMapper">
+
+	<insert id="create" parameterType="CTBoardVO">
+		insert into ct_board(bno, title, content, writer, regdate, viewcnt)
+			values(ct_seq.nextval, #{title}, #{content}, #{writer}, sysdate, 0)
+	</insert>
+	
+	<select id="read" resultType="cosmos.codetrace.domain.CTBoardVO">
+		
+		select * from ct_board where bno = #{bno}
+	
+	</select>
+	
+	<update id="update" parameterType="CTBoardVO">
+		update ct_board set title = #{title}, content = #{content} where bno=#{bno}
+	</update>
+	
+	<delete id="delete" parameterType="CTBoardVO">
+		delete from ct_board where bno = #{bno}
+	</delete>
+
+	<!-- <select id="listAll" resultType="CTBoardVO">
+		<![CDATA[
+		 select 
+		   bno, title, content, writer, regdate, viewcnt
+		 from 
+		   ct_board 
+		 where bno > 0 
+		 order by bno desc, regdate desc
+		 ]]>
+	</select> -->
+	
+	<select id="listAll" resultType="CTBoardVO">
+	 <![CDATA[
+	 select 
+	   bno, title, content, writer, regdate, viewcnt, replycnt
+	 from 
+	   ct_board 
+	 where bno > 0 
+	 ]]>
+	 	
+	 	<include refid="search"></include>
+	 	
+	 <![CDATA[
+	 order by bno desc, regdate desc
+	 ]]>
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like '%'|| #{keyword}||'%'
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and content like '%'|| #{keyword}||'%'
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and writer like '%'|| #{keyword}||'%'
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( title like '%'|| #{keyword}||'%' OR content like
+				'%'||
+				#{keyword}||'%')
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and ( content like '%'|| #{keyword}||'%' OR writer like
+				'%'||
+				#{keyword}||'%')
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and ( title like '%'|| #{keyword}||'%'
+				OR
+				content like
+				'%'|| #{keyword}||'%'
+				OR
+				writer like '%'|| #{keyword}||'%')
+			</if>
+		</if>
+	</sql>
+	
+	<!-- <select id="listPage" resultType="CTBoardVO">
+		<![CDATA[
+		 select 
+		   bno, title, content, writer, regdate, viewcnt
+		 from 
+		   ct_board 
+		 where bno > 0 
+		 and rownum <= #{page}*5
+		 order by bno desc, regdate desc
+		 ]]>
+	</select>
+	
+	<select id="listCriteria" resultType="CTBoardVO">
+		<![CDATA[select bno, title, content, writer, regdate, viewcnt
+			from ct_board where bno > 0
+			and rownum <= #{pageStart}*#{perPageNum} ]]>
+			order by bno desc, regdate desc
+	</select> -->
+	
+	<select id="listCriteria" resultType="CTBoardVO">
+		<![CDATA[select bno, title, content, writer, regdate, viewcnt
+			from ct_board where bno > 0 order by bno desc, regdate desc
+			limit #{pageStart}, #{perPageNum}]]>
+	</select>
+	
+	<select id="countPaging" resultType="int">
+		<![CDATA[ select count(bno) from ct_board where bno > 0 ]]>
+		
+		<include refid="search"></include>
+	</select>
+	
+	<!-- <insert id="addAttach" parameterType="FileVO">
+		insert into tbl_attach(fullname, bno) values(#{fullName}, #{bno})
+	</insert>
+	
+	<select id="maxNum" resultType="int">
+		select MAX(bno) from tbl_board
+	</select> -->
+	
+	<select id="getAttach" resultType="string">
+		select fullName from ct_attach where bno = #{bno} order by regdate
+	</select>
+	
+	
+	<!-- Reply -->
+	<select id="list" resultType="ReplyVO">
+		select * from ctb_reply
+			where bno=#{bno}
+			order by rno desc
+	</select>
+	
+	<insert id="r_create" parameterType="ReplyVO">
+		insert into ctb_reply(rno, bno, replytext, replyer)
+			values(seq_reply.nextval, #{bno}, #{replytext}, #{replyer})
+	</insert>
+	
+	<update id="r_update" parameterType="ReplyVO">
+		update ctb_reply set replytext = #{replytext},
+			updatedate = sysdate
+			where rno = #{rno}
+	</update>
+	
+	<delete id="r_delete">
+		delete from ctb_reply where rno = #{rno}
+	</delete> 
+	
+	<select id="r_listPage" resultType="ReplyVO">
+	  <![CDATA[
+		 select 
+		   rno, bno, replytext, replyer, regdate, updatedate
+		 from
+		   (
+		   select /*+INDEX_DESC(tbl_reply pk_reply))*/
+		     rownum rn, rno, bno, replytext, replyer, regdate, updatedate
+		   from ctb_reply
+		   where bno = #{bno}
+		   and rno > 0
+		   and rownum <= #{cri.page} * #{cri.perPageNum}
+		   )
+		where rn > ( #{cri.page} -1) * #{cri.perPageNum}
+	  ]]>
+	</select>
+	
+	
+	<select id="r_count" resultType="int">
+		select count(bno) from ctb_reply
+		where bno =#{bno}
+	</select> 
+	
+	<update id="updateReplyCnt">
+		update ct_board set replycnt = replycnt + #{amount} where bno = #{bno}
+	</update>
+	
+	<select id="getBno" resultType="int">
+		select bno from ctb_reply where rno = #{rno}
+	</select>
+	
+	<update id="updateViewCnt">
+		update ct_board set viewcnt = viewcnt + 1
+			where bno = #{bno}
+	</update>
+	
+	
+	
+	
+	
+  
+</mapper>  

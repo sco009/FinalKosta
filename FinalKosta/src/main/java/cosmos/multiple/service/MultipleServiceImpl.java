@@ -14,6 +14,8 @@ import cosmos.multiple.persistence.MultipleDAO;
 @Service
 public class MultipleServiceImpl implements MultipleService {
 
+<<<<<<< HEAD
+<<<<<<< Upstream, based on branch 'master' of https://github.com/sco009/FinalKosta.git
 	@Inject
 	private MultipleDAO dao;
 <<<<<<< HEAD
@@ -45,5 +47,9 @@ public class MultipleServiceImpl implements MultipleService {
 //	}
 >>>>>>> refs/remotes/kab/kbj
 	
+=======
+>>>>>>> 03114e0 2016.11.18-1kcy
+=======
+>>>>>>> refs/remotes/kcy/kcy
 }
 */

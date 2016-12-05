@@ -5,10 +5,7 @@
   
 <mapper namespace="cosmos.mappers.webcompileMapper">
    
-   <insert id="create">
-      insert into WEBCOMPILE(webcompileid, wc_contents)
-         values('1', '2')
-   </insert>
+   
   
   
 </mapper>  
