@@ -14,6 +14,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>	
 	
+	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
@@ -100,5 +101,18 @@
 	<context:component-scan base-package="cosmos.subjective.service"/>
 	<context:component-scan base-package="cosmos.webcompile.service"/>
 	
-		
+	<bean id = "viewResolver2" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+      <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+      <property name="order" value="1"/>
+   </bean>
+   
+   <!-- Tiles Setting -->
+   <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+      <property name="definitions">
+         <list>
+            <value>/WEB-INF/tiles/tiles2def.xml</value>
+         </list>
+      </property>
+   </bean>
+	
 </beans>

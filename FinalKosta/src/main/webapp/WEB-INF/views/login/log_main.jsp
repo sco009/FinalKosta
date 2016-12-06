@@ -225,7 +225,7 @@
             ${login.memberName }
             <ul class="dropdown">
                <li><a href="TestAr.jsp"><i class="icon-user"></i>접속기록 확인</a></li>
-               <li><a href="updateInfo.jsp"><i class="icon-cog"></i>회원정보수정</a></li>
+               <li><a href="/signup/update_form"><i class="icon-cog"></i>회원정보수정</a></li>
                <li><a href="/login/logout"><i class="icon-remove"></i>로그아웃</a></li>
             </ul>
          </div>
@@ -296,49 +296,59 @@
                <div class="col-md-3 col-md-offset-1">
                   <input id='check' type='checkbox'> <label class='main'
                      for='check'>
-                     <div class='title'>
+                       <abbr title="교육관련"><div class='title'>
                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                     </div>
+                     </div></abbr>
+                  </label>
+
                   </label>
                   <div class="ma">
-                     <a class="plate" href="/education?memberID= ${login.memberID }"> <i
-                        class="fa fa-book" aria-hidden="true"></i>
-                     </a> <a class="plate" href="/multiple/multiple?memberID= ${login.memberID }">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                     </a> <a class="plate" href="/codetrace/register_form?memberID=${login.memberID }&"> <i
-                        class="fa fa-balance-scale" aria-hidden="true"></i>
-                     </a> <a class="plate" href="/subjective/main?memberId=${login.memberID }"> <i
-                        class="fa fa-keyboard-o" aria-hidden="true"></i>
-                     </a> <a class="plate" href="/ranking_main"></i>
+                     <a class="plate" href="/education?memberID= ${login.memberID }"
+                        > <abbr title="교육자료 제공"><i class="fa fa-book" aria-hidden="true"></i></abbr></a> <a
+                        class="plate" href="/multiple/multiple">
+                        <abbr title="객관식 문제"><i class="fa fa-pencil" aria-hidden="true"></i></abbr>
+                     </a> <a class="plate" href="/codetrace/register_form"> <abbr title="코드트레이스"><i
+                        class="fa fa-balance-scale" aria-hidden="true"></i></abbr>
+                     </a> <a class="plate" href="/subjective/main"> <abbr title="주관식 문제"><i
+                        class="fa fa-keyboard-o" aria-hidden="true"></i></abbr>
+                     </a> <a class="plate" href="/ranking/ranking"> <abbr title="랭킹"><i
+                        class="fa fa-trophy" aria-hidden="true"></i></abbr>
                      </a>
                   </div>
+
                </div>
 
                <div class="col-md-4">
                   <input id='check2' type='checkbox'></input> <label class='main2'
                      for='check2'>
+                    <abbr title="모임 및  웹코딩">
                      <div class='title2'>
                         <i class="fa fa-users" aria-hidden="true"></i>
                      </div>
+                     </abbr>
                   </label>
-                  <div class="ma2">
-                     <a class="plate2" href="/group/creategroup"> <i
-                        class="fa fa-user-plus" aria-hidden="true"></i>
-                     </a> <a class="plate2" href="enterGroup.jsp"> <i
-                        class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                   <div class="ma2">
+                     <a class="plate2" href="/group/creategroup"> <abbr title="그룹 만들기"><i
+                        class="fa fa-user-plus" aria-hidden="true"></i></abbr>
+                     </a> <a class="plate2" href="groupBoard/main"><abbr title="그룹 입장"> <i
+                        class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></abbr>
                      </a> <a class="plate2" href="/webcompile/main">
                         <i class="fa fa-file-code-o" aria-hidden="true"></i>
                      </a>
                   </div>
+
                </div>
 
                <div class="col-md-3 col-md-offset-1*">
                   <input id='check3' type='checkbox'> <label class='main3'
                      for='check3'>
+                      <abbr title="게시판">
                      <div class='title3'>
                         <i class="fa fa-pencil-square-o" aria-hidden="true"><a
                            class="plate3" href="#"></a></i>
                      </div>
+                     </abbr>
+
                   </label>
                </div>
             </div>
