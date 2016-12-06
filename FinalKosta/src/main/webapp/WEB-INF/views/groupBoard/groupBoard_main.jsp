@@ -54,7 +54,7 @@
             <span style="font-size: 300%; cursor: pointer" onclick="openNav()">&#9776;</span>
             <div id="mySidenav" class="sidenav">
                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-               <a href="main">애자일 스크럼</a> <a href="#">일정보기</a> <a href="#">기타</a>
+               <a href="main">애자일 스크럼</a> <a href="/groupcalender/groupCalenderMain">일정보기</a> <a href="../notice/listPage">공지사항</a> 
                <a href="#">기타</a>
             </div>
          </div>

@@ -25,7 +25,8 @@ public class GroupBoardController {
 	
 	@RequestMapping("/main")
 	public String main(HttpSession session){
-		return "redirect:/test/start";
+		/*return "redirect:/test/start";*/
+		return "redirect:/groupBoard/start";
 	}
 	
 	@RequestMapping("/start")
