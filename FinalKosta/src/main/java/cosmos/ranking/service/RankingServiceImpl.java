@@ -6,33 +6,39 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import cosmos.ranking.domain.AlgoRankingVO;
-import cosmos.ranking.domain.CodeRankingVO;
+import cosmos.ranking.domain.MultipleRankingVO;
+import cosmos.ranking.domain.RankingVO;
+import cosmos.ranking.domain.SubjectRankingVO;
 import cosmos.ranking.persistence.RankingDAO;
 
 @Service
 public class RankingServiceImpl implements RankingService {
 	@Inject
 	private RankingDAO dao;
-	
+
 	@Override
-	public List<AlgoRankingVO> allAlgoRanking() {
-		return dao.allAlgoRanking();
+	public List<MultipleRankingVO> allMultipleRanking() {
+		return dao.allMultipleRanking();
 	}
 
 	@Override
-	public List<CodeRankingVO> allCodeRanking() {
-		return dao.allCodeRanking();
+	public List<SubjectRankingVO> allSubjectRanking() {
+		return dao.allSubjectRanking();
 	}
 
 	@Override
-	public void updateAlgoRanking(AlgoRankingVO algoVO) {
-		dao.updateAlgoRanking(algoVO);
+	public void updateMultipleRanking(MultipleRankingVO multiVO) {
+		dao.updateMultipleRanking(multiVO);
 	}
 
 	@Override
-	public void updateCodeRanking(CodeRankingVO codeVO) {
-		dao.updateCodeRanking(codeVO);
+	public void updateSubjectRanking(SubjectRankingVO subVO) {
+		dao.updateSubjectRanking(subVO);
+	}
+
+	@Override
+	public RankingVO selectRanking(String memberID) {
+		return dao.selectRanking(memberID);
 	}
 
 

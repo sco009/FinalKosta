@@ -309,8 +309,7 @@
                         class="fa fa-balance-scale" aria-hidden="true"></i>
                      </a> <a class="plate" href="/subjective/main?memberId=${login.memberID }"> <i
                         class="fa fa-keyboard-o" aria-hidden="true"></i>
-                     </a> <a class="plate" href="/ranking_main"> <i
-                        class="fa fa-trophy" aria-hidden="true"></i>
+                     </a> <a class="plate" href="/ranking_main"></i>
                      </a>
                   </div>
                </div>
