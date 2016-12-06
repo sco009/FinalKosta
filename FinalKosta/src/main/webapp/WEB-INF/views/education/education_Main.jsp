@@ -40,6 +40,7 @@
 	page.document.close(); 
 	}  
 </script>
+<jsp:include page="/WEB-INF/views/module/header.jsp" />
 </head>
 <body id="body">
 		
@@ -68,8 +69,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
 	
 
 </body>

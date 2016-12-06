@@ -20,12 +20,14 @@ public class WebCompileController {
 	
 	@RequestMapping(value ="/main")
 	public String goWebcomplieForm(){
-		return 	"/webcompile/webcompile_main";
+		return 	"redirect:http://localhost:3000/webcompile";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value ="/compile", method=RequestMethod.POST)
 	public String ajaxCompile(@RequestParam("wc_code") String wc_code) throws Exception{
+		System.out.println(wc_code);	
+		
 		String wc_result = "";
 		if(wc_code !=null && !(wc_code.equals(""))){
 			System.out.println(wc_code);

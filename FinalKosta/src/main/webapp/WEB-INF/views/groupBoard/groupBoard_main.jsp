@@ -38,6 +38,7 @@
 	   }
 	   
 </script>
+<jsp:include page="/WEB-INF/views/module/header.jsp" />
 </head>
 <body>
 	<div class="col-md-12">

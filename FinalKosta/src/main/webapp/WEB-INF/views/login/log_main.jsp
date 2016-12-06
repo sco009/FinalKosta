@@ -225,7 +225,7 @@
             ${login.memberName }
             <ul class="dropdown">
                <li><a href="TestAr.jsp"><i class="icon-user"></i>접속기록 확인</a></li>
-               <li><a href="updateInfo.jsp"><i class="icon-cog"></i>회원정보수정</a></li>
+               <li><a href="/signup/update_form"><i class="icon-cog"></i>회원정보수정</a></li>
                <li><a href="/login/logout"><i class="icon-remove"></i>로그아웃</a></li>
             </ul>
          </div>
@@ -301,7 +301,7 @@
                      </div>
                   </label>
                   <div class="ma">
-                     <a class="plate" href="/education?memberID= ${login.memberID }"> <i
+                     <a class="plate" href="/education?memberID=${login.memberID}"> <i
                         class="fa fa-book" aria-hidden="true"></i>
                      </a> <a class="plate" href="../Multiple/MultipleMain.jsp?mainCheck=0">
                         <i class="fa fa-pencil" aria-hidden="true"></i>

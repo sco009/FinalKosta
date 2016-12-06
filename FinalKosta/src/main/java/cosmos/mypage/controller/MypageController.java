@@ -14,11 +14,12 @@ import cosmos.mypage.domain.UserVO;
 import cosmos.mypage.service.MypageService;
 
 @Controller
+@RequestMapping("/signup/*")
 public class MypageController {
 	@Inject
 	MypageService mypageService;
 	
-	@RequestMapping(value = "/signup/update_form",method=RequestMethod.GET)
+	@RequestMapping(value = "/update_form",method=RequestMethod.GET)
 	public void updateGET(HttpServletRequest request, Model model){
 		HttpSession session = request.getSession();
 		LoginVO loginVO = (LoginVO)session.getAttribute("login");
@@ -37,7 +38,7 @@ public class MypageController {
 		
 	}
 	
-	@RequestMapping(value = "/signup/update_form",method=RequestMethod.POST)
+	@RequestMapping(value = "/update_form",method=RequestMethod.POST)
 	public String updatePOST(UserVO user) throws Exception{
 		mypageService.update(user);
 		

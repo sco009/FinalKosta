@@ -12,6 +12,7 @@
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/dist/css/webcompile/style.css" media="screen" />
+	
 <!-- 알고리즘 캔버스 -->
 <!-- <script type='text/javascript' src="/resources/dist/js/webcompile/algorithm.js"></script> -->
 <script
@@ -535,7 +536,7 @@
 			$("#wc_result").empty();
 			$("#wc_result").text(str);
 		}
-
+		
 		$(document).ajaxStart(function() {
 			$("#loading").fadeIn();
 		}).ajaxStop(function() {
@@ -546,6 +547,7 @@
 </script>
 
 <title>Insert title here</title>
+<jsp:include page="/WEB-INF/views/module/header.jsp" />
 </head>
 <body id="body">
 
@@ -555,8 +557,7 @@
 
 		<div class="col-md-4">
 			<form id="complieFrom">
-				<textarea rows="30" cols="50" name="wc_code"
-					onkeydown="useTab(this)" id="demo"></textarea>
+				<textarea rows="30" cols="50" name="wc_code" id="demo"></textarea>
 
 				<div id="loading" style="width: 100%; text-align: center">
 					<img alt="" src="/resources/dist/img/webcompile/compileLoading.gif"

@@ -126,6 +126,9 @@ var userID = '${userID}';
 		
 		callGroupList();
 		
+		alert("초대 되었습니다.");
+		$('#myModal').modal('hide');
+		
 	}
 	
 	
@@ -201,6 +204,7 @@ var userID = '${userID}';
 
 	
 </script>
+<jsp:include page="/WEB-INF/views/module/header.jsp" />
 </head>
 <body>
 	<div class="container">

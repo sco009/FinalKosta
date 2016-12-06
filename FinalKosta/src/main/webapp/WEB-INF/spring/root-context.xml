@@ -100,5 +100,8 @@
 	<context:component-scan base-package="cosmos.subjective.service"/>
 	<context:component-scan base-package="cosmos.webcompile.service"/>
 	
+
+
+	
 		
 </beans>
