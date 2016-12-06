@@ -7,8 +7,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import cosmos.ranking.domain.AlgoRankingVO;
-import cosmos.ranking.domain.CodeRankingVO;
+import cosmos.ranking.domain.MultipleRankingVO;
+import cosmos.ranking.domain.RankingVO;
+import cosmos.ranking.domain.SubjectRankingVO;
 
 @Repository
 public class RankingDAOImpl implements RankingDAO {
@@ -18,22 +19,27 @@ public class RankingDAOImpl implements RankingDAO {
 	private static final String namespace = "cosmos.mappers.rankingMapper";
 
 	@Override
-	public List<AlgoRankingVO> allAlgoRanking() {
-		return sqlSession.selectList(namespace+".allAlgoRanking");
+	public List<MultipleRankingVO> allMultipleRanking() {
+		return sqlSession.selectList(namespace+".allMultipleRanking");
 	}
 
 	@Override
-	public List<CodeRankingVO> allCodeRanking() {
-		return sqlSession.selectList(namespace+".allCodeRanking");
+	public List<SubjectRankingVO> allSubjectRanking() {
+		return sqlSession.selectList(namespace+".allSubjectRanking");
 	}
 
 	@Override
-	public void updateAlgoRanking(AlgoRankingVO algoVO) {
-		sqlSession.update(namespace+".updateAlgoRanking", algoVO);
+	public void updateMultipleRanking(MultipleRankingVO multiVO) {
+		sqlSession.update(namespace+".updateMultipleRanking", multiVO);
 	}
 
 	@Override
-	public void updateCodeRanking(CodeRankingVO codeVO) {
-		sqlSession.update(namespace+".updateCodeRanking", codeVO);
+	public void updateSubjectRanking(SubjectRankingVO subVO) {
+		sqlSession.update(namespace+".updateSubjectRanking", subVO);
+	}
+
+	@Override
+	public RankingVO selectRanking(String memberID) {
+		return sqlSession.selectOne(namespace+".selectRanking",memberID);
 	}
 }

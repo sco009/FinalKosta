@@ -5,30 +5,36 @@
 
 <mapper namespace="cosmos.mappers.rankingMapper">
 
-	<select id="allAlgoRanking" resultType="AlgoRankingVO">
-		select memberID,memberName,algo_ranking,algo_point
+	<select id="allMultipleRanking" resultType="MultipleRankingVO">
+		select memberID,memberName,multiple_ranking,multiple_point
 		from member
-		where algo_point != 0
-		ORDER BY algo_point DESC
+		where multiple_point != 0
+		ORDER BY multiple_point DESC
 	</select>
 
-	<select id="allCodeRanking" resultType="CodeRankingVO">
-		select memberID,memberName,code_ranking,code_point
+	<select id="allSubjectRanking" resultType="SubjectRankingVO">
+		select memberID,memberName,subject_ranking,subject_point
 		from member
-		where code_point != 0
-		ORDER BY code_point DESC
+		where subject_point != 0
+		ORDER BY subject_point DESC
 	</select>
 
 
-	<update id="updateAlgoRanking" parameterType="AlgoRankingVO">
+	<update id="updateMultipleRanking" parameterType="MultipleRankingVO">
 		update member set
-		algo_ranking = #{algo_ranking}
+		multiple_ranking = #{multiple_ranking}
 		where memberID = #{memberID}
 	</update>
 
-	<update id="updateCodeRanking" parameterType="CodeRankingVO">
+	<update id="updateSubjectRanking" parameterType="SubjectRankingVO">
 		update member set
-		code_ranking = #{code_ranking}
+		subject_ranking = #{subject_ranking}
 		where memberID = #{memberID}
 	</update>
+	
+	<select id="selectRanking" resultType="RankingVO" parameterType="string">
+		select multiple_ranking,multiple_point,subject_ranking,subject_point,memberID
+			from member
+			where memberID = #{memberID}
+	</select>
 </mapper>  

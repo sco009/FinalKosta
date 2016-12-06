@@ -309,7 +309,7 @@
                         class="fa fa-balance-scale" aria-hidden="true"></i>
                      </a> <a class="plate" href="codeFight.jsp"> <i
                         class="fa fa-keyboard-o" aria-hidden="true"></i>
-                     </a> <a class="plate" href="../Ranking_jsp/Ranking.jsp"> <i
+                     </a> <a class="plate" href="/ranking/"> <i
                         class="fa fa-trophy" aria-hidden="true"></i>
                      </a>
                   </div>

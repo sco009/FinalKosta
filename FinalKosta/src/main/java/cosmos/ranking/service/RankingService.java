@@ -2,15 +2,18 @@ package cosmos.ranking.service;
 
 import java.util.List;
 
-import cosmos.ranking.domain.AlgoRankingVO;
-import cosmos.ranking.domain.CodeRankingVO;
+import cosmos.ranking.domain.MultipleRankingVO;
+import cosmos.ranking.domain.RankingVO;
+import cosmos.ranking.domain.SubjectRankingVO;
 
 public interface RankingService {
-	public List<AlgoRankingVO> allAlgoRanking();
+	public List<MultipleRankingVO> allMultipleRanking();
 	
-	public List<CodeRankingVO> allCodeRanking();
+	public List<SubjectRankingVO> allSubjectRanking();
 	
-	public void updateAlgoRanking(AlgoRankingVO algoVO);
+	public void updateMultipleRanking(MultipleRankingVO multiVO);
 	
-	public void updateCodeRanking(CodeRankingVO codeVO);
+	public void updateSubjectRanking(SubjectRankingVO subVO);
+	
+	public RankingVO selectRanking(String memberID);
 }

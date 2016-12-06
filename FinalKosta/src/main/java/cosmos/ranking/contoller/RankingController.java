@@ -3,77 +3,82 @@ package cosmos.ranking.contoller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cosmos.ranking.domain.AlgoRankingVO;
-import cosmos.ranking.domain.CodeRankingVO;
+import cosmos.login.domain.LoginVO;
+import cosmos.ranking.domain.MultipleRankingVO;
+import cosmos.ranking.domain.RankingVO;
+import cosmos.ranking.domain.SubjectRankingVO;
 import cosmos.ranking.service.RankingService;
 
 @Controller
+@RequestMapping(value="/ranking/*")
 public class RankingController {
 	@Inject
 	private RankingService rankingService;
 	
 	@RequestMapping(value="/ranking_main", method=RequestMethod.GET)
-	public String rankingGet(Model model){
-		List<AlgoRankingVO> algoList = rankingService.allAlgoRanking();
-		List<CodeRankingVO> codeList = rankingService.allCodeRanking();
+	public String rankingGet(Model model,HttpSession session){
+		LoginVO login = (LoginVO)session.getAttribute("login");
+		String memberID = login.getMemberID();
+		List<MultipleRankingVO> multiList = rankingService.allMultipleRanking();
+		List<SubjectRankingVO> subList = rankingService.allSubjectRanking();
+		RankingVO ranking = rankingService.selectRanking(memberID);
 		
-		model.addAttribute("algoList", algoList);
-		model.addAttribute("codeList", codeList);
-		
-		for(int i=0;i<codeList.size();i++){
-			System.out.println("codePoint : " + codeList.get(i).getCode_point());
-		}
+		model.addAttribute("multiList", multiList);
+		model.addAttribute("subList", subList);
+		model.addAttribute("ranking", ranking);
 		
 		return "ranking/ranking_main";
 	}
 	
-	@RequestMapping(value="/ranking",method=RequestMethod.GET)
+	@RequestMapping(value="")
 	public String updateRanking(){
-		List<AlgoRankingVO> algoRanking = rankingService.allAlgoRanking();
-		List<CodeRankingVO> codeRanking = rankingService.allCodeRanking();
+		List<MultipleRankingVO> multiRanking = rankingService.allMultipleRanking();
+		List<SubjectRankingVO> subRanking = rankingService.allSubjectRanking();
 		int ranking = 1;
 		
-		for (int i = 0; i < algoRanking.size(); i++) {
-			algoRanking.get(i).setAlgo_ranking(ranking);
-			rankingService.updateAlgoRanking(algoRanking.get(i));
+		for (int i = 0; i < multiRanking.size(); i++) {
+			multiRanking.get(i).setMultiple_ranking(ranking);
+			rankingService.updateMultipleRanking(multiRanking.get(i));
 		}
 
-		for (int i = 1; i < algoRanking.size(); i++) {
-			if (algoRanking.get(i).getAlgo_point() == algoRanking.get(i-1).getAlgo_point()) {
-				ranking = algoRanking.get(i-1).getAlgo_ranking();
-				algoRanking.get(i).setAlgo_ranking(ranking);
+		for (int i = 1; i < multiRanking.size(); i++) {
+			if (multiRanking.get(i).getMultiple_point()== multiRanking.get(i-1).getMultiple_point()) {
+				ranking = multiRanking.get(i-1).getMultiple_ranking();
+				multiRanking.get(i).setMultiple_ranking(ranking);
 			} else {
-				algoRanking.get(i).setAlgo_ranking(
-						algoRanking.get(i-1).getAlgo_ranking() + 1);
+				multiRanking.get(i).setMultiple_ranking(
+						multiRanking.get(i-1).getMultiple_ranking() + 1);
 			}
-			rankingService.updateAlgoRanking(algoRanking.get(i));
+			rankingService.updateMultipleRanking(multiRanking.get(i));
 		}
 		
 		//ranking 1로 초기화
 		ranking = 1;
 		
-		for (int i = 0; i < codeRanking.size(); i++) {
-			codeRanking.get(i).setCode_ranking(ranking);
-			rankingService.updateCodeRanking(codeRanking.get(i));
+		for (int i = 0; i < subRanking.size(); i++) {
+			subRanking.get(i).setSubject_ranking(ranking);
+			rankingService.updateSubjectRanking(subRanking.get(i));
 		}
 
-		for (int i = 1; i < codeRanking.size(); i++) {
-			if (codeRanking.get(i).getCode_point() == codeRanking.get(i-1).getCode_point()) {
-				ranking = codeRanking.get(i-1).getCode_point();
-				codeRanking.get(i).setCode_ranking(ranking);
+		for (int i = 1; i < subRanking.size(); i++) {
+			if (subRanking.get(i).getSubject_point() == subRanking.get(i-1).getSubject_point()) {
+				ranking = subRanking.get(i-1).getSubject_point();
+				subRanking.get(i).setSubject_ranking(ranking);
 			} else {
-				codeRanking.get(i).setCode_ranking(
-						codeRanking.get(i-1).getCode_ranking() + 1);
+				subRanking.get(i).setSubject_ranking(
+						subRanking.get(i-1).getSubject_ranking() + 1);
 			}
-			rankingService.updateCodeRanking(codeRanking.get(i));
+			rankingService.updateSubjectRanking(subRanking.get(i));
 		}
-		return "redirect:/ranking_main";
+		return "redirect:/ranking/ranking_main";
 	}
 
 }

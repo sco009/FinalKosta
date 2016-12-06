@@ -31,7 +31,7 @@
 
 	<div id="main">
 		<div class="col-md-6">
-			<h2 align="center">학습 문제 랭킹</h2>
+			<h2 align="center">객관식 문제 랭킹</h2>
 
 			<div class="wrapper">
 
@@ -44,20 +44,19 @@
 					</div>
 
 
-					<c:forEach var="list" items="${algoList}" varStatus="status">
+					<c:forEach var="list" items="${multiList}"  begin="0" end="9">
 						<div class="row">
-							<div class="cell">${list.algo_ranking }</div>
+							<div class="cell">${list.multiple_ranking }</div>
 							<div class="cell">${list.memberName }</div>
-							<div class="cell">${list.algo_point }</div>
+							<div class="cell">${list.multiple_point }</div>
 						</div>
 					</c:forEach>
-
 				</div>
 
 			</div>
 		</div>
 		<div class="col-md-6">
-			<h2 align="center">코드파이트 랭킹</h2>
+			<h2 align="center">주관식 문제 랭킹</h2>
 
 			<div class="wrapper">
 
@@ -70,18 +69,23 @@
 					</div>
 
 
-					<c:forEach var="list" items="${codeList}" varStatus="status">
+					<c:forEach var="list" items="${subList}" begin="0" end="9">
 						<div class="row">
-							<div class="cell">${list.code_ranking }</div>
+							<div class="cell">${list.subject_ranking }</div>
 							<div class="cell">${list.memberName }</div>
-							<div class="cell">${list.code_point }</div>
+							<div class="cell">${list.subject_point }</div>
 						</div>
 					</c:forEach>
 
 				</div>
 
 			</div>
+		</div><br><br>
+		<div class="col-md-12" align="center">
+			<h3>${ranking.memberID}의 주관식 포인트는 ${ranking.subject_point}, ${ranking.subject_ranking}위 입니다.</h3>
+			<h3>${ranking.memberID}의 객관식 포인트는 ${rankig.multiple_point}, ${ranking.multiple_ranking}위 입니다.</h3>
 		</div>
+		
 	</div>
 
 
