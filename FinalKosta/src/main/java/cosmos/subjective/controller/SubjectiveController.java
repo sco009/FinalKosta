@@ -41,6 +41,7 @@ public class SubjectiveController {
 
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String subjective(HttpSession session) {
+		/*문제를 새로 풀때마다 초기화 해준다.*/
 		count = 0;
 		subjectiveList = new ArrayList<SubjectiveVO>();
 		subjectiveFailList = new ArrayList<SubjectiveVO>();
