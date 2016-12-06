@@ -57,10 +57,7 @@ public class SignUpController {
 		vo.setMemberPw(encode);
 		service.insertMember(vo);
 		
-		System.out.println("signup POST");
-/*		model.addAttribute("result", "success");
-*/		
-		return "/login/login";
+		return "../login/login";
 	}
 	
 	

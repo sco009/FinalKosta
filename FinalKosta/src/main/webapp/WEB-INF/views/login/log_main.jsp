@@ -303,7 +303,7 @@
 
                   </label>
                   <div class="ma">
-                     <a class="plate" href="/education?memberID= ${login.memberID }"
+                     <a class="plate" href="/education?memberID=${login.memberID }"
                         > <abbr title="교육자료 제공"><i class="fa fa-book" aria-hidden="true"></i></abbr></a> <a
                         class="plate" href="/multiple/multiple">
                         <abbr title="객관식 문제"><i class="fa fa-pencil" aria-hidden="true"></i></abbr>

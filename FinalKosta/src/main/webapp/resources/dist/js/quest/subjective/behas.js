@@ -10,8 +10,9 @@
  */
 
 
-(function(undefined){
+function useTab(){
 
+    
     var BehaveHooks = BehaveHooks || (function(){
 		var hooks = {};
 		
@@ -589,4 +590,4 @@
         });
     }
 
-}).call(this);
+}//).call(this);

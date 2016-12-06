@@ -10,7 +10,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <link rel="stylesheet" href="/resources/bootstrap-3.3.2/css/bootstrap.min.css" type="text/css"
-   media="screen" />
+	media="screen" />
 <script type="text/javascript" src="/resources/bootstrap-3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
 <script>
@@ -42,37 +42,55 @@ body{
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
-        background-size: cover;
+        /* background-size: cover;  */
+        background-size: 1300px 600px; 
 }
+
+#my_demo {
+	border: 2px solid #765942;
+	border-radius: 10px;
+	height: 250px;
+	width: 300px;
+}
+
+#your_demo {
+	border: 2px solid #765942;
+	border-radius: 10px;
+	height: 250px;
+	width: 300px;
+}
+
 
 </style>
 </head>
 <body>
-<h1>코드트레이스</h1>
-   <div class="col-md-12">
-      <div class="col-md-3">
-            <form id="my_code">
-               <textarea rows="10" cols="50" name="my_code" onkeydown="useTab(this)" id="my_demo"></textarea>
-               <!-- <br> <input type="button" value="mine" id="preview"><br> -->
-               <div id="mcode_result"></div> 
-            </form>
-      </div>
+<h1>&nbsp;&nbsp;&nbsp;코드트레이스</h1><br>
+	<div class="col-md-12">
+		<div class="col-md-offset-1 col-md-3">
+				<form id="my_code">
+					<textarea rows="10" cols="50" name="my_code" onkeydown="useTab(this)" id="my_demo"></textarea>
+					<!-- <br> <input type="button" value="mine" id="preview"><br> -->
+					<div id="mcode_result"></div> 
+				</form>
+		</div>
 
-   <div class="col-md-offset-1 col-md-3">
-   
-      <form id="reply_code">
-            <textarea rows="10" cols="50" name="reply_code" onkeydown="useTab(this)" id="your_demo"></textarea>
-            <!-- <br> <input type="button" value="reply" id="preview2"><br> -->
-            <div id="ycode_result"></div> 
-      </form>
-   </div>
+	<div class="col-md-offset-2 col-md-3">
+	
+		<form id="reply_code">
+				<textarea rows="10" cols="50" name="reply_code" onkeydown="useTab(this)" id="your_demo"></textarea>
+				<!-- <br> <input type="button" value="reply" id="preview2"><br> -->
+				<div id="ycode_result"></div> 
+		</form>
+	</div>
 </div>
-   <div class="col-md-12">
-   <div class="col-md-3"><br><br><br>
-         <br> <input type="button" value="compare" id="preview">
-         <button id='listBtn'>Go List</button>
-   </div> 
-   </div>
+	<div class="col-md-12">
+	<div class="col-md-offset-4 col-md-5"><br><br><br>
+			<div class="container show-grid">
+				<br><input class="btn btn-success" type="button" value="Compare" id="preview">
+    			<button class="btn btn-primary" id="listBtn">Go List</button>
+			</div>
+	</div> 
+	</div>
 </body> 
 
 <head>
@@ -240,20 +258,19 @@ function processText3() {
        var   blk4   = document.getElementById("ycode_result");
        blk4.innerHTML  = resultString5; 
 
-    
-   }
-          
+	}
+			 
 </script>
 
 <script>
 $(document).ready(
-      function() {
-         $('#listBtn').on("click", function(evt) {
-            self.location = "listPage";
+		function() {
+			$('#listBtn').on("click", function(evt) {
+				self.location = "listPage";
 
-         });
-         
-      });
+			});
+			
+		});
 </script>
 
 </head>

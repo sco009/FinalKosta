@@ -22,6 +22,7 @@ import cosmos.codetrace.domain.Criteria;
 import cosmos.codetrace.domain.PageMaker;
 import cosmos.codetrace.domain.SearchCriteria;
 import cosmos.codetrace.service.CodetraceService;
+import cosmos.login.domain.LoginVO;
 
 @Controller
 @RequestMapping("/codetrace/*")
@@ -184,8 +185,8 @@ public class CodetraceController {
 	   }
 	
 	@RequestMapping(value = "codetrace/codetrace", method=RequestMethod.GET)
-	   public void codeTraceGET(CTBoardVO vo, Model model)throws Exception{
-	      logger.info("codetrace get...");
-	   }
-
+	public void codeTraceGET(CTBoardVO vo, Model model)throws Exception{
+		logger.info("codetrace get...");
+	}
+	
 }

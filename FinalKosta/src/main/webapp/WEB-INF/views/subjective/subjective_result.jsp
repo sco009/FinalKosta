@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/dist/js/quest/subjective/subjectiveResult.js"></script>
-
+<%@include file="../../include/quest/multiple/multiple_body.jsp"%>
 <link href="/resources/dist/css/quest/subjective/subjectiveMenu.css" rel="stylesheet" type="text/css">
 <link href="/resources/dist/css/quest/subjective/subjectiveRadioButton.css" rel="stylesheet" type="text/css">
 <link href="/resources/dist/css/quest/subjective/resultSubjective.css" rel="stylesheet" type="text/css">
@@ -53,7 +53,7 @@ function returnSucjective() {
          end="${failList.size() }">
          <c:if test="${failList !=null }">
                <label class="row-md">틀린문제 : ${failList.subj_Content }</label>
-            <button type="button" class="btn btn-default"
+            <button type="button" class="btn btn-default "
                title="문제내용 : ${failList.subj_Content }" data-container="body"
                data-toggle="popover" data-placement="right"
                data-content="답 : ${failList.subj_Answer }">틀린문제 상세보기</button>

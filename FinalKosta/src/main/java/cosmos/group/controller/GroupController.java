@@ -90,7 +90,7 @@ public class GroupController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/test/main";//여기 메인좀 해줏메
+		return "redirect:/groupBoard/main";//여기 메인좀 해줏메
 		
 	}
 }

@@ -14,7 +14,8 @@ body{
 		-webkit-background-size: cover;
 	        -moz-background-size: cover;
 	        -o-background-size: cover;
-	        background-size: cover;
+	        /* background-size: cover; */
+	        background-size: 1300px 600px;
 }
 </style>
 
@@ -50,7 +51,7 @@ body{
 					<tr>
 					<td align="center">Writer</td> 
 					<td align="center"><input type="text"
-						name="writer"<%--  value="${login.urd} "--%> class="form-control" placeholder="Enter Writer"></td>
+						name="writer" value="${login.memberName}" class="form-control" placeholder="Enter Writer"></td>
 					</tr>
 				
 			</table>

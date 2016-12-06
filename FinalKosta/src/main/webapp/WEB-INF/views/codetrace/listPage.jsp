@@ -25,7 +25,8 @@ body{
 		-webkit-background-size: cover;
 	        -moz-background-size: cover;
 	        -o-background-size: cover;
-	        background-size: cover;
+	        /* background-size: cover; */
+	        background-size: 1300px 600px;
 }
 </style>
 
@@ -146,9 +147,9 @@ body{
 		<!--/.col (left) -->
 	</div>
 	<!-- /.row -->
+	</div>
 </section>
 <!-- /.content -->
-</div>
 
 <script>
 	var result = '${msg}';
@@ -160,14 +161,11 @@ body{
 </script>
 
 <script>
-	$(document).ready(
-			function() {
-
-				$('#searchBtn').on(
-						"click",
+	$(document).ready(function(){
+				$('#searchBtn').on("click",
 						function(event) {
 
-							self.location = "listPage"
+							self.location = 'listPage'
 									+ '${pageMaker.makeQuery(1)}'
 									+ "&searchType="
 									+ $("select option:selected").val()
@@ -176,17 +174,16 @@ body{
 						});
 
 				$('#newBtn').on("click", function(evt) {
-
 					self.location = "register_form";
 
 				});
 				
 				$('#codeTraceBtn').on("click", function(evt) {
 
-		               self.location = "codetrace";
+					self.location = "codetrace";
 
+				});
 		            });
-			});
 </script> 
 </body>
 

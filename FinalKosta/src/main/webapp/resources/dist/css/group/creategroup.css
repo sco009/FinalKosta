@@ -241,3 +241,33 @@ ul.c-controls li a:hover {
 .my-box 
 { border:1px solid; padding:10px; }
 
+/* 모달창 textaera */
+#TA1 {
+   min-width: 100%;
+}
+/* Addmember버튼 마진 */
+.Addmember {
+   margin-right: 3%;
+}
+/* 동적으로 생기는 유저들 css */
+.searchList div {
+   margin-bottom: 3%;
+}
+
+/* btn-info 색 흐리기*/
+.btn{
+    opacity: 0.65;
+}
+
+/*addMember css*/
+.addMember div{
+    border-radius: 7px;
+   -moz-border-radius: 7px;
+   -webkit-border-radius: 7px;
+}
+
+/*my-box csss*/
+.my-box img{
+   width: 5%;
+   height: 5%;
+}

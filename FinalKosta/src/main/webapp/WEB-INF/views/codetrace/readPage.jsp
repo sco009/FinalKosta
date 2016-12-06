@@ -32,7 +32,8 @@
 		-webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
-        background-size: cover;
+        /* background-size: cover; */
+        background-size: 1300px 600px;
 	}
 </style>
 
@@ -88,10 +89,10 @@
 		
 		<div class="col-md-offset-3 col-md-6">
 			<div class="box-footer">
-			    	<c:if test="${login.urd == CTBoardVO.writer } ">
-			   			<button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
-			   			<button type="submit" class="btn btn-danger" id="removeBtn">REMOVE</button>
-			    	</c:if>
+			   <c:if test="${login.memberName == CTBoardVO.writer}"> 
+			   	<button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
+			   	<button type="submit" class="btn btn-danger" id="removeBtn">REMOVE</button>
+			   </c:if>
 			   	<button type="submit" class="btn btn-primary" id="goListBtn">GO LIST </button>
 			</div>
 	 	</div>
@@ -406,7 +407,7 @@ $(document).ready(function(){
 
    
    $("#removeBtn").on("click", function(){
-      
+	   
       var replyCnt =  $("#replycntSmall").html();
       
       if(replyCnt > 0 ){
@@ -417,7 +418,7 @@ $(document).ready(function(){
       var arr = [];
       $(".uploadedList li").each(function(index){
           arr.push($(this).attr("data-src"));
-      });
+      }); 
       
       /* if(arr.length > 0){
          $.post("/deleteAllFiles",{files:arr}, function(){

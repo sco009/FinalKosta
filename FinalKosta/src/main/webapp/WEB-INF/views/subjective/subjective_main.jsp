@@ -12,6 +12,8 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/bootstrap-3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/dist/js/quest/subjective/SubjectiveJavaScript.js"></script>
+<!-- <script type="text/javascript" src="/resources/dist/js/quest/subjective/behas.js"></script> -->
+<script type="text/javascript" src="/resources/dist/js/webcompile/behave.js"></script>
 <link href="/resources/dist/css/quest/subjective/subjectiveMenu.css" rel="stylesheet" type="text/css">
 <link href="/resources/dist/css/quest/subjective/subjectiveRadioButton.css" rel="stylesheet" type="text/css">
 <link href="/resources/dist/css/quest/subjective/subjectivestyle.css" rel="stylesheet" type="text/css">
@@ -20,6 +22,20 @@
 	function resultPage() {
 		location.href = "/subjective/subjectiveResult";
 	}
+	
+	$(function() {
+		var editor = new Behave({
+
+			textarea : document.getElementById('demo'),
+			replaceTab : true,
+			softTabs : true,
+			tabSize : 4,
+			autoOpen : true,
+			overwrite : true,
+			autoStrip : true,
+			autoIndent : true
+		});
+	});
 	
 </script>
 
@@ -100,7 +116,7 @@
 			<div class="col-md-3">
 				<form id="complieFrom">
 					<input type="hidden" name = "compileCategori" value=${subjectiveSelect.subj_Categori }></input>
-					<textarea rows="20" cols="50" name="wc_code" onkeydown="useTab(this)" id="demo" class="well"></textarea>
+					<textarea rows="20" cols="50" name="wc_code" id="demo" class="well" ></textarea>
 						<div id="loading" style="width: 100%; text-align: center">
 						<img alt=""src="/resources/dist/img/webcompile/compileLoading.gif" style="width: 100%; max-width: 150px; vertical-align: middle">
 					</div>

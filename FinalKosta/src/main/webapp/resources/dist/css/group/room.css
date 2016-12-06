@@ -50,3 +50,12 @@
   border-bottom: 15px solid #22252C;
   border-left: 15px solid transparent;
 }
+
+.well {
+   width: 200px;
+   height: 200px;
+   border-radius: 5px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+    margin: 5%;
+}
