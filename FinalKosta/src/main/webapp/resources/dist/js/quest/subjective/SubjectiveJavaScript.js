@@ -60,9 +60,6 @@ $(function() {
 	});
 });
 
-function returnSucjective() {
-	location.href= "initialization";
-}
 //웹컴파일러 js
 $(function(){
 	$("#complieFrom").submit(function(event){

@@ -5,21 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-
+<script type="text/javascript" src="/resources/dist/js/quest/subjective/subjectiveResult.js"></script>
 
 <link href="/resources/dist/css/quest/subjective/subjectiveMenu.css" rel="stylesheet" type="text/css">
 <link href="/resources/dist/css/quest/subjective/subjectiveRadioButton.css" rel="stylesheet" type="text/css">
 <link href="/resources/dist/css/quest/subjective/resultSubjective.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/resources/dist/js/quest/subjective/subjectiveResult.js"></script>
-
-
-
+<script type="text/javascript">
+function returnSucjective() {
+	location.href= "initialization";
+}
+</script>
 </head>
 <body id="resultBody">
 

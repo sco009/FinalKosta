@@ -37,12 +37,29 @@
 	          }
 	   }
 	   
+	   function openNav() {
+		      document.getElementById("mySidenav").style.width = "250px";
+		   }
+
+		   function closeNav() {
+		      document.getElementById("mySidenav").style.width = "0";
+		   }
+	   
 </script>
 </head>
 <body>
 	<div class="col-md-12">
 		<div class="row">
-			<div class="col-md-offset-1 col-md-2" id="ToDo" ondrop="drop(event)"
+			<div class="col-md-1">
+            <span style="font-size: 300%; cursor: pointer" onclick="openNav()">&#9776;</span>
+            <div id="mySidenav" class="sidenav">
+               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+               <a href="main">애자일 스크럼</a> <a href="#">일정보기</a> <a href="#">기타</a>
+               <a href="#">기타</a>
+            </div>
+         </div>
+         
+			<div class="col-md-2" id="ToDo" ondrop="drop(event)"
 				ondragover="allowDrop(event)">
 				<div class="well" id="ToDoDiv">
 					<h3>ToDo</h3>
@@ -187,13 +204,14 @@
 						휴 지 통 <span class="glyphicon glyphicon-heart"></span>
 					</div>
 				</div>
-			</div>
+			</div >
 			<div class="col-md-1">
-				<a onclick="test()"><img src="/resources/dist/img/chat/chatimg.png"></a>   
-	   <div  id="#chat"> 
-	   <iframe  src="http://localhost:3000/?id=aaa&roomid=${groupId }"  width="300px" height="600px"></iframe>
-	   </div>
-			</div>
+			<a onclick="test()"><img src="/resources/dist/img/chat/chatimg.png"></a>   
+   <div  id="#chat"> 
+   <iframe  src="http://localhost:3000/?id=aaa&roomid=bbb"  width="300px" height="600px"></iframe>
+   </div>
+   </div>
+			
 
 		</div>
 		<div class="row">
@@ -201,7 +219,7 @@
 				<div class="well">
 					<dl>
 					<dt><h3>그룹원</h3></dt>
-					<dd>${member.team1}</dd>
+						<dd>${member.team1}</dd>
 						<dd>${member.team2}</dd>
 						<dd>${member.team3}</dd>
 						<dd>${member.team4}</dd>

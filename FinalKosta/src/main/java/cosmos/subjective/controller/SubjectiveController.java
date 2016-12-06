@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import cosmos.login.domain.LoginVO;
 import cosmos.subjective.domain.SubjectivePointVO;
 import cosmos.subjective.domain.SubjectiveVO;
 import cosmos.subjective.service.SubjectiveService;
@@ -32,16 +33,20 @@ public class SubjectiveController {
 	private SubjectiveService service;
 	@Inject
 	private WebCompileService compileService;
-
-	@RequestMapping(value = "main", method = RequestMethod.GET)
-	public String subjective(HttpSession session) {
-		return "subjective/subjective_main";
-	}
-
+	
 	static List<SubjectiveVO> subjectiveList = new ArrayList<SubjectiveVO>();
 	static List<SubjectiveVO> subjectiveSuccessList = new ArrayList<SubjectiveVO>();
 	static List<SubjectiveVO> subjectiveFailList = new ArrayList<SubjectiveVO>();
 	static int count = 0;
+
+	@RequestMapping(value = "main", method = RequestMethod.GET)
+	public String subjective(HttpSession session) {
+		count = 0;
+		subjectiveList = new ArrayList<SubjectiveVO>();
+		subjectiveFailList = new ArrayList<SubjectiveVO>();
+		subjectiveSuccessList = new ArrayList<SubjectiveVO>();
+		return "subjective/subjective_main";
+	}
 
 	@RequestMapping(value = "/subjectiveSelect", method = RequestMethod.GET)
 	public String subjectiveSelect(Model model, SubjectiveVO vo) throws Exception {
@@ -103,9 +108,10 @@ public class SubjectiveController {
 			successPoint=subjectiveFailList.get(0).getSubj_Point();
 		}
 		int successProgress = (100*successCount)/totalCount;
-		
+		LoginVO vo =  (LoginVO)session.getAttribute("login");
+		String memberId = vo.getMemberID();
 		model.addAttribute("successPoint", successPoint);
-		model.addAttribute("memberId", session.getAttribute("memberId"));
+		model.addAttribute("memberId", memberId);
 		model.addAttribute("successProgress", successProgress);
 		model.addAttribute("failList", subjectiveFailList);
 		model.addAttribute("successList", subjectiveSuccessList);
@@ -114,7 +120,6 @@ public class SubjectiveController {
 	
 	@RequestMapping("/initialization")
 	public String subjectiveInitialization(){
-		subjectiveFailList = new ArrayList<SubjectiveVO>();
 		return "subjective/subjective_main";
 	}
 	
@@ -122,12 +127,6 @@ public class SubjectiveController {
 	public String finishSubjective(SubjectivePointVO point)throws Exception{
 		service.pointInsert(point);
 		
-		
-		//static 변수들 초기화
-		count = 0;
-		subjectiveList = new ArrayList<SubjectiveVO>();
-		subjectiveFailList = new ArrayList<SubjectiveVO>();
-		subjectiveSuccessList = new ArrayList<SubjectiveVO>();
 		return "subjective/subjective_main";
 	}
 	// 컴파일러

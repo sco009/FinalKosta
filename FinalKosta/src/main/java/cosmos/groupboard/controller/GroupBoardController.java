@@ -18,7 +18,7 @@ import cosmos.groupboard.domain.TeamVO;
 import cosmos.groupboard.service.GroupBoardService;
 
 @Controller
-@RequestMapping("/test/*")
+@RequestMapping("/groupBoard/*")
 public class GroupBoardController {
 	@Inject
 	private GroupBoardService service;

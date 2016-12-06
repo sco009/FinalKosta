@@ -27,7 +27,7 @@
   </select>
   
   <update id="pointInsert" parameterType="SubjectivePointVO"> 
-  		update member set algo_point = algo_point + #{successPoint}
+  		update member set SUBJECT_POINT = SUBJECT_POINT + #{successPoint}
         WHERE memberId = #{memberId}  		
   	</update>
   

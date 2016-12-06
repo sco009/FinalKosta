@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import cosmos.login.domain.LoginVO;
+
 public class LoginInterceptor extends HandlerInterceptorAdapter {
    private static final String LOGIN = "login";
 
@@ -18,11 +20,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
       HttpSession session = request.getSession();
       ModelMap modelMap = modelAndView.getModelMap();
-      Object loginVO = modelMap.get("loginVO");
       
-      if(loginVO != null) {
-         session.setAttribute(LOGIN, loginVO);
-         
+      LoginVO vo = (LoginVO) modelMap.get("loginVO");
+      
+      if(vo != null) {
+         session.setAttribute(LOGIN, vo);
+         System.out.println("세션에담겼니? 아이디는 : " + vo.getMemberID());
+
          if(request.getParameter("useCookie")!=null) {
             System.out.println("useCookie 출력!!!");
             Cookie loginCookie = new Cookie("loginCookie", session.getId());
@@ -36,7 +40,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
          session.removeAttribute("dest");
       }
    }
-
    @Override
    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
          throws Exception {

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cosmos.login.domain.LoginVO;
 import cosmos.multiple.domain.MultipleChoice;
 import cosmos.multiple.domain.MultiplePoint;
 import cosmos.multiple.domain.MultipleVO;
@@ -36,7 +37,6 @@ public class MultipleController {
 	static int successCount = 0;
 	static int failCount = 0;
 	static int successPoint=0;
-	static String memberId="";
 	static int totalProgress =0;
 	static int successProgress=0;
 
@@ -87,7 +87,6 @@ public class MultipleController {
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(String solveFailId, String solveSuccessId, Model model, HttpSession session) throws Exception {
-		session.setAttribute("memberId", "HSB");
 		if (solveFailId != null) {
 			failList.add(solveFailId); // 틀린 문제 번호를 리스트에 담기.
 		} else if (solveSuccessId != null) {
@@ -142,9 +141,9 @@ public class MultipleController {
 			// 문제의
 			// Point값*맞춘갯수
 			// 뽑아오기.
-
-			if (session.getAttribute("memberId") != null) { //접속된 회원을 넘겨주기위해
-				memberId = (String) session.getAttribute("memberId");
+			LoginVO vo =  (LoginVO)session.getAttribute("login");
+			String memberId = vo.getMemberID();
+			if (memberId != null) { //접속된 회원을 넘겨주기위해
 				model.addAttribute("successPoint", successPoint);
 				model.addAttribute("memberId", memberId);
 			}//포인트+회원ID값 넘기기 위한 if END

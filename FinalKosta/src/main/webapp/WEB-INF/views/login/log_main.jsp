@@ -303,13 +303,13 @@
                   <div class="ma">
                      <a class="plate" href="/education?memberID= ${login.memberID }"> <i
                         class="fa fa-book" aria-hidden="true"></i>
-                     </a> <a class="plate" href="../Multiple/MultipleMain.jsp?mainCheck=0">
+                     </a> <a class="plate" href="/multiple/multiple?memberID= ${login.memberID }">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
-                     </a> <a class="plate" href="codeTrace.jsp"> <i
+                     </a> <a class="plate" href="/codetrace/register_form?memberID=${login.memberID }&"> <i
                         class="fa fa-balance-scale" aria-hidden="true"></i>
-                     </a> <a class="plate" href="codeFight.jsp"> <i
+                     </a> <a class="plate" href="/subjective/main?memberId=${login.memberID }"> <i
                         class="fa fa-keyboard-o" aria-hidden="true"></i>
-                     </a> <a class="plate" href="../Ranking_jsp/Ranking.jsp"> <i
+                     </a> <a class="plate" href="/ranking_main"> <i
                         class="fa fa-trophy" aria-hidden="true"></i>
                      </a>
                   </div>
@@ -327,7 +327,7 @@
                         class="fa fa-user-plus" aria-hidden="true"></i>
                      </a> <a class="plate2" href="enterGroup.jsp"> <i
                         class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-                     </a> <a class="plate2" href="../wc_form_jsp/wc_compileForm.jsp">
+                     </a> <a class="plate2" href="/webcompile/main">
                         <i class="fa fa-file-code-o" aria-hidden="true"></i>
                      </a>
                   </div>
