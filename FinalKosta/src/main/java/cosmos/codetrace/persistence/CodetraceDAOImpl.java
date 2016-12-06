@@ -61,15 +61,6 @@ public class CodetraceDAOImpl implements CodetraceDAO {
 		return session.selectList(namespace+".listPage", page);
 	}
 
-	/*@Override
-	public List<CTBoardVO> listCriteria(Criteria cri) throws Exception {
-		return session.selectList(namespace+".listCriteria", cri);
-	}*/
-
-	/*@Override
-	public int countPaging(Criteria cri) throws Exception {
-		return session.selectOne(namespace+".countPaging", cri);
-	}*/
 
 	@Override
 	public List<CTBoardVO> listCriteria(SearchCriteria cri) throws Exception {
@@ -99,6 +90,4 @@ public class CodetraceDAOImpl implements CodetraceDAO {
 	public List<String> getAttach(Integer bno) throws Exception {
 		return session.selectList(namespace+".getAttach", bno);
 	}
-
-
 }

@@ -2,11 +2,11 @@ package cosmos.noticeboard.domain;
 
 public class NoticeCriteria {
 	 private int page=1;
-	  private int perPageNum=2;
+	  private int perPageNum=5;
 
 	  public NoticeCriteria() { // 기본 셋팅값
 	    this.page = 1;
-	    this.perPageNum = 2; // 페이지당 글 갯수 2개
+	    this.perPageNum = 5; // 페이지당 글 갯수 2개
 	  }
 
 	  public void setPage(int page) {
@@ -22,7 +22,7 @@ public class NoticeCriteria {
 	  public void setPerPageNum(int perPageNum) {
 
 	    if (perPageNum <= 0 || perPageNum > 100) {
-	      this.perPageNum = 2;
+	      this.perPageNum = 5;
 	      return;
 	    }
 

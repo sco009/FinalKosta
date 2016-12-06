@@ -37,102 +37,90 @@ public class LoginController {
    @Inject
    private GroupService gr_service;
 
-   @RequestMapping(value="/login", method=RequestMethod.GET)
-   public String loginGET(@ModelAttribute("dto") LoginDTO dto) {
-      System.out.println("접속성공");
-      return "/login/login";
-   }
-   
-   @RequestMapping(value="/loginCheck", method=RequestMethod.POST)
-   public void loginCheck(LoginDTO dto, HttpSession session, Model model) throws Exception{
-      System.out.println("입력한 비밀번호 : " + dto.getMemberPw());
-      // 화면에서 입력한 dto값을 가져와서 복호화시킨뒤에 service.login에 넣어주기
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String loginGET(@ModelAttribute("dto") LoginDTO dto) {
+		System.out.println("접속성공");
+		return "/login/login";
+	}
+	
+	@RequestMapping(value="/loginCheck", method=RequestMethod.POST)
+	public void loginCheck(LoginDTO dto, HttpSession session, Model model) throws Exception{
+		// 화면에서 입력한 dto.getMemberPw()값을 가져와서 복호화시킨뒤에 service.login에 넣어주기
 
-      String spass = service.password(dto); // DB에 암호화되어있는 PW
-      System.out.println(spass);
-      
-      String rm_Random = ""; // 짝수자리의 랜덤숫자를 제거한 비밀번호
-      String originPass = ""; // 복호화된 원래의 비밀번호
-      cosmos.login.controller.XOR test = new cosmos.login.controller.XOR();
-      
-      String decode = test.XOR(spass);
-      System.out.println("XOR로 복호화된 비밀번호 : " + decode);
-      
-      for(int i=0; i<=decode.length()-1; i++) {
-         if(i%2==0) {
-            rm_Random += decode.substring(i, i+1);
-         }
-      }
-      
-      System.out.println("짝수자리 랜덤숫자(1~9) 제거 : " + rm_Random); 
-      // huipu 출력
-      
-      char ch2[] = rm_Random.toCharArray();
-      
-      // 아스키코드로 변환해서 -7
-      for (int i = 0; i < ch2.length; i++) {
-         originPass += (char)(ch2[i]-7);
-      }
-      
-      System.out.println("아스키코드로 복호화된 비밀번호 : " + originPass);
-      
-      
-      if(dto.getMemberPw().equals(originPass)) {
-         dto.setMemberPw(spass);
-         System.out.println("일치함");
-         LoginVO vo = service.login(dto);
-         System.out.println();
-         if(vo == null) {
-            
-            return;
-         }
-         
-         System.out.println("입력한 비밀번호 : " + dto.getMemberPw());
-         System.out.println("DB에 있는 비밀번호 : " + vo.getMemberPw());
-         
-         String name = service.currentMemberCheck(dto);
-         if(name != null){//이미 로그인되어있구나
-            System.out.println("이미 로그인중");
-            return;
-         }else{//로그인이 안되어있을때
-            dto.setMemberName(vo.getMemberName());
-            service.insertCurrentMember(dto);
-         }
-         
-         model.addAttribute("loginVO", vo);
-         
-         if(dto.isUseCookie()) {
-            int amount = 60*60*24*7;
-            Date sessionLimit = new Date(System.currentTimeMillis()+(1000*amount));
-            service.keepLogin(vo.getMemberID(), session.getId(), sessionLimit);
-         }
-      }
-      
-   }
-   
-   @RequestMapping(value="/log_main", method=RequestMethod.GET)
-   public String logMain(HttpSession session, Model model)throws Exception {
-      
-      LoginVO vo = (LoginVO) session.getAttribute("login");
-      System.out.println("접속한 사람 : " + vo.getMemberName());
-      
-      List<InviteVO> ivo = gr_service.inviteListPrintService(vo);
-      model.addAttribute("InviteVO", ivo);
-      
-      return "/login/log_main";
-   }
-   
-   @ResponseBody
-   @RequestMapping(value="/invite", method=RequestMethod.GET)
-   public int logMain2(HttpSession session, Model model)throws Exception {
-      
-      LoginVO vo = (LoginVO) session.getAttribute("login");
-      
-      int icount = gr_service.inviteCountService(vo);
-      model.addAttribute("icount", icount);
-      
-      List<InviteVO> ivo = gr_service.inviteListPrintService(vo);
-      model.addAttribute("InviteVO", ivo);
+		String spass = service.password(dto); // DB에 암호화되어있는 PW
+		
+		String rm_Random = ""; // 짝수자리의 랜덤숫자를 제거한 비밀번호
+		String originPass = ""; // 복호화된 원래의 비밀번호
+		cosmos.login.controller.XOR test = new cosmos.login.controller.XOR();
+		
+		String decode = test.XOR(spass);
+		
+		for(int i=0; i<=decode.length()-1; i++) {
+			if(i%2==0) {
+				rm_Random += decode.substring(i, i+1);
+			}
+		}
+		
+		char ch2[] = rm_Random.toCharArray();
+		
+		// 아스키코드로 변환해서 -7
+		for (int i = 0; i < ch2.length; i++) {
+			originPass += (char)(ch2[i]-7);
+		}
+		
+		if(dto.getMemberPw().equals(originPass)) {
+			dto.setMemberPw(spass);
+			System.out.println("일치함");
+			LoginVO vo = service.login(dto);
+			System.out.println();
+			if(vo == null) {
+				
+				return;
+			}
+
+			String name = service.currentMemberCheck(dto);
+			if(name != null){//이미 로그인되어있구나
+				System.out.println("이미 로그인중");
+				return;
+			}else{//로그인이 안되어있을때
+				dto.setMemberName(vo.getMemberName());
+				service.insertCurrentMember(dto);
+			}
+			
+			model.addAttribute("loginVO", vo);
+			
+			if(dto.isUseCookie()) {
+				int amount = 60*60*24*7;
+				Date sessionLimit = new Date(System.currentTimeMillis()+(1000*amount));
+				service.keepLogin(vo.getMemberID(), session.getId(), sessionLimit);
+			}
+		}
+		
+	}
+	
+	@RequestMapping(value="/log_main", method=RequestMethod.GET)
+	public String logMain(HttpSession session, Model model)throws Exception {
+		
+		LoginVO vo = (LoginVO) session.getAttribute("login");
+		System.out.println("접속한 사람 : " + vo.getMemberName());
+		
+		List<InviteVO> ivo = gr_service.inviteListPrintService(vo);
+		model.addAttribute("InviteVO", ivo);
+		
+		return "/login/log_main";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/invite", method=RequestMethod.GET)
+	public int logMain2(HttpSession session, Model model)throws Exception {
+		
+		LoginVO vo = (LoginVO) session.getAttribute("login");
+		
+		int icount = gr_service.inviteCountService(vo);
+		model.addAttribute("icount", icount);
+		
+		List<InviteVO> ivo = gr_service.inviteListPrintService(vo);
+		model.addAttribute("InviteVO", ivo);
 
       return icount;
    }
