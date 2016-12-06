@@ -25,7 +25,8 @@ body{
 		-webkit-background-size: cover;
 	        -moz-background-size: cover;
 	        -o-background-size: cover;
-	        background-size: cover;
+	        /* background-size: cover; */
+	        background-size: 1300px 600px;
 }
 </style>
 
@@ -45,7 +46,7 @@ body{
 
 
 				<div class='box-body'>
-					<div class="col-md-offset-2 col-md-8">
+					<div class="col-md-offset-1 col-md-10">
 					<select name="searchType">
 						<option value="n"
 							<c:out value="${cri.searchType == null?'selected':''}"/>>
@@ -72,6 +73,7 @@ body{
 						value='${cri.keyword }'>
 					<button id='searchBtn'>Search</button>
 					<button id='newBtn'>New Board</button>
+					<button id='codeTraceBtn'>코디비교</button>
 					</div>
 				</div> 
 			</div>
@@ -177,6 +179,12 @@ body{
 				$('#newBtn').on("click", function(evt) {
 
 					self.location = "register_form";
+
+				});
+				
+				$('#codeTraceBtn').on("click", function(evt) {
+
+					self.location = "codetrace";
 
 				});
 

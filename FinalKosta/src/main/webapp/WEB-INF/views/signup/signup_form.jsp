@@ -96,7 +96,7 @@
 								class="btn btn-primary btn-block btn-lg" tabindex="7">
 						</div>
 						<div class="col-xs-12 col-md-6">
-							<a href="login.jsp" class="btn btn-success btn-block btn-lg">Sign
+							<a href="/login/login" class="btn btn-success btn-block btn-lg">Sign
 								In</a>
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 				return;
 			}
 
-			url = "/main/signup/confirmId?memberID=" + inputid.memberID.value; 
+			url = "/signup/confirmId?memberID=" + inputid.memberID.value; 
 
 			open(
 					url,

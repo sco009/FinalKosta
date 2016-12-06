@@ -33,7 +33,7 @@ public class HomeController {
 		//hi
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "codetrace/codetrace";
+		return "home";
 	}
 
 }

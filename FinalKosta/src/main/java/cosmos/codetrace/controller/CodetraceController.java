@@ -182,6 +182,11 @@ public class CodetraceController {
 	      return service.getAttach(bno);
 	   }
 	
+	@RequestMapping(value = "codetrace/codetrace", method=RequestMethod.GET)
+	public void codeTraceGET(CTBoardVO vo, Model model)throws Exception{
+		logger.info("codetrace get...");
+	}
+	
 	
 
 }

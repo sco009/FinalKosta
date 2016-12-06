@@ -38,7 +38,7 @@ public class SignUpController {
 		System.out.println("signup POST");
 		model.addAttribute("result", "success");
 		
-		return "/signup/signup_form";
+		return "../login/login";
 	}
 	
 	

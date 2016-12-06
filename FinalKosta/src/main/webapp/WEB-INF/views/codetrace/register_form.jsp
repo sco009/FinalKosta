@@ -14,7 +14,8 @@ body{
 		-webkit-background-size: cover;
 	        -moz-background-size: cover;
 	        -o-background-size: cover;
-	        background-size: cover;
+	        /* background-size: cover; */
+	        background-size: 1300px 600px;
 }
 </style>
 
