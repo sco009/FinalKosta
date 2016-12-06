@@ -201,6 +201,7 @@ var userID = '${userID}';
 
    
 </script>
+<jsp:include page="/WEB-INF/views/module/header.jsp" />
 </head>
 <body>
    <div class="container">

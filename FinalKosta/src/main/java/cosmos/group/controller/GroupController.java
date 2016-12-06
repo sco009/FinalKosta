@@ -32,7 +32,7 @@ public class GroupController {
 	@RequestMapping(value="/creategroup")
 	public String goCreateGroupPage(HttpSession session, Model model){
 		
-		LoginVO vo = (LoginVO) session.getAttribute("login");
+		LoginVO vo = (LoginVO)session.getAttribute("login");
 		model.addAttribute("userName",vo.getMemberName());
 		model.addAttribute("userID",vo.getMemberID());
 		

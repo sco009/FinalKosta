@@ -20,7 +20,7 @@ public class MypageController {
 	MypageService mypageService;
 	
 	@RequestMapping(value = "/update_form",method=RequestMethod.GET)
-	public String updateGET(HttpServletRequest request, Model model){
+	public void updateGET(HttpServletRequest request, Model model){
 		HttpSession session = request.getSession();
 		LoginVO loginVO = (LoginVO)session.getAttribute("login");
 		
@@ -36,11 +36,9 @@ public class MypageController {
 		model.addAttribute("memberPw", memberPw);
 		model.addAttribute("memberEmail", memberEmail);
 		
-		return "update_form";
-		
 	}
 	
-	@RequestMapping(value = "/signup/update_form",method=RequestMethod.POST)
+	@RequestMapping(value = "/update_form",method=RequestMethod.POST)
 	public String updatePOST(UserVO user) throws Exception{
 		System.out.println("DB PW : " + user.getMemberPw());
 		

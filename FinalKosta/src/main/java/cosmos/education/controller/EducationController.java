@@ -3,6 +3,7 @@ package cosmos.education.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cosmos.education.domain.EducationManagerVO;
 import cosmos.education.domain.EducationVO;
 import cosmos.education.service.EducationService;
+import cosmos.login.domain.LoginVO;
 
 @Controller
 public class EducationController {
@@ -21,9 +23,11 @@ public class EducationController {
 	
 	
 	@RequestMapping("/education")
-	public String education(Model model,@RequestParam("memberID")String memberID) {
-		
-		model.addAttribute("memberID", memberID);
+	public String education(Model model,HttpSession session) {
+		LoginVO vo =  (LoginVO)session.getAttribute("login");
+	    String memberId = vo.getMemberID();
+	    System.out.println(memberId);
+		model.addAttribute("memberID",memberId);
 		
 		return "/education/education_Main";
 	}
@@ -31,7 +35,7 @@ public class EducationController {
 	@RequestMapping(value="educations",method=RequestMethod.GET)
 	public String education_Introduce(Model model,@RequestParam("dataClassify")String dataClassify
 			,@RequestParam("memberID")String memberID,@RequestParam("pages")int pages) throws Exception {
-		model.addAttribute("memberID", memberID);
+		model.addAttribute("memberID",memberID);
 		model.addAttribute("pages", pages);
 		model.addAttribute("list", service.selectmemberID(memberID));
 		
@@ -59,9 +63,8 @@ public class EducationController {
 	}
 	
 	@RequestMapping("educationmanager")
-	public String edcation_manager(EducationManagerVO mvo,@RequestParam("dataClassify")String dataClassify,
-			@RequestParam("edu_c_ID")int edu_c_ID,Model model,@RequestParam("memberID")String memberID
-			,@RequestParam("pages")int pages)throws Exception{
+	public String edcation_manager(EducationManagerVO mvo,@RequestParam("dataClassify") String dataClassify,
+			@RequestParam("edu_c_ID")int edu_c_ID,Model model,@RequestParam("memberID") String memberID,@RequestParam("pages")int pages)throws Exception{
 		mvo.setedu_c_ID(edu_c_ID);
 		mvo.setEduManagerId(service.selectEc_managerid());
 		service.inserteductionManager(mvo);

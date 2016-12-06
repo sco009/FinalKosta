@@ -69,6 +69,7 @@ a.no-uline {
 
 
 </style>
+<jsp:include page="/WEB-INF/views/module/header.jsp" />
 </head>
 <body>
 
