@@ -1,6 +1,7 @@
 package cosmos.groupboard.domain;
 
 public class TeamVO {
+	private String leaderId;
 	private String team1;
 	private String team2;
 	private String team3;
@@ -43,5 +44,12 @@ public class TeamVO {
 	public void setTeam6(String team6) {
 		this.team6 = team6;
 	}
+	public String getLeaderId() {
+		return leaderId;
+	}
+	public void setLeaderId(String leaderId) {
+		this.leaderId = leaderId;
+	}
+	
 	
 }

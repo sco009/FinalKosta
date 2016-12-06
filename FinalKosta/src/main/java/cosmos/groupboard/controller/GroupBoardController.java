@@ -25,7 +25,6 @@ public class GroupBoardController {
 	
 	@RequestMapping("/main")
 	public String main(HttpSession session){
-		/*return "redirect:/test/start";*/
 		return "redirect:/groupBoard/start";
 	}
 	
@@ -45,9 +44,13 @@ public class GroupBoardController {
 		
 		if(scrumMap.get("ToDo")==null){
 			scrumMap.put("ToDo", 0);
-		}else if(scrumMap.get("ING")==null){
+		}
+		
+		if(scrumMap.get("ING")==null){
 			scrumMap.put("ING", 0);
-		}else if(scrumMap.get("END")==null){
+		}
+		
+		if(scrumMap.get("END")==null){
 			scrumMap.put("END", 0);
 		}
 //============================================================================================================		
@@ -79,11 +82,15 @@ public class GroupBoardController {
 			scrumMap.put(scrumList.get(i).getgBoardCategori(), scrumList.get(i).getgBoardCount());
 		}
 
-		if (scrumMap.get("ToDo") == null) {
+		if(scrumMap.get("ToDo")==null){
 			scrumMap.put("ToDo", 0);
-		} else if (scrumMap.get("ING") == null) {
+		}
+		
+		if(scrumMap.get("ING")==null){
 			scrumMap.put("ING", 0);
-		} else if (scrumMap.get("END") == null) {
+		}
+		
+		if(scrumMap.get("END")==null){
 			scrumMap.put("END", 0);
 		}
 //============================================================================================================	
@@ -113,11 +120,15 @@ public class GroupBoardController {
 			scrumMap.put(scrumList.get(i).getgBoardCategori(), scrumList.get(i).getgBoardCount());
 		}
 
-		if (scrumMap.get("ToDo") == null) {
+		if(scrumMap.get("ToDo")==null){
 			scrumMap.put("ToDo", 0);
-		} else if (scrumMap.get("ING") == null) {
+		}
+		
+		if(scrumMap.get("ING")==null){
 			scrumMap.put("ING", 0);
-		} else if (scrumMap.get("END") == null) {
+		}
+		
+		if(scrumMap.get("END")==null){
 			scrumMap.put("END", 0);
 		}
 //============================================================================================================	
@@ -143,11 +154,15 @@ public class GroupBoardController {
 			scrumMap.put(scrumList.get(i).getgBoardCategori(), scrumList.get(i).getgBoardCount());
 		}
 
-		if (scrumMap.get("ToDo") == null) {
+		if(scrumMap.get("ToDo")==null){
 			scrumMap.put("ToDo", 0);
-		} else if (scrumMap.get("ING") == null) {
+		}
+		
+		if(scrumMap.get("ING")==null){
 			scrumMap.put("ING", 0);
-		} else if (scrumMap.get("END") == null) {
+		}
+		
+		if(scrumMap.get("END")==null){
 			scrumMap.put("END", 0);
 		}
 //============================================================================================================	
@@ -160,5 +175,13 @@ public class GroupBoardController {
 	@ResponseBody
 	public String dateView(@RequestParam("groupBoardId")String groupBoardId)throws Exception{
 		return service.dateView(groupBoardId);
+	}
+	
+	@RequestMapping("/realTimeScrum")
+	@ResponseBody
+	public List<TeamVO> realTimeScrum(HttpSession session)throws Exception{
+		String groupId = (String)session.getAttribute("groupID");
+		List<TeamVO>groupMember = service.groupMember(groupId);
+		return groupMember;
 	}
 };

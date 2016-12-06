@@ -44,7 +44,50 @@
 		   function closeNav() {
 		      document.getElementById("mySidenav").style.width = "0";
 		   }
-	   
+		   
+</script>
+<script type="text/javascript">
+window.onload= function() {
+	var resetPage = setInterval(function() {
+		$.ajax({
+			url : "realTimeScrum",
+			dataType : "json",
+			success : successhandler
+			});
+	}, 10000);
+	
+	function successhandler(data) {
+		var $writerText = $("#writerText");
+		var $memberList = $("#memberList");
+		$memberList.empty();
+		$writerText.empty();
+		
+		var html = "";
+		var html2 = "";
+		$.each(data, function(index, entry) {
+			html2 += "<option value=" + entry.leaderId + ">" + entry.leaderId + "</option>";
+			html2 += "<option value=" + entry.team1 + ">" + entry.team1 + "</option>";
+			html2 += "<option value=" + entry.team2 + ">" + entry.team2 + "</option>";
+			html2 += "<option value=" + entry.team3 + ">" + entry.team3 + "</option>";
+			html2 += "<option value=" + entry.team4 + ">" + entry.team4 + "</option>";
+			html2 += "<option value=" + entry.team5 + ">" + entry.team5 + "</option>";
+			html2 += "<option value=" + entry.team6 + ">" + entry.team6 + "</option>";
+		});
+		$writerText.append(html2);
+		
+		$.each(data, function(index, entry){
+			html += "<dd>" + entry.leaderId + "</dd>";
+			html += "<dd>" + entry.team1 + "</dd>";
+			html += "<dd>" + entry.team2 + "</dd>";
+			html += "<dd>" + entry.team3 + "</dd>";
+			html += "<dd>" + entry.team4 + "</dd>";
+			html += "<dd>" + entry.team5 + "</dd>";
+			html += "<dd>" + entry.team6 + "</dd>";
+		});
+		$memberList.append(html);
+	}
+}
+	
 </script>
 <jsp:include page="/WEB-INF/views/module/header.jsp" />
 </head>
@@ -184,6 +227,7 @@
 							placeholder="요구사항내용"></textarea>
 
 						<br> <label>담당자</label> <select class="form-control" id="writerText" name="gBoardWriter">
+							<option value="${member.leaderId}">${member.leaderId}</option>
 							<option value="${member.team1}">${member.team1}</option>
 							<option value="${member.team2}">${member.team2}</option>
 							<option value="${member.team3}">${member.team3}</option>
@@ -218,8 +262,9 @@
 		<div class="row">
 			<div class="col-md-offset-1 col-md-2">
 				<div class="well">
-					<dl>
+					<dl id="memberList">
 					<dt><h3>그룹원</h3></dt>
+						<dd>${member.leaderId}</dd>
 						<dd>${member.team1}</dd>
 						<dd>${member.team2}</dd>
 						<dd>${member.team3}</dd>

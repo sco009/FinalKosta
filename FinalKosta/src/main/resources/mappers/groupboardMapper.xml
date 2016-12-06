@@ -33,7 +33,7 @@
 	</delete>
 	
 	<select id="groupMember" parameterType="String" resultType="TeamVO">
-		select team1, team2, team3, team4, team5, team6
+		select leaderId, team1, team2, team3, team4, team5, team6
 		from GROUPS
 		where groupId = #{groupId}
 	</select>

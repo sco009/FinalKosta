@@ -57,7 +57,7 @@ public class SignUpController {
 		vo.setMemberPw(encode);
 		service.insertMember(vo);
 		
-		return "../login/login";
+		return "/login/login";
 	}
 	
 	
