@@ -4,21 +4,61 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 
+<script src="/resources/dist/js/codetrace/jquery-1.11.0.min.js"></script>
+<link rel="stylesheet" href="/resources/bootstrap-3.3.2/css/bootstrap.min.css" type="text/css"
+	media="screen" />
+<script type="text/javascript" src="/resources/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+<style>
+table {
+
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #99540c;
+    padding: 5px 10px;
+  }
+  
+li {display:inline;}
+
+body{
+	background-image: url('/resources/dist/img/notice/notice.jpg');
+		-webkit-background-size: cover;
+	        -moz-background-size: cover;
+	        -o-background-size: cover;
+	        background-size: cover;
+}
+
+.box-title {
+	padding-left: 400px;
+	font-size: 35px;
+	padding-bottom: 50px;
+}
+
+
+#move {
+	padding-left: 180px;
+}
+
+</style>
+
 <!-- Main content -->
+<body>
 <section class="content">
 	<div class="row">
 		<!-- left column -->
-
+		
 		<div class="col-md-12">
+			<div class="col-md-offset-2 col-md-8">
 			<!-- general form elements -->
 			<div class='box'>
 				<div class="box-header with-border">
-					<h3 class="box-title">Board List</h3>
+					<h3 class="box-title">공지사항</h3>
 				</div>
 
-
+			<div id="move">
 				<div class='box-body'>
-
+					<div class="col-md-offset-1 col-md-10">
 					<select name="searchType">
 						<option value="n"
 							<c:out value="${cri.searchType == null?'selected':''}"/>>
@@ -32,50 +72,41 @@
 						<option value="w"
 							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
 							Writer</option>
-						<option value="tc"
-							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-							Title OR Content</option>
-						<option value="cw"
-							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
-							Content OR Writer</option>
-						<option value="tcw"
-							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-							Title OR Content OR Writer</option>
 					</select> <input type="text" name='keyword' id="keywordInput"
 						value='${cri.keyword }'>
 					<button id='searchBtn'>Search</button>
-					<button id='newBtn'>New Board</button>
-
-				</div>
+					<button id='newBtn'>새글작성</button>
+					</div>
+				</div> 
 			</div>
-
-
+		</div>
+		
 			<div class="box">
-				<div class="box-header with-border">
-					<h3 class="box-title">LIST PAGING</h3>
+				<div class="box-header with-border"><br>
+					<h3 class="box-title"></h3>
 				</div>
 				<div class="box-body">
 					<table class="table table-bordered">
 						<tr>
 							<th style="width: 10px">BNO</th>
-							<th>TITLE</th>
-							<th>WRITER</th>
-							<th>REGDATE</th>
+							<th style="width: 100px">TITLE</th>
+							<th style="width: 100px">WRITER</th>
+							<th style="width: 100px">REGDATE</th>
 							<th style="width: 40px">VIEWCNT</th>
 						</tr>
 
-						<c:forEach items="${list}" var="noticeVO">
+						<c:forEach items="${list}" var="NoticeVO">
 
 							<tr>
-								<td>${noticeVO.bno}</td>
-								<td><a
-									href='/notice/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&bno=${noticeVO.bno}'>
-										${noticeVO.title}  <strong>[ ${noticeVO.replycnt} ]</strong>
+								<td align="center">${NoticeVO.bno}</td>
+								<td align="center"><a
+									href='/notice/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&bno=${NoticeVO.bno} '>
+										${NoticeVO.title}
 								</a></td>
-								<td>${noticeVO.writer}</td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-										value="${noticeVO.regdate}" /></td>
-								<td><span class="badge bg-red">${noticeVO.viewcnt }</span></td>
+								<td align="center">${NoticeVO.writer}</td>
+								<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+										value="${NoticeVO.regdate}" /></td>
+								<td align="center"><span class="badge bg-red">${NoticeVO.viewcnt}</span></td>
 							</tr>
 
 						</c:forEach>
@@ -87,7 +118,7 @@
 
 				<div class="box-footer">
 
-					<div class="text-center">
+					<div class="text-center" align="center" >
 						<ul class="pagination">
 
 							<c:if test="${pageMaker.prev}">
@@ -111,17 +142,16 @@
 						</ul>
 					</div>
 
-				</div>
+				</div> 
 				<!-- /.box-footer-->
 			</div>
 		</div>
 		<!--/.col (left) -->
-
 	</div>
 	<!-- /.row -->
 </section>
 <!-- /.content -->
-
+</div>
 
 <script>
 	var result = '${msg}';
@@ -150,9 +180,10 @@
 
 				$('#newBtn').on("click", function(evt) {
 
-					self.location = "register";
+					self.location = "register_form";
 
 				});
-
 			});
-</script>
+</script> 
+</body>
+

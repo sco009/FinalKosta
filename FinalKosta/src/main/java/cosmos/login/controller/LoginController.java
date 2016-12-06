@@ -45,8 +45,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/loginCheck", method=RequestMethod.POST)
 	public void loginCheck(LoginDTO dto, HttpSession session, Model model) throws Exception{
-		System.out.println("입력한 비밀번호 : " + dto.getMemberPw());
-		// 화면에서 입력한 dto값을 가져와서 복호화시킨뒤에 service.login에 넣어주기
+		// 화면에서 입력한 dto.getMemberPw()값을 가져와서 복호화시킨뒤에 service.login에 넣어주기
 
 		String spass = service.password(dto); // DB에 암호화되어있는 PW
 		
@@ -69,18 +68,16 @@ public class LoginController {
 			originPass += (char)(ch2[i]-7);
 		}
 		
-		dto.setMemberPw(originPass);
-		
-		if(dto.getMemberPw()==originPass) {
+		if(dto.getMemberPw().equals(originPass)) {
 			dto.setMemberPw(spass);
-			
+			System.out.println("일치함");
 			LoginVO vo = service.login(dto);
 			System.out.println();
 			if(vo == null) {
 				
 				return;
 			}
-		
+
 			String name = service.currentMemberCheck(dto);
 			if(name != null){//이미 로그인되어있구나
 				System.out.println("이미 로그인중");

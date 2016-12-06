@@ -12,7 +12,21 @@ public class NoticeVO {
 	private int viewcnt;
 	private int replycnt;
 	private String[] files;
+
+	public NoticeVO(){}
 	
+	public NoticeVO(Integer bno, String title, String content, String writer, Date regdate, int viewcnt, int replycnt,
+			String[] files) {
+		super();
+		this.bno = bno;
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.regdate = regdate;
+		this.viewcnt = viewcnt;
+		this.replycnt = replycnt;
+		this.files = files;
+	}
 	public String[] getFiles() {
 		return files;
 	}

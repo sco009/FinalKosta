@@ -5,9 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import cosmos.noticeboard.domain.FileVO;
 import cosmos.noticeboard.domain.NoticeVO;
 import cosmos.noticeboard.domain.NoticeSearchCriteria;
 import cosmos.noticeboard.persistence.NoticeDAO;
@@ -17,67 +17,48 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Inject
 	private NoticeDAO dao;
-	
+
 	@Override
-	public void regist(NoticeVO notice) throws Exception {
-		dao.create(notice);
-		String[] files = notice.getFiles();
-		int bno = dao.getBno();
-		
-		FileVO fileVO = new FileVO();
-		fileVO.setBno(bno);
-		
-		if(files == null){
-			return;
-		}
-		for(String fileName : files){
-			fileVO.setFullName(fileName);
-			dao.addAttach(fileVO);
-		}
+	public void regist(NoticeVO vo) throws Exception {
+		dao.create(vo);		
 	}
 
-	@Transactional
+	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public NoticeVO read(Integer bno) throws Exception {
 		dao.updateViewCnt(bno);
-		NoticeVO noticeVO = dao.read(bno);
-		return noticeVO;
+		return dao.read(bno);
 	}
 
 	@Override
 	public void modify(NoticeVO vo) throws Exception {
-		dao.update(vo);
-		Integer bno = vo.getBno();
-		dao.deleteAttach(bno);
-		
-		String[] files = vo.getFiles();
-		if(files== null){
-			return;
-		}
-		for(String fileName : files){
-			dao.repalceAttach(fileName, bno);
-		}
+		dao.update(vo);		
 	}
 
 	@Override
 	public void remove(Integer bno) throws Exception {
-		dao.deleteAttach(bno);
 		dao.delete(bno);
 	}
 
 	@Override
-	public List<NoticeVO> listCri(NoticeSearchCriteria criteria) throws Exception {
-		return dao.listCriteria(criteria);
+	public List<NoticeVO> listAll() throws Exception {
+		return dao.listAll();
 	}
 
 	@Override
-	public int listCountCriteria(NoticeSearchCriteria criteria) throws Exception {
-		return dao.countPaging(criteria);
+	public List<NoticeVO> listCri(NoticeSearchCriteria cri) throws Exception {
+		return dao.listCriteria(cri);
+	}
+
+	@Override
+	public int listCountCriteria(NoticeSearchCriteria cri) throws Exception {
+		return dao.countPaging(cri);
 	}
 
 	@Override
 	public List<String> getAttach(Integer bno) throws Exception {
-		
 		return dao.getAttach(bno);
+
 	}
+	
 }

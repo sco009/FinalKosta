@@ -10,19 +10,34 @@
 		values(notice_seq.nextval, #{title}, #{content}, #{writer}, sysdate,0)
 	</insert>
 
-	<select id="getList" resultType="NoticeVO">
-		<![CDATA[
-		select *
-		from noticeboard  
-		where bno > 0
-		]]>
-				<include refid="search"></include>
-		        
-		 <![CDATA[
-		        order by bno desc , regdate desc
-		        ]]>
+	<select id="read" resultType="NoticeVO">
+		select * from noticeboard where bno = #{bno}
 	</select>
-
+	
+	<update id="update" parameterType="NoticeVO">
+		update noticeboard set title = #{title}, content = #{content} where bno=#{bno}
+	</update>
+	
+	<delete id="delete" parameterType="NoticeVO">
+		delete from noticeboard where bno = #{bno}
+	</delete>
+	
+	<select id="listAll" resultType="NoticeVO">
+	 <![CDATA[
+	 select 
+	   bno, title, content, writer, regdate, viewcnt, replycnt
+	 from 
+	   noticeboard 
+	 where bno > 0 
+	 ]]>
+	 	
+	 	<include refid="search"></include>
+	 	
+	 <![CDATA[
+	 order by bno desc, regdate desc
+	 ]]>
+	</select>
+	
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
@@ -55,62 +70,77 @@
 		</if>
 	</sql>
 
-	<select id="getBoard" parameterType="Integer" resultType="NoticeVO">
-		select * from noticeboard where bno = #{bno}
-
+	<select id="listCriteria" resultType="NoticeVO">
+		<![CDATA[select bno, title, content, writer, regdate, viewcnt
+			from noticeboard where bno > 0 order by bno desc, regdate desc
+			limit #{pageStart}, #{perPageNum}]]>
 	</select>
-
-	<update id="update" parameterType="NoticeVO">
-		update noticeboard set title = #{title}, content=#{content}, writer=#{writer}
-		where bno = #{bno}
-	</update>
-
-	<delete id="delete" parameterType="Integer">
-		delete from noticeboard where bno = #{bno}
-	</delete>
-
+	
 	<select id="countPaging" resultType="int">
-	<![CDATA[
-		select count(bno)
-		from noticeboard
-		where bno > 0  ]]>
+		<![CDATA[ select count(bno) from noticeboard where bno > 0 ]]>
+		
 		<include refid="search"></include>
 	</select>
 
-	<update id="updateReplyCnt">
-		update noticeboard set replycnt = replycnt + #{amount}
-		where bno = #{bno}
-	</update>
-
-	<select id="getBno" resultType="int">
-		select bno
-		from notice_reply
-		where rno = #{rno}
-	</select>
-
-	<update id="updateViewCnt">
-		update noticeboard set viewcnt = viewcnt+1
-		where bno = #{bno}
-
-	</update>
-
-	<insert id="addAttach" parameterType="FileVO">
-		insert into notice_attach(fullname,bno) values(#{fullName},#{bno})
-	</insert>
-
-	<select id="maxNum" resultType="int">
-		select MAX(bno) from noticeboard
-	</select>
-
 	<select id="getAttach" resultType="string">
-		select fullname from notice_attach where bno = #{bno} order by regdate
+		select fullName from notice_attach where bno = #{bno} order by regdate
 	</select>
-
-	<delete id="deleteAttach">
-		delete from notice_attach where bno = #{bno}
-	</delete>
-
-	<insert id="replaceAttach">
-		insert into notice_attach(fullname,bno) values (#{fullName},#{bno})
+	
+	
+	<!-- Reply -->
+	<select id="list" resultType="ReplyVO">
+		select * from notice_attach
+			where bno=#{bno}
+			order by rno desc
+	</select>
+	
+	<insert id="r_create" parameterType="ReplyVO">
+		insert into notice_attach(rno, bno, replytext, replyer)
+			values(seq_reply.nextval, #{bno}, #{replytext}, #{replyer})
 	</insert>
+	
+	<update id="r_update" parameterType="ReplyVO">
+		update notice_attach set replytext = #{replytext},
+			updatedate = sysdate
+			where rno = #{rno}
+	</update>
+	
+	<delete id="r_delete">
+		delete from notice_attach where rno = #{rno}
+	</delete> 
+	
+	<select id="r_listPage" resultType="ReplyVO">
+	  <![CDATA[
+		 select 
+		   rno, bno, replytext, replyer, regdate, updatedate
+		 from
+		   (
+		   select /*+INDEX_DESC(tbl_reply pk_reply))*/
+		     rownum rn, rno, bno, replytext, replyer, regdate, updatedate
+		   from notice_attach
+		   where bno = #{bno}
+		   and rno > 0
+		   and rownum <= #{cri.page} * #{cri.perPageNum}
+		   )
+		where rn > ( #{cri.page} -1) * #{cri.perPageNum}
+	  ]]>
+	</select>
+	
+	<select id="r_count" resultType="int">
+		select count(bno) from notice_attach
+		where bno =#{bno}
+	</select> 
+	
+	<update id="updateReplyCnt">
+		update noticeboard set replycnt = replycnt + #{amount} where bno = #{bno}
+	</update>
+	
+	<select id="getBno" resultType="int">
+		select bno from notice_attach where rno = #{rno}
+	</select>
+	
+	<update id="updateViewCnt">
+		update noticeboard set viewcnt = viewcnt + 1
+			where bno = #{bno}
+	</update>
 </mapper>
