@@ -21,6 +21,7 @@ public class WebCompileController {
 	@RequestMapping(value ="/main")
 	public String goWebcomplieForm(){
 		return 	"redirect:http://localhost:3000/webcompile";
+		
 	}
 	
 	@ResponseBody

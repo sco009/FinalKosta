@@ -19,6 +19,7 @@ table{
 	width: 500px;
 }
 </style>
+<jsp:include page="/WEB-INF/views/module/header.jsp" />
 
 
 <body>

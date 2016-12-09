@@ -127,7 +127,10 @@ public class SubjectiveController {
 	@RequestMapping(value="/finishSubjective", method=RequestMethod.POST)
 	public String finishSubjective(SubjectivePointVO point)throws Exception{
 		service.pointInsert(point);
-		
+		count = 0;
+		subjectiveList = new ArrayList<SubjectiveVO>();
+		subjectiveFailList = new ArrayList<SubjectiveVO>();
+		subjectiveSuccessList = new ArrayList<SubjectiveVO>();
 		return "subjective/subjective_main";
 	}
 	// 컴파일러

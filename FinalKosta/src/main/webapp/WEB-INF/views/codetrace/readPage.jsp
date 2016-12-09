@@ -36,6 +36,7 @@
         background-size: 1300px 600px;
 	}
 </style>
+<jsp:include page="/WEB-INF/views/module/header.jsp" />
 
 <body>
     <div class='popup back' style="display:none;"></div>

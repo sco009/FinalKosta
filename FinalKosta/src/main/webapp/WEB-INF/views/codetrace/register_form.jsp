@@ -18,7 +18,6 @@ body{
 	        background-size: 1300px 600px;
 }
 </style>
-
 <body>
 	<!-- Main content -->
 	<section class="content">

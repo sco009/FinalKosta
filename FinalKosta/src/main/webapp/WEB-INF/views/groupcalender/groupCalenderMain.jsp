@@ -1,6 +1,6 @@
 <%@page import="cosmos.groupcalender.domain.CalenderVO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
@@ -13,25 +13,25 @@
 			: (Integer.parseInt(request.getParameter("mm")) - 1);
 			
 	String groupid = (String)session.getAttribute("groupID");
-	// ½ÃÀÛ¿äÀÏ È®ÀÎ
-	// - Calendar MONTH´Â 0-11±îÁöÀÓ
+	// ì‹œì‘ìš”ì¼ í™•ì¸
+	// - Calendar MONTHëŠ” 0-11ê¹Œì§€ì„
 	cal.set(year, month, 1);
 	int bgnWeek = cal.get(Calendar.DAY_OF_WEEK);
 
-	// ´ÙÀ½/ÀÌÀü¿ù °è»ê
-	// - MONTH °è»ê½Ã Ç¥±â¿ù·Î °è»êÇÏ±â ¶§¹®¿¡ +1À» ÇÑ »óÅÂ¿¡¼­ °è»êÇÔ
+	// ë‹¤ìŒ/ì´ì „ì›” ê³„ì‚°
+	// - MONTH ê³„ì‚°ì‹œ í‘œê¸°ì›”ë¡œ ê³„ì‚°í•˜ê¸° ë•Œë¬¸ì— +1ì„ í•œ ìƒíƒœì—ì„œ ê³„ì‚°í•¨
 	int prevYear = year;
 	int prevMonth = (month + 1) - 1;
 	int nextYear = year;
 	int nextMonth = (month + 1) + 1;
 
-	// 1¿ùÀÎ °æ¿ì ÀÌÀü³â 12¿ù·Î ÁöÁ¤
+	// 1ì›”ì¸ ê²½ìš° ì´ì „ë…„ 12ì›”ë¡œ ì§€ì •
 	if (prevMonth < 1) {
 		prevYear--;
 		prevMonth = 12;
 	}
 
-	// 12¿ùÀÎ °æ¿ì ´ÙÀ½³â 1¿ù·Î ÁöÁ¤
+	// 12ì›”ì¸ ê²½ìš° ë‹¤ìŒë…„ 1ì›”ë¡œ ì§€ì •
 	if (nextMonth > 12) {
 		nextYear++;
 		nextMonth = 1;
@@ -40,7 +40,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 	<script type="text/javascript">
@@ -51,8 +51,8 @@
 		
 		
 		function popupOpen(yy,mm,dd,groupid){
-			var popUrl = "/groupcalender/groupCalenderDetail?yy="+yy+"&mm="+mm+"&dd="+dd+"&groupid="+groupid;//ÆË¾÷Ã¢¿¡ Ãâ·ÂµÉ ÆäÀÌÁö URL
-			var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //ÆË¾÷Ã¢ ¿É¼Ç(optoin)
+			var popUrl = "/groupcalender/groupCalenderDetail?yy="+yy+"&mm="+mm+"&dd="+dd+"&groupid="+groupid;//íŒì—…ì°½ì— ì¶œë ¥ë  í˜ì´ì§€ URL
+			var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //íŒì—…ì°½ ì˜µì…˜(optoin)
 				window.open(popUrl,"",popOption);
 			};
 		</script>
@@ -78,46 +78,46 @@ a.no-uline {
 		<tr>
 			<td align="center" style="font-size: 3em; color: #FFC19E;"><a
 				href="/groupcalender/movemain?yy=<%=prevYear%>&mm=<%=prevMonth%>&groupid=<%=groupid %>"
-				style="text-decoration: none" >¢·</a> <%=year%>³â <%=month + 1%>¿ù <a
+				style="text-decoration: none" >â—</a> <%=year%>ë…„ <%=month + 1%>ì›” <a
 				href="/groupcalender/movemain?yy=<%=nextYear%>&mm=<%=nextMonth%>&groupid=<%=groupid %>"
-				style="text-decoration: none">¢¹</a></td>
+				style="text-decoration: none">â–·</a></td>
 		</tr>
 		<tr>
 			<td>
 
 				<table border="1" bordercolor="#F29661" width="1500px">
 					<tr align="center" height="50px" class="week">
-						<td>ÀÏ</td>
-						<td>¿ù</td>
-						<td>È­</td>
-						<td>¼ö</td>
-						<td>¸ñ</td>
-						<td>±İ</td>
-						<td>Åä</td>
+						<td>ì¼</td>
+						<td>ì›”</td>
+						<td>í™”</td>
+						<td>ìˆ˜</td>
+						<td>ëª©</td>
+						<td>ê¸ˆ</td>
+						<td>í† </td>
 					</tr>
 					<tr align='center' height="100px" class="day">
 
 						<%
-							// ½ÃÀÛ¿äÀÏ±îÁö ÀÌµ¿
+							// ì‹œì‘ìš”ì¼ê¹Œì§€ ì´ë™
 							for (int i = 1; i < bgnWeek; i++)
 								out.println("<td>&nbsp;</td>");
 
-							// Ã¹³¯~¸¶Áö¸·³¯±îÁö Ã³¸®
-							// - ³¯Â¥¸¦ ÇÏ·ç¾¿ ÀÌµ¿ÇÏ¿© ¿ùÀÌ ¹Ù²ğ¶§±îÁö ±×¸°´Ù
+							// ì²«ë‚ ~ë§ˆì§€ë§‰ë‚ ê¹Œì§€ ì²˜ë¦¬
+							// - ë‚ ì§œë¥¼ í•˜ë£¨ì”© ì´ë™í•˜ì—¬ ì›”ì´ ë°”ë€”ë•Œê¹Œì§€ ê·¸ë¦°ë‹¤
 							while (cal.get(Calendar.MONTH) == month) {
 
 								out.println("<td id='"
 										+cal.get(Calendar.DATE)+"'><span onclick='detail("+year+","+(month+1)+","+cal.get(Calendar.DATE)+","+'"'+groupid+'"'+")' style='text-decoration:none' >" + cal.get(Calendar.DATE) + "</span></td>");
 
-								// Åä¿äÀÏÀÎ °æ¿ì ´ÙÀ½ÁÙ·Î »ı¼º
+								// í† ìš”ì¼ì¸ ê²½ìš° ë‹¤ìŒì¤„ë¡œ ìƒì„±
 								if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
 									out.println("</tr><tr align='center' height='100px'>");
 
-								// ³¯Â¥ Áõ°¡½ÃÅ°´Â °÷
+								// ë‚ ì§œ ì¦ê°€ì‹œí‚¤ëŠ” ê³³
 								cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE) + 1);
 							}
 
-							// ³¡³¯ºÎÅÍ Åä¿äÀÏ±îÁö ºóÄ­À¸·Î Ã³¸®
+							// ëë‚ ë¶€í„° í† ìš”ì¼ê¹Œì§€ ë¹ˆì¹¸ìœ¼ë¡œ ì²˜ë¦¬
 							if(cal.get(Calendar.DAY_OF_WEEK) != 6){
 							for (int i = cal.get(Calendar.DAY_OF_WEEK); i <= 7; i++)
 								out.println("<td>&nbsp;</td>");

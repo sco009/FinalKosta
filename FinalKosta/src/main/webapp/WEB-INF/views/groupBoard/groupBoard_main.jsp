@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/resources/dist/js/groupBoard/groupBoardJavaScript.js"></script>
-<%request.setAttribute("memberId", "sco09"); %>
 <script>
 	$(function() {
 		$("#draggable").draggable({
@@ -99,7 +98,7 @@ window.onload= function() {
             <div id="mySidenav" class="sidenav">
                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                <a href="main">애자일 스크럼</a> <a href="/groupcalender/groupCalenderMain">일정보기</a> <a href="../notice/listPage">공지사항</a> 
-               <a href="#">기타</a>
+               <a href="/webcompile/main">웹컴파일</a>
             </div>
          </div>
          
@@ -253,7 +252,7 @@ window.onload= function() {
 			<div class="col-md-1">
 			<a onclick="test()"><img src="/resources/dist/img/chat/chatimg.png"></a>   
    <div  id="#chat"> 
-   <iframe  src="http://localhost:3000/?id=aaa&roomid=bbb"  width="300px" height="600px"></iframe>
+   <iframe  src="http://localhost:3000/?id=${memberId}&roomid=${groupId}"  width="300px" height="600px"></iframe>
    </div>
    </div>
 			

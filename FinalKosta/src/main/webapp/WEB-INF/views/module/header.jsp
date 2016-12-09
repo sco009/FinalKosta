@@ -17,9 +17,9 @@
  <li><a href="#">STUDY<span></span></a>
     <ul>
       <li><a href="/education">Educational Resource</a></li>
-      <li><a href="../Multiple/MultipleMain.jsp">solve Exam</a></li>
-      <li><a href="#">Code Fight</a></li>
-      <li><a href="#">Code Trace</a></li>
+      <li><a href="/multiple/multiple">Solve Multiple Exam</a></li>
+      <li><a href="/subjective/main">Solve Subjective Exam</a></li>
+      <li><a href="/codetrace/listPage">Code Trace</a></li>
     </ul>
  </li>
  <li><a href="#">GROUP<span></span></a>

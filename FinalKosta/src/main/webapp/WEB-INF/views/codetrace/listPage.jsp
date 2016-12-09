@@ -29,6 +29,7 @@ body{
 	        background-size: 1300px 600px;
 }
 </style>
+<jsp:include page="/WEB-INF/views/module/header.jsp" />
 
 <!-- Main content -->
 <body>

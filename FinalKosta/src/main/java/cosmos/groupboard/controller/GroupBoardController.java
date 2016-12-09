@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cosmos.groupboard.domain.GroupBoardVO;
 import cosmos.groupboard.domain.TeamVO;
 import cosmos.groupboard.service.GroupBoardService;
+import cosmos.login.domain.LoginVO;
 
 @Controller
 @RequestMapping("/groupBoard/*")
@@ -31,6 +32,8 @@ public class GroupBoardController {
 	@RequestMapping("/start")
 	public String start(Model model, HttpSession session) throws Exception{
 		String groupId = (String)session.getAttribute("groupID");
+		LoginVO vo =  (LoginVO)session.getAttribute("login");
+		String memberId = vo.getMemberID();
 		List<GroupBoardVO>grouplist =  service.groupBoardList(groupId);
 		List<TeamVO> groupMember = service.groupMember(groupId);
 		
@@ -62,12 +65,15 @@ public class GroupBoardController {
 		
 		model.addAttribute("list", grouplist);
 		model.addAttribute("groupId", groupId);
+		model.addAttribute("memberId", memberId);
 		
 		return "/groupBoard/groupBoard_main";
 	}
 	
 	@RequestMapping("/saveData")
 	public String saveData(GroupBoardVO VO, Model model, HttpSession session) throws Exception{
+		LoginVO vo =  (LoginVO)session.getAttribute("login");
+		String memberId = vo.getMemberID();
 		String groupId = (String)session.getAttribute("groupID");
 		service.boardInsert(VO);
 		List<TeamVO> groupMember = service.groupMember(groupId);
@@ -94,7 +100,7 @@ public class GroupBoardController {
 			scrumMap.put("END", 0);
 		}
 //============================================================================================================	
-		
+		model.addAttribute("memberId", memberId);
 		model.addAttribute("groupId", groupId);
 		model.addAttribute("scrumMap", scrumMap);
 		model.addAttribute("member", member);
